@@ -24,10 +24,7 @@ jobs:
           python-version: "3.11"
 
       - name: Validate processed datasets
-        run: |
-          python3 scripts/validate_domain_registry.py
-          python3 scripts/validate_schema.py data/processed
+        run: make PYTHON=python3 validate
 
       - name: Validate relationship maps
-        run: |
-          python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed
+        run: make PYTHON=python3 relationships

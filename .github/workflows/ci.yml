@@ -29,10 +29,10 @@ jobs:
           pip install -e ".[dev]"
 
       - name: Run deterministic validation
-        run: make validate
+        run: make PYTHON=python3 validate
 
       - name: Build release artifacts and reports
-        run: make release
+        run: make PYTHON=python3 release
 
       - name: Run tests
         run: python -m pytest

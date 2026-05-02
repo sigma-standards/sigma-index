@@ -14,6 +14,7 @@ import json
 import shutil
 import sys
 from pathlib import Path
+from typing import Optional, Sequence
 
 
 MASTER_FIELDS = [
@@ -41,6 +42,15 @@ MASTER_FIELDS = [
     "notes",
 ]
 
+DOMAIN_ALIASES = {
+    "Information Technology": "Information & Communications Technology (ICT)",
+    "Technology": "Information & Communications Technology (ICT)",
+}
+
+
+def normalize_domain(domain: str) -> str:
+    return DOMAIN_ALIASES.get(domain.strip(), domain.strip())
+
 
 def read_master_rows(processed_dir: Path) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
@@ -51,7 +61,9 @@ def read_master_rows(processed_dir: Path) -> list[dict[str, str]]:
             if "sigma_id" not in fieldnames:
                 continue
             for row in reader:
-                rows.append({field: row.get(field, "") for field in MASTER_FIELDS})
+                release_row = {field: row.get(field, "") for field in MASTER_FIELDS}
+                release_row["domain"] = normalize_domain(release_row["domain"])
+                rows.append(release_row)
     return rows
 
 
@@ -115,14 +127,14 @@ def write_api_index(path: Path, rows: list[dict[str, str]], relationships: list[
     write_json(path, payload)
 
 
-def main() -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Build SIGMA release artifacts.")
     parser.add_argument("--processed-dir", type=Path, default=Path("data/processed"))
     parser.add_argument("--relationships-dir", type=Path, default=Path("data/relationships"))
     parser.add_argument("--reference-dir", type=Path, default=Path("data/reference"))
     parser.add_argument("--reports-dir", type=Path, default=Path("data/reports"))
     parser.add_argument("--output-dir", type=Path, default=Path("dist"))
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     if not args.processed_dir.exists():
         print(f"Missing processed data directory: {args.processed_dir}", file=sys.stderr)

@@ -23,13 +23,7 @@ jobs:
           python-version: "3.11"
 
       - name: Build release artifacts
-        run: |
-          python3 scripts/extract_relationships.py
-          python3 scripts/validate_domain_registry.py
-          python3 scripts/validate_schema.py data/processed
-          python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed
-          python3 scripts/build_domain_coverage.py
-          python3 scripts/build_release.py
+        run: make PYTHON=python3 release
 
       - name: Upload release artifact bundle
         uses: actions/upload-artifact@v7

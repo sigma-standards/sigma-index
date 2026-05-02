@@ -31,18 +31,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Build data bundle
-        run: |
-          python3 scripts/extract_relationships.py
-          python3 scripts/validate_domain_registry.py
-          python3 scripts/validate_schema.py data/processed
-          python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed
-          python3 scripts/build_domain_coverage.py
-          python3 scripts/build_release.py
-
       - name: Build static site
-        run: |
-          python3 scripts/build_static_site.py
+        run: make PYTHON=python3 site
 
       - name: Build Pagefind search index
         run: |
