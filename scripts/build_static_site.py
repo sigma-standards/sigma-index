@@ -19,6 +19,7 @@ DOC_FILES = [
     "docs/RESEARCH_TASKS.md",
     "docs/PROJECT_KNOWLEDGE_GRAPH.md",
     "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md",
+    "docs/PROJECT_STATUS_REPORT_2026-05-02.md",
     "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md",
 ]
 
@@ -629,6 +630,7 @@ def doc_labels() -> dict[str, str]:
         "docs/RESEARCH_TASKS.md": "Research Task Matrix",
         "docs/PROJECT_KNOWLEDGE_GRAPH.md": "Project Knowledge Graph",
         "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md": "Gap Analysis",
+        "docs/PROJECT_STATUS_REPORT_2026-05-02.md": "Project Status Report",
         "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md": "Roadmap to 100%",
     }
 

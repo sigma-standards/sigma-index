@@ -120,6 +120,10 @@ The remaining-work roadmap is saved at `docs/superpowers/plans/2026-05-02-roadma
 
 External feedback from `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` is incorporated into the roadmap, research task matrix, and project references. The highest-impact additions are W3C, NIST, ITU, ETSI, OASIS, Ecma, GS1, IEC, IAEA, CCSDS, GRI/SASB, culture, sports, HDX, Zenodo, and the now-active static-site search layer.
 
+## Current Project Status Report
+
+The dated report at `docs/PROJECT_STATUS_REPORT_2026-05-02.md` summarizes the journey so far, current accomplishments, challenges, strategies, best practices, and remaining steps toward the full 100% SIGMA vision.
+
 ## Phase 9A Quality Gate
 
 The deterministic quality gate writes `data/reports/quality_gate.csv` and `docs/QUALITY_GATE.md` for duplicate IDs, missing required fields, and malformed official URLs before release artifacts are built.
@@ -135,4 +139,5 @@ The deterministic quality gate writes `data/reports/quality_gate.csv` and `docs/
 - Quality gate: `docs/QUALITY_GATE.md`
 - Project knowledge graph: `docs/PROJECT_KNOWLEDGE_GRAPH.md`
 - Gap analysis and enhancement plan: `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md`
+- Project status report: `docs/PROJECT_STATUS_REPORT_2026-05-02.md`
 - Raw ISO seed datasets: `data/raw/iso/`

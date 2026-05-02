@@ -9,6 +9,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | Research Plan | Source of truth | `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md` | Canonical 24-month phase structure, methodology, schema, governance, and domain strategy |
 | Roadmap to 100 Percent | Source of truth | `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md` | Detailed remaining-work execution plan from current MVP to v1.0 |
 | Gap Analysis | External feedback | `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` | Friend-reviewed gap report incorporated into roadmap checkpoints and research tasks |
+| Project Status Report | Status report | `docs/PROJECT_STATUS_REPORT_2026-05-02.md` | Dated journey summary, accomplishments, current metrics, challenges, strategies, best practices, and next steps |
 | Schema | Contract | `SCHEMA.md` | Published 22-field master-entry contract |
 | Domain Taxonomy | Reference data | `data/reference/domain_taxonomy.csv` | Canonical 40-domain registry |
 | Source Registry | Reference data | `data/reference/source_registry.csv` | Public source map and source status table |
@@ -27,6 +28,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | Research Plan | defines | Research Tasks |
 | Roadmap to 100 Percent | prioritizes | Research Tasks |
 | Gap Analysis | adds accepted enhancement tasks to | Research Tasks |
+| Project Status Report | summarizes current progress toward | Roadmap to 100 Percent |
 | Source Registry | authorizes source families for | Processed Data |
 | Raw Data | feeds | Processing Scripts |
 | Reference Data | feeds | Processing Scripts |

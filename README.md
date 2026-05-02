@@ -28,6 +28,7 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - `data/reports/domain_coverage.csv` — generated coverage report.
 - `docs/PROJECT_KNOWLEDGE_GRAPH.md` — maintainer-oriented map of source-of-truth documents, generated artifacts, and pipeline relationships.
 - `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` — external feedback gap analysis incorporated into the roadmap and task matrix.
+- `docs/PROJECT_STATUS_REPORT_2026-05-02.md` — current journey summary, accomplishments, challenges, best practices, and next steps.
 - `data/relationships/relationships_template.csv` — relationship map template for graph edges.
 - `.github/` — GitHub configuration (issues, workflows).
 
@@ -293,6 +294,8 @@ This generates `data/reports/research_task_coverage.csv` and `docs/RESEARCH_TASK
 The remaining work toward the complete global standards index is documented in `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md`. It follows the canonical Phase 0 through Phase 9 research plan, then extends into the enhanced graph, API, automation, multilingual, and sustainability roadmap.
 
 The friend-reviewed gap analysis is preserved in `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md`. Its actionable recommendations have been converted into roadmap checkpoints and machine-readable research tasks.
+
+The current project status report is preserved in `docs/PROJECT_STATUS_REPORT_2026-05-02.md`. It summarizes the journey so far, current release metrics, remaining workstreams, lessons learned, challenges, strategies, and operating best practices.
 
 ## Contribute Without Coding
 

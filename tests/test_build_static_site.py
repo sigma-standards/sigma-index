@@ -142,6 +142,10 @@ def make_fixture_repo(tmp_path):
         "# SIGMA Gap Analysis and Enhancement Plan\n",
         encoding="utf-8",
     )
+    (tmp_path / "docs" / "PROJECT_STATUS_REPORT_2026-05-02.md").write_text(
+        "# SIGMA Project Status Report\n",
+        encoding="utf-8",
+    )
 
 
 def test_build_site_creates_designed_navigation_and_metrics(tmp_path):
@@ -199,6 +203,7 @@ def test_build_site_copies_downloads_and_docs(tmp_path):
     assert (tmp_path / "public" / "docs" / "RESEARCH_TASKS.html").exists()
     assert (tmp_path / "public" / "docs" / "PROJECT_KNOWLEDGE_GRAPH.html").exists()
     assert (tmp_path / "public" / "docs" / "SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.html").exists()
+    assert (tmp_path / "public" / "docs" / "PROJECT_STATUS_REPORT_2026-05-02.html").exists()
 
 
 def test_build_site_creates_search_page_and_pagefind_records(tmp_path):
@@ -245,6 +250,7 @@ def test_project_reference_links_rendered_html_docs_not_raw_markdown(tmp_path):
     assert 'href="docs/RESEARCH_TASKS.html"' in html
     assert 'href="docs/PROJECT_KNOWLEDGE_GRAPH.html"' in html
     assert 'href="docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.html"' in html
+    assert 'href="docs/PROJECT_STATUS_REPORT_2026-05-02.html"' in html
     assert 'href="docs/2026-05-02-roadmap-to-100-percent-global-standards-index.html"' in html
     assert "Roadmap to 100%" in html
     assert "Research Task Matrix" in html
