@@ -55,3 +55,4 @@ sync-google-sheet:
 
 clean:
 	rm -rf dist build public *.egg-info scripts/__pycache__ tests/__pycache__ .pytest_cache
+	rm -f rfc-index.txt data/raw/iso/*.temp

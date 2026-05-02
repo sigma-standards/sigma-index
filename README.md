@@ -20,6 +20,7 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - `data/reference/domain_taxonomy.csv` — canonical 40-domain registry.
 - `data/reference/source_registry.csv` — source map for all 40 domains.
 - `data/reports/domain_coverage.csv` — generated coverage report.
+- `docs/PROJECT_KNOWLEDGE_GRAPH.md` — maintainer-oriented map of source-of-truth documents, generated artifacts, and pipeline relationships.
 - `data/relationships/relationships_template.csv` — relationship map template for graph edges.
 - `.github/` — GitHub configuration (issues, workflows).
 
@@ -151,6 +152,10 @@ This generates `data/reports/research_task_coverage.csv` and `docs/RESEARCH_TASK
 ## Roadmap to 100 Percent
 
 The remaining work toward the complete global standards index is documented in `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md`. It follows the canonical Phase 0 through Phase 9 research plan, then extends into the enhanced graph, API, automation, multilingual, and sustainability roadmap.
+
+## Project Owner and Contact
+
+The project owner and lead curator is **Mohammad Ariful Islam**. For public questions, corrections, missing sources, or contribution proposals, open an issue at `https://github.com/sigma-standards/sigma-index/issues`.
 
 ## Phase 9A Quality Gate
 

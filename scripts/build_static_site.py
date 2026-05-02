@@ -17,6 +17,7 @@ DOC_FILES = [
     "CODE_OF_CONDUCT.md",
     "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md",
     "docs/RESEARCH_TASKS.md",
+    "docs/PROJECT_KNOWLEDGE_GRAPH.md",
     "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md",
 ]
 
@@ -31,6 +32,16 @@ DOWNLOAD_LABELS = {
     "domain_taxonomy.csv": "Domain Taxonomy",
     "source_registry.csv": "Source Registry",
     "domain_coverage.csv": "Domain Coverage",
+}
+
+PROJECT_PROGRESS = {
+    "full_vision_percent": 22,
+    "public_mvp_percent": 70,
+    "stage": "Public MVP with all-domain seeds and priority ingestors",
+    "owner": "Mohammad Ariful Islam",
+    "owner_role": "Lead Curator and Project Owner",
+    "contact_url": "https://github.com/sigma-standards/sigma-index/issues",
+    "contact_label": "Open a GitHub issue",
 }
 
 
@@ -357,6 +368,7 @@ def doc_labels() -> dict[str, str]:
         "CODE_OF_CONDUCT.md": "Code of Conduct",
         "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md": "Research Plan",
         "docs/RESEARCH_TASKS.md": "Research Task Matrix",
+        "docs/PROJECT_KNOWLEDGE_GRAPH.md": "Project Knowledge Graph",
         "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md": "Roadmap to 100%",
     }
 
@@ -366,6 +378,8 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
     relationship_count = fmt_number(api.get("relationship_count"))
     domain_count = fmt_number(len(domains))
     source_count = fmt_number(len(sources))
+    full_progress = PROJECT_PROGRESS["full_vision_percent"]
+    public_progress = PROJECT_PROGRESS["public_mvp_percent"]
 
     return f"""<!doctype html>
 <html lang="en">
@@ -383,6 +397,7 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
       <span><strong>SIGMA</strong><small>Global Standards Index</small></span>
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#progress">Progress</a>
       <a href="#downloads">Downloads</a>
       <a href="#domains">Domains</a>
       <a href="#sources">Sources</a>
@@ -406,6 +421,36 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
         <div><strong>{relationship_count}</strong><span>relationship edges</span></div>
         <div><strong>{domain_count}</strong><span>canonical domains</span></div>
         <div><strong>{source_count}</strong><span>source registry rows</span></div>
+      </div>
+    </section>
+
+    <section id="progress" class="section progress-band">
+      <div class="section-heading">
+        <p class="eyebrow">Project progress</p>
+        <h2>From public MVP to complete global index.</h2>
+        <p>The roadmap defines 100% as source-backed coverage across all 40 domains, all major layers, repeatable ingestors, relationship graph exports, quality gates, and rendered public documentation.</p>
+      </div>
+      <div class="progress-layout">
+        <article class="progress-card">
+          <div class="progress-meter" style="--progress: {full_progress}%">
+            <span></span>
+          </div>
+          <strong>{full_progress}% complete global vision</strong>
+          <p>{esc(PROJECT_PROGRESS["stage"])}. The remaining work is tracked by the roadmap, research task matrix, source registry, and quality reports.</p>
+        </article>
+        <article class="progress-card">
+          <div class="progress-meter secondary" style="--progress: {public_progress}%">
+            <span></span>
+          </div>
+          <strong>{public_progress}% public MVP readiness</strong>
+          <p>The published site has release downloads, all-domain coverage, source registry views, rendered project references, and deterministic validation.</p>
+        </article>
+        <article class="owner-card">
+          <span>Project owner</span>
+          <strong>{esc(PROJECT_PROGRESS["owner"])}</strong>
+          <p>{esc(PROJECT_PROGRESS["owner_role"])}</p>
+          <a href="{esc(PROJECT_PROGRESS["contact_url"])}">{esc(PROJECT_PROGRESS["contact_label"])}</a>
+        </article>
       </div>
     </section>
 
@@ -688,6 +733,74 @@ h1 {
   padding: 72px 20px;
 }
 
+.progress-band {
+  max-width: none;
+  padding-inline: clamp(20px, 5vw, 76px);
+  background: #f6efe2;
+}
+
+.progress-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(220px, 1fr) minmax(240px, 0.82fr);
+  gap: 14px;
+}
+
+.progress-card,
+.owner-card {
+  min-height: 220px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.progress-card strong,
+.owner-card strong {
+  display: block;
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: 1.25rem;
+}
+
+.progress-card p,
+.owner-card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.progress-meter {
+  height: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dce5df;
+}
+
+.progress-meter span {
+  display: block;
+  width: var(--progress);
+  height: 100%;
+  background: linear-gradient(90deg, var(--forest), var(--teal));
+}
+
+.progress-meter.secondary span {
+  background: linear-gradient(90deg, var(--gold), var(--berry));
+}
+
+.owner-card span {
+  color: var(--berry);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.owner-card a {
+  display: inline-flex;
+  margin-top: 8px;
+  color: var(--forest);
+  font-weight: 800;
+  text-decoration: none;
+}
+
 .band {
   display: grid;
   grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
@@ -966,7 +1079,8 @@ td:first-child {
   }
 
   .hero,
-  .band {
+  .band,
+  .progress-layout {
     grid-template-columns: 1fr;
   }
 

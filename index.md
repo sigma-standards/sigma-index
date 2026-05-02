@@ -16,6 +16,10 @@ Search and understand global standards across health, climate, trade, governance
 - Keep data machine-readable (CSV/JSON/Parquet) and human-friendly.
 - Maintain open governance with transparent version history.
 
+## Owner and Contact
+
+Project owner and lead curator: **Mohammad Ariful Islam**. Public questions, corrections, and contribution proposals should use GitHub Issues: `https://github.com/sigma-standards/sigma-index/issues`.
+
 ## Downloads
 
 - Master CSV: `dist/sigma_master.csv`
@@ -83,4 +87,5 @@ The deterministic quality gate writes `data/reports/quality_gate.csv` and `docs/
 - Domain taxonomy: `data/reference/domain_taxonomy.csv`
 - Source registry: `data/reference/source_registry.csv`
 - Quality gate: `docs/QUALITY_GATE.md`
+- Project knowledge graph: `docs/PROJECT_KNOWLEDGE_GRAPH.md`
 - Raw ISO seed datasets: `data/raw/iso/`

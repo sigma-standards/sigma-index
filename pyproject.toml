@@ -9,7 +9,7 @@ description = "SIGMA — Unified Global Standards Index"
 readme = "README.md"
 license = {text = "CC-BY-4.0"}
 authors = [
-    {name = "Mohammad Ariful Islam", email = "ariful@example.com"},
+    {name = "Mohammad Ariful Islam"},
 ]
 requires-python = ">=3.8"
 dependencies = [
