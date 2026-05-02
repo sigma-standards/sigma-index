@@ -84,6 +84,10 @@ def test_build_release_normalizes_legacy_domain_labels(tmp_path):
     relationships_dir.mkdir(parents=True)
     reference_dir.mkdir(parents=True)
     reports_dir.mkdir(parents=True)
+    (reports_dir / "relationship_quality.csv").write_text(
+        "check_id,severity,status,detail\nrelationship_total_edges,info,pass,3 relationship edges\n",
+        encoding="utf-8",
+    )
 
     exit_code = main(
         [
@@ -113,3 +117,4 @@ def test_build_release_normalizes_legacy_domain_labels(tmp_path):
     assert "Information Technology" not in api_index["facets"]["domains"]
     assert "Technology" not in api_index["facets"]["domains"]
     assert "Information & Communications Technology (ICT)" in api_index["facets"]["domains"]
+    assert (output_dir / "relationship_quality.csv").exists()

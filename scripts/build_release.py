@@ -156,7 +156,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         source = args.reference_dir / file_name
         if source.exists():
             shutil.copyfile(source, args.output_dir / file_name)
-    for file_name in ["domain_coverage.csv", "research_task_coverage.csv", "quality_gate.csv"]:
+    for file_name in ["domain_coverage.csv", "research_task_coverage.csv", "quality_gate.csv", "relationship_quality.csv"]:
         source = args.reports_dir / file_name
         if source.exists():
             shutil.copyfile(source, args.output_dir / file_name)

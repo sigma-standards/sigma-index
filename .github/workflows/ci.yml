@@ -45,6 +45,7 @@ jobs:
             data/reports/*.csv
             docs/QUALITY_GATE.md
             docs/RESEARCH_TASKS.md
+            docs/RELATIONSHIP_QUALITY.md
 
       - name: Upload release manifest
         uses: actions/upload-artifact@v7

@@ -16,6 +16,7 @@ def test_ci_workflow_publishes_validation_reports():
     assert "data/reports/*.csv" in content
     assert "docs/QUALITY_GATE.md" in content
     assert "docs/RESEARCH_TASKS.md" in content
+    assert "docs/RELATIONSHIP_QUALITY.md" in content
 
 
 def test_ci_workflow_publishes_release_artifact_manifest():

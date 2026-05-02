@@ -1,11 +1,12 @@
 PYTHON ?= .venv/bin/python
 
-.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage un-treaties-stage sustainability-reporting nist-priority w3c-priority itu-priority etsi-priority open-ict-priority iec-priority space-priority iaea-priority culture-priority sports-priority national-standards-bodies release site pagefind-search sync-google-sheet clean
+.PHONY: validate relationships relationship-quality research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage un-treaties-stage sustainability-reporting nist-priority w3c-priority itu-priority etsi-priority open-ict-priority iec-priority space-priority iaea-priority culture-priority sports-priority national-standards-bodies release site pagefind-search sync-google-sheet clean
 
 validate:
 	$(PYTHON) scripts/validate_domain_registry.py
 	$(PYTHON) scripts/build_research_task_report.py
 	$(PYTHON) scripts/build_quality_gate.py
+	$(PYTHON) scripts/build_relationship_quality.py
 	$(PYTHON) scripts/process_health_priority.py
 	$(PYTHON) scripts/process_codex.py
 	$(PYTHON) scripts/process_humanitarian_priority.py
@@ -30,6 +31,9 @@ validate:
 relationships:
 	$(PYTHON) scripts/extract_relationships.py
 	$(PYTHON) scripts/validate_relationships.py data/relationships --processed-dir data/processed
+
+relationship-quality:
+	$(PYTHON) scripts/build_relationship_quality.py
 
 research-tasks:
 	$(PYTHON) scripts/build_research_task_report.py
