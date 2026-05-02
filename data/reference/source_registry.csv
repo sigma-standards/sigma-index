@@ -1,5 +1,5 @@
 domain_id,domain_name,primary_free_sources,collection_status
-1,Health & Medical,WHO IRIS; ISO Open Data TC 212; HL7; SNOMED metadata,phase2a_active
+1,Health & Medical,WHO IRIS; ISO Open Data TC 212; HL7; SNOMED metadata,phase2a_active;phase2d_staging
 2,Food Safety & Agriculture,Codex Alimentarius; ISO Open Data TC 34; FAOLEX,phase2b_active
 3,Animal Health & Veterinary,WOAH codes; FAOLEX,seeded
 4,Plant Health & Phytosanitary,IPPC ISPMs; FAOLEX,seeded
@@ -15,7 +15,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 14,Space & Satellite,CCSDS; ECSS; ISO TC 20 SC 14; ITU Radio Regulations,seeded
 15,Human Rights,OHCHR; UN Treaty Collection,seeded
 16,Labour & Employment,ILO NORMLEX; ILO Data API,bulk_ilo
-17,Humanitarian & Emergency Response,Sphere; CHS Alliance; IASC; UNHCR,phase2a_active
+17,Humanitarian & Emergency Response,Sphere; CHS Alliance; IASC; UNHCR,phase2c_active
 18,Legal & Commercial Law,UNCITRAL; UNIDROIT; ICC summaries,seeded
 19,"Governance, Transparency & Anti-Corruption",UNCAC; OECD; ISO metadata; EITI,seeded
 20,Education & Research,UNESCO; OECD ISCED; DOI/ORCID metadata,seeded

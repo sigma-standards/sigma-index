@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,099 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,104 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -49,6 +49,14 @@ The first priority-domain ingestor uses `data/reference/health_priority_sources.
 ## Phase 2B Codex Priority Ingestion
 
 The Codex priority ingestor uses `data/reference/codex_priority_sources.csv` to build `data/processed/codex_standards.csv` with source-confirmed FAO/WHO Codex records for Food Safety & Agriculture.
+
+## Phase 2C Humanitarian Standards Expansion
+
+The humanitarian priority ingestor uses `data/reference/humanitarian_priority_sources.csv` to build `data/processed/humanitarian_priority_standards.csv` with source-confirmed CHS, INEE, IASC, UNHCR, and WHO EMT records.
+
+## Phase 2D WHO IRIS/OAI Staging
+
+The WHO IRIS harvester writes filtered OAI-PMH metadata candidates to `data/staging/who_iris_filtered_metadata.csv` for curator review before publication.
 
 ## Research Task Matrix
 

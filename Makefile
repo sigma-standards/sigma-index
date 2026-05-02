@@ -1,10 +1,12 @@
-.PHONY: validate relationships research-tasks health-priority codex release site sync-google-sheet clean
+.PHONY: validate relationships research-tasks health-priority codex humanitarian-priority who-iris-stage release site sync-google-sheet clean
 
 validate:
 	python3 scripts/validate_domain_registry.py
 	python3 scripts/build_research_task_report.py
 	python3 scripts/process_health_priority.py
 	python3 scripts/process_codex.py
+	python3 scripts/process_humanitarian_priority.py
+	python3 scripts/harvest_who_iris.py --input-xml data/reference/who_iris_oai_sample.xml
 	python3 scripts/validate_schema.py data/processed
 	python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed
 	PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile scripts/*.py
@@ -23,6 +25,13 @@ health-priority:
 codex:
 	python3 scripts/process_codex.py
 	python3 scripts/validate_schema.py data/processed/codex_standards.csv
+
+humanitarian-priority:
+	python3 scripts/process_humanitarian_priority.py
+	python3 scripts/validate_schema.py data/processed/humanitarian_priority_standards.csv
+
+who-iris-stage:
+	python3 scripts/harvest_who_iris.py --input-xml data/reference/who_iris_oai_sample.xml
 
 release: relationships validate
 	python3 scripts/build_domain_coverage.py

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/"
+         xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <ListRecords>
+    <record>
+      <header>
+        <identifier>oai:iris.who.int:10665/357828</identifier>
+        <datestamp>2022-06-27</datestamp>
+      </header>
+      <metadata>
+        <oai_dc:dc>
+          <dc:title>WHO guideline on self-care interventions for health and well-being</dc:title>
+          <dc:date>2022</dc:date>
+          <dc:identifier>https://iris.who.int/handle/10665/357828</dc:identifier>
+        </oai_dc:dc>
+      </metadata>
+    </record>
+    <record>
+      <header>
+        <identifier>oai:iris.who.int:10665/42407</identifier>
+        <datestamp>2001-05-22</datestamp>
+      </header>
+      <metadata>
+        <oai_dc:dc>
+          <dc:title>International classification of functioning, disability and health</dc:title>
+          <dc:date>2001</dc:date>
+          <dc:identifier>https://iris.who.int/handle/10665/42407</dc:identifier>
+        </oai_dc:dc>
+      </metadata>
+    </record>
+    <record>
+      <header>
+        <identifier>oai:iris.who.int:10665/376869</identifier>
+        <datestamp>2024-05-24</datestamp>
+      </header>
+      <metadata>
+        <oai_dc:dc>
+          <dc:title>World health statistics 2024: monitoring health for the SDGs</dc:title>
+          <dc:date>2024</dc:date>
+          <dc:identifier>https://iris.who.int/handle/10665/376869</dc:identifier>
+        </oai_dc:dc>
+      </metadata>
+    </record>
+  </ListRecords>
+</OAI-PMH>

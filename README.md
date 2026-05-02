@@ -24,9 +24,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,099 master entries** and **20,130 relationship edges** after the Phase 2B Codex priority ingestion.
+- Generated release bundle: **88,104 master entries** and **20,130 relationship edges** after the Phase 2C humanitarian standards expansion.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, and Phase 2B Codex food-safety records.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, and Phase 2C humanitarian standards records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN, WHO, Codex, ITU, W3C, national bodies, etc.) remain planned in phased ingestion.
 
@@ -104,6 +104,26 @@ make codex
 ```
 
 The curated source table is `data/reference/codex_priority_sources.csv`, and the generated canonical output is `data/processed/codex_standards.csv`. This slice expands Domain 2 Food Safety & Agriculture with cross-cutting Codex hygiene, additive, contaminant, labelling, analysis, sampling, and import/export inspection records.
+
+## Phase 2C Humanitarian Standards Expansion
+
+The humanitarian priority ingestor extends Domain 17 beyond Sphere WASH:
+
+```bash
+make humanitarian-priority
+```
+
+The curated source table is `data/reference/humanitarian_priority_sources.csv`, and the generated canonical output is `data/processed/humanitarian_priority_standards.csv`. This slice adds CHS, INEE, IASC, UNHCR, and WHO Emergency Medical Teams standards and guidance.
+
+## Phase 2D WHO IRIS/OAI Staging
+
+The WHO IRIS harvester stages likely normative WHO metadata for curator review before publication:
+
+```bash
+make who-iris-stage
+```
+
+The deterministic fixture is `data/reference/who_iris_oai_sample.xml`, and the staged output is `data/staging/who_iris_filtered_metadata.csv`. Staged rows are deliberately excluded from the release bundle until a curator promotes them into `data/processed`.
 
 ## Research Task Matrix
 
