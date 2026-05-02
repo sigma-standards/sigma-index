@@ -45,6 +45,8 @@ This document is a maintainer map for understanding the repository quickly. It d
 | `scripts/process_iec_priority.py` | generates | `data/processed/iec_standards.csv` |
 | Space Priority Sources | feed | `scripts/process_space_priority.py` |
 | `scripts/process_space_priority.py` | generates | `data/processed/space_standards.csv` |
+| IAEA Priority Sources | feed | `scripts/process_iaea_priority.py` |
+| `scripts/process_iaea_priority.py` | generates | `data/processed/iaea_safety_standards.csv` |
 | Processed Data | validates against | Schema |
 | Processed Data | supports | Relationships |
 | Relationships | validates against | Processed Data |
@@ -66,6 +68,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | `make open-ict-priority` | `data/reference/open_ict_priority_sources.csv` | `data/processed/open_ict_standards.csv` |
 | `make iec-priority` | `data/reference/iec_priority_sources.csv` | `data/processed/iec_standards.csv` |
 | `make space-priority` | `data/reference/space_priority_sources.csv` | `data/processed/space_standards.csv` |
+| `make iaea-priority` | `data/reference/iaea_priority_sources.csv` | `data/processed/iaea_safety_standards.csv` |
 | `make release` | validated processed data and relationships | `dist/` release bundle |
 | `make site` | release bundle and documentation | `public/` GitHub Pages output |
 | `make pagefind-search` | static site output | `public/pagefind/` static search bundle |

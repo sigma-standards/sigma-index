@@ -3,7 +3,7 @@
 **Free. Complete. Machine-readable. Human-navigable.**
 
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey)](LICENSE)
-[![Entries](https://img.shields.io/badge/entries-88%2C179-brightgreen)](#current-data-scope)
+[![Entries](https://img.shields.io/badge/entries-88%2C187-brightgreen)](#current-data-scope)
 [![Domains](https://img.shields.io/badge/domains-40-blue)](data/reference/domain_taxonomy.csv)
 [![Quality Gate](https://img.shields.io/badge/quality%20gate-active-1f5f4b)](docs/QUALITY_GATE.md)
 [![Roadmap](https://img.shields.io/badge/roadmap-to%20100%25-c58b2b)](docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md)
@@ -33,9 +33,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,179 master entries** and **20,130 relationship edges** after the Phase 6B CCSDS/ECSS space priority slice.
+- Generated release bundle: **88,187 master entries** and **20,130 relationship edges** after the Phase 3A IAEA Safety Standards priority slice.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, Phase 6B CCSDS/ECSS space records, and Phase 8A national standards body records.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 3A IAEA Safety Standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, Phase 6B CCSDS/ECSS space records, and Phase 8A national standards body records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN treaties, IAEA, CCSDS, ICAO, IMO, ASTM, ASME, CEN/CENELEC, and others) remain planned in phased ingestion.
 
@@ -155,6 +155,16 @@ make who-iris-stage
 ```
 
 The deterministic fixture is `data/reference/who_iris_oai_sample.xml`, and the staged output is `data/staging/who_iris_filtered_metadata.csv`. Staged rows are deliberately excluded from the release bundle until a curator promotes them into `data/processed`.
+
+## Phase 3A IAEA Safety Standards Priority Ingestion
+
+The first IAEA ingestor transforms source-confirmed Safety Standards Series records into the processed data layer:
+
+```bash
+make iaea-priority
+```
+
+The curated source table is `data/reference/iaea_priority_sources.csv`, and the generated canonical output is `data/processed/iaea_safety_standards.csv`. This slice activates the IAEA gap-analysis task for Domain 31 and covers priority Safety Fundamentals, General Safety Requirements, and Specific Safety Requirements for radiation protection, emergency preparedness, nuclear regulatory frameworks, site evaluation, and nuclear power plant safety.
 
 ## Phase 4A Sustainability Reporting Standards
 

@@ -4,7 +4,7 @@
 
 **Goal:** Move SIGMA from the current public MVP into a complete, source-backed, machine-readable global standards index covering all 40 domains, all relevant layers, and all major international, regional, and national standards ecosystems.
 
-**Current baseline:** 88,179 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, OASIS/Ecma/GS1 priority records, IEC electrotechnical priority records, CCSDS/ECSS space priority records, national standards bodies, and deterministic release quality gates.
+**Current baseline:** 88,187 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, IAEA Safety Standards priority records, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, OASIS/Ecma/GS1 priority records, IEC electrotechnical priority records, CCSDS/ECSS space priority records, national standards bodies, and deterministic release quality gates.
 
 **Completion target:** A v1.0 global release with comprehensive source registry coverage, repeatable ingestion pipelines, explicit provenance, deduplicated relationships, human-readable documentation, rendered project pages, quality reports, and public release artifacts.
 
@@ -344,7 +344,7 @@ pytest
 1. Add Sendai Framework and UNDRR terminology records.
 2. Add UNCLOS and related ocean instruments.
 3. Add IMO marine environment and safety conventions that overlap with environment.
-4. Add IAEA Safety Standards series and relationships to nuclear, energy, health, and environment domains.
+4. Maintain and expand the active IAEA Safety Standards priority metadata slice toward full Safety Standards Series catalogue coverage and relationships to nuclear, energy, health, and environment domains.
 
 ---
 
@@ -515,7 +515,7 @@ pytest
 
 1. Maintain and expand the active IEC priority metadata slice toward full IEC catalogue coverage by technical committee and standard family.
 2. Add ISO energy management family metadata.
-3. Add IAEA Safety Standards and nuclear security series.
+3. Maintain and expand the active IAEA Safety Standards priority metadata slice and add nuclear security series.
 4. Add smart grid, renewable energy, and energy efficiency framework records.
 
 ### 7.3 Manufacturing, Quality, Construction, and Built Environment

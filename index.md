@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,179 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,187 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -69,6 +69,10 @@ The humanitarian priority ingestor uses `data/reference/humanitarian_priority_so
 ## Phase 2D WHO IRIS/OAI Staging
 
 The WHO IRIS harvester writes filtered OAI-PMH metadata candidates to `data/staging/who_iris_filtered_metadata.csv` for curator review before publication.
+
+## Phase 3A IAEA Safety Standards
+
+The IAEA priority ingestor uses `data/reference/iaea_priority_sources.csv` to build `data/processed/iaea_safety_standards.csv` with source-confirmed IAEA Safety Standards Series records for nuclear safety principles, radiation protection, emergency preparedness, regulatory frameworks, site evaluation, and nuclear power plant safety.
 
 ## Phase 5B W3C Web Standards
 

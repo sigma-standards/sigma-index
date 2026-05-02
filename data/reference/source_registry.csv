@@ -29,7 +29,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 28,Information & Communications Technology (ICT),IETF RFC Editor; W3C; ITU-T; ETSI; OASIS; Ecma; ISO/IEC JTC 1,bulk_ietf_iso;phase5_w3c_active;phase5_itu_active;phase5_etsi_active;phase5_oasis_active;phase5_ecma_active
 29,Cybersecurity & Data Privacy,NIST CSRC; ISO metadata; ENISA; PCI SSC,phase5_nist_active
 30,Artificial Intelligence & Emerging Technologies,NIST AI RMF; NIST AI 600 series; OECD AI Principles; UNESCO; ISO metadata,phase5_nist_active
-31,Energy & Utilities,IAEA; IEC metadata; ISO Open Data; IRENA,bulk_iso
+31,Energy & Utilities,IAEA; IEC metadata; ISO Open Data; IRENA,bulk_iso;phase3_iaea_active
 32,"Transport (Land, Sea, Air, Rail)",UNECE; ICAO summaries; IMO summaries; ISO Open Data,bulk_iso
 33,"Water, Sanitation & Hygiene (WASH)",WHO; Sphere; JMP; WPDx,phase2a_active
 34,Built Environment & Urban Systems,ISO 37100 series; ITU-T; IEC SyC Smart Cities,bulk_iso

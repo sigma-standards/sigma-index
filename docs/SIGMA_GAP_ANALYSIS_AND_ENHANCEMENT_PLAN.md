@@ -313,9 +313,9 @@ These are confirmed free, publicly accessible sources that are not yet in the SI
 
 The MRLs and contaminant limits are likely not yet structured as individual SIGMA entries (which would require a different entry type: `Regulatory Limit`), but the standards, guidelines, and codes of practice should all be in.
 
-#### Gap 3.2.G — IAEA Safety Standards (250+ documents) — NOT CONFIRMED INGESTED
+#### Gap 3.2.G — IAEA Safety Standards (250+ documents) — PRIORITY SLICE ACTIVE
 
-**The gap:** The IAEA publishes its complete Safety Standards Series freely at `https://www.iaea.org/resources/safety-standards`. All documents are free PDF. The full catalogue is organized into series:
+**The gap:** The IAEA publishes its complete Safety Standards Series freely at `https://www.iaea.org/resources/safety-standards`. SIGMA now has an active priority slice for core Safety Fundamentals, General Safety Requirements, and Specific Safety Requirements, but full catalogue harvesting remains. All documents are free PDF. The full catalogue is organized into series:
 - GSR: General Safety Requirements (9 parts)
 - GSG: General Safety Guides (14 documents)
 - SSR: Specific Safety Requirements (6 areas × multiple parts)
@@ -702,7 +702,7 @@ Write `scripts/harvest_nist.py` targeting `https://csrc.nist.gov/publications/se
 ```
 
 **P2.4 — Ingest IAEA Safety Standards**
-Write `scripts/harvest_iaea.py`. All IAEA Safety Standards are free PDF. The catalogue page at `https://www.iaea.org/resources/safety-standards` lists all documents. ~250 entries covering nuclear safety, security, safeguards.
+SIGMA now has an active IAEA priority slice. The next step is `scripts/harvest_iaea.py` for full catalogue coverage. All IAEA Safety Standards are free PDF. The catalogue page at `https://www.iaea.org/resources/safety-standards` lists all documents. ~250 entries covering nuclear safety, security, safeguards.
 
 **P2.5 — Ingest CCSDS Blue Books (Space Standards)**
 `https://public.ccsds.org/Publications/BlueBooks.aspx` — the full list of space data communications standards. All free. SIGMA now has an active CCSDS/ECSS priority slice; the remaining work is full catalogue harvesting and enrichment.
@@ -784,7 +784,7 @@ These are the actual, confirmed, freely accessible URLs for every missing data s
 | NIST CSRC API | `https://csrc.nist.gov/api/publications?status=Final` | JSON | 500+ | Priority slice active; full API harvest needed |
 | CCSDS Blue Books | `https://public.ccsds.org/Publications/BlueBooks.aspx` | HTML list | 200+ | Priority slice active; full harvest needed |
 | Codex standards list | `https://www.fao.org/fao-who-codexalimentarius/codex-texts/en/` | HTML | 3,000+ | Partially ingested |
-| IAEA Safety Standards | `https://www.iaea.org/resources/safety-standards` | HTML list + free PDF | 250+ | NOT ingested |
+| IAEA Safety Standards | `https://www.iaea.org/resources/safety-standards` | HTML list + free PDF | 250+ | Priority slice active; full harvest needed |
 | GRI Standards | `https://www.globalreporting.org/standards/download-the-standards/` | PDF + HTML | 40+ | Priority slice active; full expansion needed |
 | SASB Standards | `https://sasb.org/standards/` | PDF + HTML | 77 | Priority slice active; full expansion needed |
 | IEC Webstore search | `https://webstore.iec.ch/en/search?q=&p=1&size=100` | HTML (paginated) | 12,000+ | Priority slice active; full webstore harvest needed |

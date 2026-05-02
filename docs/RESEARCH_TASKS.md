@@ -52,7 +52,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D37-EXPAND | Marine & Ocean | domain-expansion | planned | high | Marine & Ocean verified catalogue |
 | D38-EXPAND | Biodiversity & Conservation | domain-expansion | planned | high | Biodiversity & Conservation verified catalogue |
 | D40-EXPAND | Extractive Industries & Natural Resources | domain-expansion | planned | medium | Extractive Industries & Natural Resources verified catalogue |
-| P3-IAEA | Energy & Utilities | ingestion | planned | high | Processed IAEA Safety Standards catalogue |
+| P3-IAEA | Energy & Utilities | ingestion | active | high | Processed IAEA Safety Standards catalogue |
 
 ## Phase 4: Finance trade and economic governance
 
