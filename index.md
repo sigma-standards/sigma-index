@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,195 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,203 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 **Current staged candidates:** UN/OHCHR core human-rights treaty records and WHO IRIS normative metadata candidates are staged for curator review before release promotion.
 
@@ -107,6 +107,10 @@ The space priority ingestor uses `data/reference/space_priority_sources.csv` to 
 ## Phase 7A Culture and Heritage Standards
 
 The culture priority ingestor uses `data/reference/culture_priority_sources.csv` to build `data/processed/culture_heritage_standards.csv` with source-confirmed UNESCO, ICOMOS, ICOM, and ICCROM records for heritage conventions, conservation frameworks, museum ethics, and cultural heritage crisis response.
+
+## Phase 7B Sports and Recreation Standards
+
+The sports priority ingestor uses `data/reference/sports_priority_sources.csv` to build `data/processed/sports_recreation_standards.csv` with source-confirmed WADA, IOC, IFAB, World Athletics, CAS, FIBA, and ITF records for anti-doping governance, Olympic Movement governance, playing rules, arbitration, and event integrity.
 
 ## Phase 8A National Standards Body Registry
 

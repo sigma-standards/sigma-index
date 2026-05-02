@@ -17,13 +17,13 @@ Current release baseline:
 
 | Metric | Current value |
 |---|---:|
-| Release entries | 88,195 |
+| Release entries | 88,203 |
 | Relationship edges | 20,130 |
 | Canonical domains represented | 40 |
 | Research tasks tracked | 35 |
 | Done tasks | 5 |
-| Active tasks | 24 |
-| Planned tasks | 6 |
+| Active tasks | 25 |
+| Planned tasks | 5 |
 
 The project should be considered about **22 percent complete against the full 100 percent global vision** and about **70 percent complete against the public MVP layer**. That distinction matters: SIGMA already has visible public value, but the complete project still requires deeper source expansion, richer metadata, broader relationship modeling, and formal publication packages.
 
@@ -72,6 +72,7 @@ Completed or active data families:
 | Phase 6A | IEC electrotechnical standards | Active processed ingestor |
 | Phase 6B | CCSDS and ECSS space standards | Active processed ingestor |
 | Phase 7A | UNESCO, ICOMOS, ICOM, and ICCROM culture and heritage records | Active processed ingestor |
+| Phase 7B | WADA, IOC, IFAB, World Athletics, CAS, FIBA, and ITF sports records | Active processed ingestor |
 | Phase 8A | National standards body registry | Active processed ingestor |
 
 ### 2.3 Documentation and Governance
@@ -301,7 +302,7 @@ Important official resources:
 
 ### Phase 7 - Society, Culture, Sports, Legal, and Specialised Domains
 
-Status: culture and heritage priority work is active; sports remains the next planned critical slice.
+Status: culture and heritage plus sports priority work are active.
 
 Current and planned high-impact slices:
 
@@ -311,7 +312,7 @@ Current and planned high-impact slices:
 Recommended execution order:
 
 1. Expand culture and heritage beyond the first UNESCO, ICOMOS, ICOM, and ICCROM priority records.
-2. Add sports and recreation because WADA, IOC, IFAB, World Athletics, and CAS standards are widely used and have strong public source trails.
+2. Expand sports and recreation beyond the first WADA, IOC, IFAB, World Athletics, CAS, FIBA, and ITF priority records.
 
 Important official resources:
 
@@ -403,23 +404,23 @@ Candidate records:
 4. Additional ICCROM conservation and collections-care resources.
 5. Additional UNESCO cultural property and restitution instruments.
 
-### Step 2 - Phase 7B Sports and Recreation Priority Ingestion
+### Step 2 - Phase 7B Sports and Recreation Expansion
 
 Deliverables:
 
-1. `data/reference/sports_priority_sources.csv`
-2. `scripts/process_sports_priority.py`
-3. `data/processed/sports_recreation_standards.csv`
-4. `tests/test_process_sports_priority.py`
+1. Expand `data/reference/sports_priority_sources.csv`.
+2. Expand `data/processed/sports_recreation_standards.csv`.
+3. Add UNESCO anti-doping treaty and FIFA legal instruments.
+4. Add sports safeguarding and athlete-rights frameworks.
+5. Add relationship edges to health, law, human rights, safety, and event management.
 
 Candidate records:
 
-1. World Anti-Doping Code.
-2. Olympic Charter.
-3. IFAB Laws of the Game.
-4. World Athletics Competition and Technical Rules.
-5. CAS Code of Sports-related Arbitration.
-6. FIFA Statutes or priority regulatory framework.
+1. UNESCO International Convention Against Doping in Sport.
+2. FIFA Statutes and legal instruments.
+3. ISO TC 83 sports equipment domain tagging.
+4. ICC cricket playing conditions.
+5. International safeguarding frameworks.
 
 ### Step 3 - Promote UN Treaty Staging
 
@@ -497,7 +498,7 @@ For each source family:
 The next milestone should be considered complete when:
 
 1. Phase 7A culture and heritage records are expanded beyond the first priority slice.
-2. Phase 7B sports and recreation records are processed and validated.
+2. Phase 7B sports and recreation records are expanded beyond the first priority slice.
 3. UN treaty candidates have a promotion pathway.
 4. WHO IRIS staging has stricter filters.
 5. The public site shows the current report, roadmap, task matrix, knowledge graph, gap analysis, and quality gate as rendered HTML.

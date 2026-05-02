@@ -51,6 +51,8 @@ This document is a maintainer map for understanding the repository quickly. It d
 | `scripts/process_iaea_priority.py` | generates | `data/processed/iaea_safety_standards.csv` |
 | Culture Priority Sources | feed | `scripts/process_culture_priority.py` |
 | `scripts/process_culture_priority.py` | generates | `data/processed/culture_heritage_standards.csv` |
+| Sports Priority Sources | feed | `scripts/process_sports_priority.py` |
+| `scripts/process_sports_priority.py` | generates | `data/processed/sports_recreation_standards.csv` |
 | UN Treaty Priority Sources | feed | `scripts/stage_un_treaties.py` |
 | `scripts/stage_un_treaties.py` | generates | `data/staging/un_treaty_candidates.csv` |
 | Processed Data | validates against | Schema |
@@ -76,6 +78,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | `make space-priority` | `data/reference/space_priority_sources.csv` | `data/processed/space_standards.csv` |
 | `make iaea-priority` | `data/reference/iaea_priority_sources.csv` | `data/processed/iaea_safety_standards.csv` |
 | `make culture-priority` | `data/reference/culture_priority_sources.csv` | `data/processed/culture_heritage_standards.csv` |
+| `make sports-priority` | `data/reference/sports_priority_sources.csv` | `data/processed/sports_recreation_standards.csv` |
 | `make un-treaties-stage` | `data/reference/un_treaty_priority_sources.csv` | `data/staging/un_treaty_candidates.csv` |
 | `make release` | validated processed data and relationships | `dist/` release bundle |
 | `make site` | release bundle and documentation | `public/` GitHub Pages output |

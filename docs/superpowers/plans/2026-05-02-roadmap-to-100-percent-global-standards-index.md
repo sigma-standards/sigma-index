@@ -4,7 +4,7 @@
 
 **Goal:** Move SIGMA from the current public MVP into a complete, source-backed, machine-readable global standards index covering all 40 domains, all relevant layers, and all major international, regional, and national standards ecosystems.
 
-**Current baseline:** 88,195 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, UN Treaty Collection/OHCHR treaty staging, IAEA Safety Standards priority records, GRI/SASB sustainability reporting records, NIST cybersecurity and AI records, W3C web standards records, ITU telecommunications records, ETSI ICT records, OASIS/Ecma/GS1 records, IEC electrotechnical records, CCSDS/ECSS space records, UNESCO/ICOMOS/ICOM/ICCROM culture and heritage records, national standards bodies, and deterministic release quality gates.
+**Current baseline:** 88,203 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, UN Treaty Collection/OHCHR treaty staging, IAEA Safety Standards priority records, GRI/SASB sustainability reporting records, NIST cybersecurity and AI records, W3C web standards records, ITU telecommunications records, ETSI ICT records, OASIS/Ecma/GS1 records, IEC electrotechnical records, CCSDS/ECSS space records, UNESCO/ICOMOS/ICOM/ICCROM culture and heritage records, WADA/IOC/IFAB/World Athletics/CAS/FIBA/ITF sports governance records, national standards bodies, and deterministic release quality gates.
 
 **Completion target:** A v1.0 global release with comprehensive source registry coverage, repeatable ingestion pipelines, explicit provenance, deduplicated relationships, human-readable documentation, rendered project pages, quality reports, and public release artifacts.
 
@@ -595,9 +595,9 @@ pytest
 
 **Tasks:**
 
-1. Add WADA Code, international standards, and prohibited list records.
+1. Add WADA Code, international standards, and prohibited list records. Initial World Anti-Doping Code and 2026 Prohibited List records active in `data/processed/sports_recreation_standards.csv`.
 2. Add UNESCO anti-doping convention.
-3. Add Olympic Charter, FIFA legal instruments, World Athletics rules, and CAS procedural rules.
+3. Add Olympic Charter, FIFA legal instruments, World Athletics rules, and CAS procedural rules. Initial Olympic Charter, IFAB Laws, World Athletics rules, CAS Code, FIBA rules, and ITF rules records active.
 4. Link sports records to health, law, human rights, safety, and event management.
 
 ### 8.4 Defence, Security, Arms Control, and Public Safety

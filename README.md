@@ -3,7 +3,7 @@
 **Free. Complete. Machine-readable. Human-navigable.**
 
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey)](LICENSE)
-[![Entries](https://img.shields.io/badge/entries-88%2C195-brightgreen)](#current-data-scope)
+[![Entries](https://img.shields.io/badge/entries-88%2C203-brightgreen)](#current-data-scope)
 [![Domains](https://img.shields.io/badge/domains-40-blue)](data/reference/domain_taxonomy.csv)
 [![Quality Gate](https://img.shields.io/badge/quality%20gate-active-1f5f4b)](docs/QUALITY_GATE.md)
 [![Roadmap](https://img.shields.io/badge/roadmap-to%20100%25-c58b2b)](docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md)
@@ -34,9 +34,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,195 master entries** and **20,130 relationship edges** after the Phase 7A culture and heritage priority slice.
+- Generated release bundle: **88,203 master entries** and **20,130 relationship edges** after the Phase 7B sports and recreation priority slice.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 3A IAEA Safety Standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, Phase 6B CCSDS/ECSS space records, Phase 7A UNESCO/ICOMOS/ICOM/ICCROM culture and heritage records, and Phase 8A national standards body records.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 3A IAEA Safety Standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, Phase 6B CCSDS/ECSS space records, Phase 7A UNESCO/ICOMOS/ICOM/ICCROM culture and heritage records, Phase 7B WADA/IOC/IFAB/World Athletics/CAS/FIBA/ITF sports governance records, and Phase 8A national standards body records.
 - Current staged sources include Phase 2D WHO IRIS normative candidates and Phase 2E UN/OHCHR human-rights treaty candidates. Staged rows are excluded from release counts until curator promotion.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN treaties, IAEA, CCSDS, ICAO, IMO, ASTM, ASME, CEN/CENELEC, and others) remain planned in phased ingestion.
@@ -267,6 +267,16 @@ make culture-priority
 ```
 
 The curated source table is `data/reference/culture_priority_sources.csv`, and the generated canonical output is `data/processed/culture_heritage_standards.csv`. This slice activates the culture and heritage roadmap task for Domain 21 and covers UNESCO heritage conventions, ICOMOS conservation frameworks, the ICOM Code of Ethics for Museums, and ICCROM crisis first-aid guidance.
+
+## Phase 7B Sports and Recreation Priority Ingestion
+
+The first sports and recreation ingestor transforms source-confirmed WADA, IOC, IFAB, World Athletics, CAS, FIBA, and ITF records into the processed data layer:
+
+```bash
+make sports-priority
+```
+
+The curated source table is `data/reference/sports_priority_sources.csv`, and the generated canonical output is `data/processed/sports_recreation_standards.csv`. This slice activates the sports and recreation roadmap task for Domain 22 and covers anti-doping governance, Olympic Movement governance, football laws, athletics rules, sports arbitration, basketball rules, and tennis rules.
 
 ## Life-Science Research Utilities
 

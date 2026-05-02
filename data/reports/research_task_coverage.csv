@@ -20,7 +20,7 @@ domain_id,domain_name,meta_layer,task_count,done,active,planned,blocked,highest_
 19,"Governance, Transparency & Anti-Corruption","Society, Governance & Law",1,0,0,1,0,medium
 20,Education & Research,"Society, Governance & Law",1,0,0,1,0,high
 21,"Culture, Heritage & Arts","Society, Governance & Law",1,0,1,0,0,critical
-22,Sports & Recreation,"Society, Governance & Law",1,0,0,1,0,critical
+22,Sports & Recreation,"Society, Governance & Law",1,0,1,0,0,critical
 23,"Finance, Banking & Accounting",Economy & Trade,1,0,0,1,0,critical
 24,Trade & Customs,Economy & Trade,1,0,0,1,0,critical
 25,Supply Chain & Logistics,Economy & Trade,1,0,1,0,0,high

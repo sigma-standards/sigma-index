@@ -364,20 +364,19 @@ These standards underpin all humanitarian mapping (UNHCR, REACH, HDX), disaster 
 
 Based on observed processing scripts and confirmed data sources, these domains are either completely absent or have only skeleton coverage.
 
-#### Gap 3.3.A — Sports & Recreation (Domain 22) — ESSENTIALLY EMPTY
+#### Gap 3.3.A — Sports & Recreation (Domain 22) — INITIAL PRIORITY SLICE ACTIVE
 
-No processing script, no confirmed data source for:
-- WADA Code 2021 and International Standards (Testing and Investigations, Laboratories, Therapeutic Use Exemptions, Results Management, Code Compliance by Signatories) — `https://www.wada-ama.org/en/resources/world-anti-doping-program/world-anti-doping-code`
-- UNESCO International Convention Against Doping in Sport (2005)
+SIGMA now has an active Phase 7B priority ingestor for:
+- WADA World Anti-Doping Code 2021 — `https://www.wada-ama.org/en/what-we-do/world-anti-doping-code`
+- WADA 2026 Prohibited List — `https://www.wada-ama.org/en/resources/world-anti-doping-program/prohibited-list`
 - IOC Olympic Charter — `https://olympics.com/ioc/olympic-charter`
-- FIFA Laws of the Game (IFAB) — `https://www.theifab.com/laws-of-the-game`
-- FIFA Statutes and Regulations — `https://www.fifa.com/legal`
-- World Athletics Technical Rules — `https://worldathletics.org/about-iaaf/documents/technical-information`
-- Court of Arbitration for Sport (CAS) Code — `https://www.tas-cas.org/en/arbitration/code-procedural-rules.html`
-- ISO TC 83 (sports equipment standards) — accessible via ISO Open Data but needs domain tagging
-- ICC (cricket) playing conditions
-- ITF (tennis) Rules of Tennis
-- FIBA Basketball Rules
+- IFAB Laws of the Game — `https://www.theifab.com/laws/latest/`
+- World Athletics Competition and Technical Rules — `https://worldathletics.org/about-iaaf/documents/technical-information`
+- Court of Arbitration for Sport Code — `https://www.tas-cas.org/en/arbitration/code-procedural-rules`
+- FIBA Official Basketball Rules — `https://about.fiba.basketball/en/our-sport/official-basketball-rules`
+- ITF Rules of Tennis — `https://www.itftennis.com/en/about-us/governance/rules-and-regulations/?type=rules`
+
+Remaining work: add the UNESCO International Convention Against Doping in Sport, FIFA statutes and legal instruments, ISO TC 83 sports equipment domain tagging, ICC cricket playing conditions, safeguarding frameworks, athlete-rights instruments, and relationship links to health, law, human rights, safety, and event management.
 
 #### Gap 3.3.B — Culture, Heritage & Arts (Domain 21) — INITIAL PRIORITY SLICE ACTIVE
 
@@ -620,7 +619,7 @@ Based on confirmed processing scripts and data sources, here is the honest cover
 | 19 | Governance, Transparency & AC | ISO OD (TC 309) | ~35% | UNCAC text, OECD anti-bribery framework, EITI | HIGH |
 | 20 | Education & Research | ISO OD (TC 232) | ~20% | UNESCO qualifications conventions, ISCED, research ethics codes | HIGH |
 | 21 | Culture, Heritage & Arts | ISO OD + Phase 7A priority curation | ~25% | Full ICOMOS catalogue, ICCROM publication families, UNESCO culture instruments | CRITICAL |
-| 22 | Sports & Recreation | ISO OD (TC 83) | ~5% | WADA Code, IOC Charter, FIFA Laws, World Athletics | CRITICAL |
+| 22 | Sports & Recreation | ISO OD (TC 83) + Phase 7B priority curation | ~25% | UNESCO anti-doping convention, FIFA statutes, ISO TC 83 tagging, safeguarding frameworks | CRITICAL |
 | 23 | Finance, Banking & Accounting | Curated entries | ~55% | Full BCBS/FSB/FATF/IOSCO library, IFRS/IAS complete | HIGH |
 | 24 | Trade & Customs | WTO texts (partial) | ~45% | WTO full legal texts, WCO HS detailed chapters | MEDIUM |
 | 25 | Supply Chain & Logistics | ISO OD (TC 122) | ~35% | GS1 standards catalogue, ISO 28000 family | MEDIUM |
@@ -645,7 +644,7 @@ Based on confirmed processing scripts and data sources, here is the honest cover
 - **Good coverage (50–74%):** Food Safety, Health, OHS, ICT, Marine
 - **Moderate coverage (30–49%):** Manufacturing, Finance, Trade, ESG, Energy, Environment, Disaster Risk
 - **Thin coverage (10–29%):** Pharmaceuticals, Aerospace, Space, Legal, Governance, Education, Transport, Defence
-- **Essentially empty (<10%):** Culture & Heritage, Sports & Recreation, Extractive Industries
+- **Essentially empty (<10%):** Extractive Industries
 
 ---
 
@@ -726,8 +725,8 @@ Both critical for the Sustainability domain.
 **P3.3 — Ingest UN Treaty Collection**
 SIGMA now has an active UN/OHCHR core human-rights treaty staging slice. The next step is `scripts/harvest_untreaties.py` to systematically scrape by chapter (UNTC organises by subject: I. Charters, II. Environment, III. Human Rights, etc.). ~560 multilateral treaties. Required for completeness of Human Rights, Environment, and Disarmament domains.
 
-**P3.4 — Add Sports & Recreation Domain Content**
-Manual curation of WADA Code, IOC Charter, FIFA Laws, World Athletics Technical Rules. ~50 entries. Free sources all confirmed. This domain is completely empty and shows easily.
+**P3.4 — Expand Sports & Recreation Domain Content**
+Initial WADA, IOC, IFAB, World Athletics, CAS, FIBA, and ITF records are active. Continue manual curation toward FIFA legal instruments, UNESCO anti-doping treaty records, ISO TC 83 sports equipment tagging, safeguarding frameworks, and sport-specific playing-condition libraries.
 
 **P3.5 — Add Culture & Heritage Domain Content**
 Manual curation of UNESCO Conventions, ICOMOS Charters, ICOM Code. ~40–50 entries. All free. This domain is completely empty.

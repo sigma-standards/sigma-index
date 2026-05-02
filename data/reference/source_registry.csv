@@ -20,7 +20,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 19,"Governance, Transparency & Anti-Corruption",UNCAC; OECD; ISO metadata; EITI; ISO national standards body member profiles,phase8a_active
 20,Education & Research,UNESCO; OECD ISCED; DOI/ORCID metadata,seeded
 21,"Culture, Heritage & Arts",UNESCO; ICOMOS; ICOM; ICCROM,seeded;phase7_culture_active
-22,Sports & Recreation,WADA; IOC; FIFA; World Athletics,seeded
+22,Sports & Recreation,WADA; IOC; IFAB; FIFA; World Athletics; CAS; FIBA; ITF,seeded;phase7_sports_active
 23,"Finance, Banking & Accounting",BIS/BCBS; FSB; IOSCO; FATF; IFRS,seeded
 24,Trade & Customs,WTO; WCO; UN/CEFACT; ICC,seeded
 25,Supply Chain & Logistics,GS1; ISO Open Data; OECD due diligence guidance,seeded;phase5_gs1_active
