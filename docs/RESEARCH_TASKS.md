@@ -42,7 +42,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | P2B-CODEX | Food Safety & Agriculture | ingestion | active | critical | Processed Phase 2B Codex priority standards |
 | P2C-HUMANITARIAN | Humanitarian & Emergency Response | ingestion | active | critical | Processed Phase 2C humanitarian standards |
 | P2D-WHO-IRIS | Health & Medical | staging | active | high | Filtered WHO IRIS normative candidate metadata |
-| P2E-UN-TREATIES | Human Rights | staging | planned | high | Staged UN treaty collection metadata for curator review |
+| P2E-UN-TREATIES | Human Rights | staging | active | high | Staged UN treaty collection metadata for curator review |
 
 ## Phase 3: Environment climate and natural systems
 

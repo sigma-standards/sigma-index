@@ -33,9 +33,10 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,187 master entries** and **20,130 relationship edges** after the Phase 3A IAEA Safety Standards priority slice.
+- Generated release bundle: **88,187 master entries** and **20,130 relationship edges** after the Phase 2E UN Treaty Collection staging slice and Phase 3A IAEA Safety Standards priority slice.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
 - Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 3A IAEA Safety Standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, Phase 6B CCSDS/ECSS space records, and Phase 8A national standards body records.
+- Current staged sources include Phase 2D WHO IRIS normative candidates and Phase 2E UN/OHCHR human-rights treaty candidates. Staged rows are excluded from release counts until curator promotion.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN treaties, IAEA, CCSDS, ICAO, IMO, ASTM, ASME, CEN/CENELEC, and others) remain planned in phased ingestion.
 
@@ -155,6 +156,16 @@ make who-iris-stage
 ```
 
 The deterministic fixture is `data/reference/who_iris_oai_sample.xml`, and the staged output is `data/staging/who_iris_filtered_metadata.csv`. Staged rows are deliberately excluded from the release bundle until a curator promotes them into `data/processed`.
+
+## Phase 2E UN Treaty Collection Staging
+
+The first UN treaty staging pass transforms source-confirmed UN Treaty Collection and OHCHR core-instrument records into a curator-review table:
+
+```bash
+make un-treaties-stage
+```
+
+The curated source table is `data/reference/un_treaty_priority_sources.csv`, and the staged output is `data/staging/un_treaty_candidates.csv`. This slice activates the UN Treaty Collection task for Domain 15 and stages the nine OHCHR core international human-rights treaties for review before any release-bundle promotion.
 
 ## Phase 3A IAEA Safety Standards Priority Ingestion
 

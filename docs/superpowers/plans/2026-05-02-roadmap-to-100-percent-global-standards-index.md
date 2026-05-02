@@ -4,7 +4,7 @@
 
 **Goal:** Move SIGMA from the current public MVP into a complete, source-backed, machine-readable global standards index covering all 40 domains, all relevant layers, and all major international, regional, and national standards ecosystems.
 
-**Current baseline:** 88,187 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, IAEA Safety Standards priority records, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, OASIS/Ecma/GS1 priority records, IEC electrotechnical priority records, CCSDS/ECSS space priority records, national standards bodies, and deterministic release quality gates.
+**Current baseline:** 88,187 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, UN Treaty Collection/OHCHR treaty staging, IAEA Safety Standards priority records, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, OASIS/Ecma/GS1 priority records, IEC electrotechnical priority records, CCSDS/ECSS space priority records, national standards bodies, and deterministic release quality gates.
 
 **Completion target:** A v1.0 global release with comprehensive source registry coverage, repeatable ingestion pipelines, explicit provenance, deduplicated relationships, human-readable documentation, rendered project pages, quality reports, and public release artifacts.
 
@@ -153,7 +153,7 @@ pytest
 
 **Tasks:**
 
-1. Create a UN treaty source registry record and staged ingestion table.
+1. Maintain and expand the active UN/OHCHR treaty staging table.
 2. Capture treaty title, chapter, depositary, entry into force, status URL, and parties URL.
 3. Promote high-confidence multilateral treaties into processed data by domain.
 4. Add relationships between treaties, protocols, amendments, and implementing bodies.
@@ -771,8 +771,8 @@ pytest
 2. Complete Phase 2 WHO IRIS promotion rules.
 3. Expand Codex/IPPC/WOAH food and agriculture coverage.
 4. Expand CHS/INEE/IASC/UNHCR/EMT humanitarian coverage.
-5. Add OHCHR core human rights instruments.
-6. Add UN Treaty Collection staging.
+5. Expand active OHCHR core human rights instrument staging into promoted treaty records.
+6. Expand active UN Treaty Collection staging.
 7. Add source registry rows for every source touched.
 8. Run full validation and publish after each slice.
 

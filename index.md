@@ -10,6 +10,8 @@ Search and understand global standards across health, climate, trade, governance
 
 **Current generated bundle:** 88,187 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
+**Current staged candidates:** UN/OHCHR core human-rights treaty records and WHO IRIS normative metadata candidates are staged for curator review before release promotion.
+
 ## Core Goals
 
 - Build a unified index of cross-jurisdictional standards and frameworks.
@@ -69,6 +71,10 @@ The humanitarian priority ingestor uses `data/reference/humanitarian_priority_so
 ## Phase 2D WHO IRIS/OAI Staging
 
 The WHO IRIS harvester writes filtered OAI-PMH metadata candidates to `data/staging/who_iris_filtered_metadata.csv` for curator review before publication.
+
+## Phase 2E UN Treaty Collection Staging
+
+The UN treaty staging pass uses `data/reference/un_treaty_priority_sources.csv` to build `data/staging/un_treaty_candidates.csv` with source-confirmed UN Treaty Collection and OHCHR records for the nine core international human-rights treaties.
 
 ## Phase 3A IAEA Safety Standards
 

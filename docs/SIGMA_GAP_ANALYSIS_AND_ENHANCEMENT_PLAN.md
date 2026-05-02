@@ -284,9 +284,9 @@ These are confirmed free, publicly accessible sources that are not yet in the SI
 - NIST SP 800-37 (Risk Management Framework)
 - NIST AI RMF 1.0 and all supplementary resources
 
-#### Gap 3.2.E — UN Treaty Collection (560+ multilateral treaties) — NOT INGESTED
+#### Gap 3.2.E — UN Treaty Collection (560+ multilateral treaties) — STAGING ACTIVE
 
-**The gap:** The UN Treaty Collection at `https://treaties.un.org` is the authoritative registry for all multilateral treaties deposited with the UN Secretary-General. The search interface returns structured HTML with treaty names, UNTS numbers, dates, and party counts. No bulk download API exists, but systematic scraping by chapter is straightforward.
+**The gap:** The UN Treaty Collection at `https://treaties.un.org` is the authoritative registry for all multilateral treaties deposited with the UN Secretary-General. SIGMA now has an active UN/OHCHR staging slice for the nine core international human-rights treaties, but full chapter-by-chapter harvesting remains. The search interface returns structured HTML with treaty names, UNTS numbers, dates, and party counts. No bulk download API exists, but systematic scraping by chapter is straightforward.
 
 **What is missing:** Every major UN-framework treaty except those manually curated in Phase 2:
 - UNCLOS (UN Convention on the Law of the Sea) — binding on 169 states
@@ -723,7 +723,7 @@ SASB: `https://sasb.org/standards/` — 77 industry standards, free
 Both critical for the Sustainability domain.
 
 **P3.3 — Ingest UN Treaty Collection**
-Write `scripts/harvest_untreaties.py` to systematically scrape by chapter (UNTC organises by subject: I. Charters, II. Environment, III. Human Rights, etc.). ~560 multilateral treaties. Required for completeness of Human Rights, Environment, and Disarmament domains.
+SIGMA now has an active UN/OHCHR core human-rights treaty staging slice. The next step is `scripts/harvest_untreaties.py` to systematically scrape by chapter (UNTC organises by subject: I. Charters, II. Environment, III. Human Rights, etc.). ~560 multilateral treaties. Required for completeness of Human Rights, Environment, and Disarmament domains.
 
 **P3.4 — Add Sports & Recreation Domain Content**
 Manual curation of WADA Code, IOC Charter, FIFA Laws, World Athletics Technical Rules. ~50 entries. Free sources all confirmed. This domain is completely empty and shows easily.
