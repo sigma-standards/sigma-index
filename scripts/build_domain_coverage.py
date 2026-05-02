@@ -39,7 +39,7 @@ def main() -> int:
 
     with OUTPUT.open("w", newline="", encoding="utf-8") as csv_file:
         fieldnames = ["domain_id", "domain_name", "meta_layer", "entry_count", "coverage_status"]
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for domain in domains:
             count = counts.get(domain["domain_name"], 0)

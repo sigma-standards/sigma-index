@@ -7,14 +7,14 @@ assignees: ''
 
 ---
 
-**SIGMA ID or Entry Name:** 
+**SIGMA ID or Entry Name:**
 
-**Field with Error:** 
+**Field with Error:**
 
-**Current Value:** 
+**Current Value:**
 
-**Corrected Value:** 
+**Corrected Value:**
 
-**Source URL for Correction:** 
+**Source URL for Correction:**
 
 **Additional Context:**

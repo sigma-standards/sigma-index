@@ -9,18 +9,18 @@ assignees: ''
 
 **Entry Type:** (Standards Body / Standard / Framework / Treaty / Guideline / Regulation / Classification / Code of Practice / Recommendation)
 
-**Name:** 
+**Name:**
 
-**Official Identifier:** 
+**Official Identifier:**
 
-**Issuing Body:** 
+**Issuing Body:**
 
 **Domain:** (from the 40-domain taxonomy)
 
-**Official URL:** 
+**Official URL:**
 
-**Why it should be included:** 
+**Why it should be included:**
 
-**Source of Information:** 
+**Source of Information:**
 
 **Additional Notes:**
