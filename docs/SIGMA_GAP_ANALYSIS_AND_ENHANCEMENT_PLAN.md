@@ -393,9 +393,9 @@ This entire domain is foundational to cultural property protection in conflict, 
 
 #### Gap 3.3.C — Space & Satellite (Domain 14) — SKELETON ONLY
 
-ISO TC 20 SC 14 metadata is present (via ISO Open Data) but:
-- CCSDS standards (Consultative Committee for Space Data Systems) — all 200+ Blue Books freely available at `https://public.ccsds.org/Publications/BlueBooks.aspx` — NOT ingested
-- ECSS (European Cooperation for Space Standardisation) — free at `https://ecss.nl/standards` — NOT ingested
+ISO TC 20 SC 14 metadata is present (via ISO Open Data), and SIGMA now has an active CCSDS/ECSS priority slice, but full catalogue expansion remains:
+- CCSDS standards (Consultative Committee for Space Data Systems) — all 200+ Blue Books freely available at `https://public.ccsds.org/Publications/BlueBooks.aspx` — priority slice active; full harvest needed
+- ECSS (European Cooperation for Space Standardisation) — free at `https://ecss.nl/standards` — priority slice active; full harvest needed
 - ITU Radio Regulations (the treaty governing satellite orbital slots) — NOT ingested (linked to ITU gap)
 - Space debris mitigation guidelines (IADC, COPUOS) — NOT ingested
 - Launch vehicle interface standards (EELV, GEVS) — most are free
@@ -705,7 +705,7 @@ Write `scripts/harvest_nist.py` targeting `https://csrc.nist.gov/publications/se
 Write `scripts/harvest_iaea.py`. All IAEA Safety Standards are free PDF. The catalogue page at `https://www.iaea.org/resources/safety-standards` lists all documents. ~250 entries covering nuclear safety, security, safeguards.
 
 **P2.5 — Ingest CCSDS Blue Books (Space Standards)**
-`https://public.ccsds.org/Publications/BlueBooks.aspx` — the full list of space data communications standards. All free. Fills the Space domain gap.
+`https://public.ccsds.org/Publications/BlueBooks.aspx` — the full list of space data communications standards. All free. SIGMA now has an active CCSDS/ECSS priority slice; the remaining work is full catalogue harvesting and enrichment.
 
 **P2.6 — Enrich `why_it_matters` for Top 500 Standards**
 Identify the 500 most globally significant standards (by citation frequency, adoption rate, or regulatory mandating). Write a batch enrichment pass. These are the entries users are most likely to encounter and where empty fields do the most damage to SIGMA's credibility.
@@ -782,7 +782,7 @@ These are the actual, confirmed, freely accessible URLs for every missing data s
 | Wikidata SPARQL | `https://query.wikidata.org/` | JSON/CSV | 50,000+ | Partially ingested |
 | W3C TR Index | `https://www.w3.org/TR/?status=REC` | HTML (structured) | 400+ | Priority slice active; full harvest needed |
 | NIST CSRC API | `https://csrc.nist.gov/api/publications?status=Final` | JSON | 500+ | Priority slice active; full API harvest needed |
-| CCSDS Blue Books | `https://public.ccsds.org/Publications/BlueBooks.aspx` | HTML list | 200+ | NOT ingested |
+| CCSDS Blue Books | `https://public.ccsds.org/Publications/BlueBooks.aspx` | HTML list | 200+ | Priority slice active; full harvest needed |
 | Codex standards list | `https://www.fao.org/fao-who-codexalimentarius/codex-texts/en/` | HTML | 3,000+ | Partially ingested |
 | IAEA Safety Standards | `https://www.iaea.org/resources/safety-standards` | HTML list + free PDF | 250+ | NOT ingested |
 | GRI Standards | `https://www.globalreporting.org/standards/download-the-standards/` | PDF + HTML | 40+ | Priority slice active; full expansion needed |

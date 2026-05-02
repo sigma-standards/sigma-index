@@ -12,7 +12,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 11,Chemical & Process Industries,UNECE GHS; REACH/EUR-Lex; ISO Open Data,bulk_iso
 12,Materials Science & Testing,ISO Open Data; ASTM metadata,bulk_iso
 13,Aerospace & Aviation,ICAO summaries; ISO Open Data TC 20; SAE metadata,bulk_iso
-14,Space & Satellite,CCSDS; ECSS; ISO TC 20 SC 14; ITU Radio Regulations,seeded
+14,Space & Satellite,CCSDS; ECSS; ISO TC 20 SC 14; ITU Radio Regulations,seeded;phase6_space_active
 15,Human Rights,OHCHR; UN Treaty Collection,seeded
 16,Labour & Employment,ILO NORMLEX; ILO Data API,bulk_ilo
 17,Humanitarian & Emergency Response,Sphere; CHS Alliance; IASC; UNHCR,phase2c_active

@@ -4,7 +4,7 @@
 
 **Goal:** Move SIGMA from the current public MVP into a complete, source-backed, machine-readable global standards index covering all 40 domains, all relevant layers, and all major international, regional, and national standards ecosystems.
 
-**Current baseline:** 88,171 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, OASIS/Ecma/GS1 priority records, IEC electrotechnical priority records, national standards bodies, and deterministic release quality gates.
+**Current baseline:** 88,179 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, OASIS/Ecma/GS1 priority records, IEC electrotechnical priority records, CCSDS/ECSS space priority records, national standards bodies, and deterministic release quality gates.
 
 **Completion target:** A v1.0 global release with comprehensive source registry coverage, repeatable ingestion pipelines, explicit provenance, deduplicated relationships, human-readable documentation, rendered project pages, quality reports, and public release artifacts.
 
@@ -478,14 +478,16 @@ pytest
 
 ## 7. Phase 6 - Transport, Energy, Manufacturing, and Built Environment
 
-### 7.1 Aviation, Maritime, Road, and Rail
+### 7.1 Aviation, Maritime, Space, Road, and Rail
 
-**Official resources:** ICAO, IMO, UNECE WP.29, UIC where public.
+**Official resources:** ICAO, IMO, CCSDS, ECSS, UNECE WP.29, UIC where public.
 
 **References:**
 
 - https://www.icao.int/safety/safetymanagement/pages/sarps.aspx
 - https://www.imo.org/en/About/Conventions/Pages/ListOfConventions.aspx
+- https://ccsds.org/publications/bluebooks2-0/
+- https://ecss.nl/standards/active-standards/
 - https://unece.org/transport/vehicle-regulations
 - https://uic.org/
 
@@ -493,8 +495,9 @@ pytest
 
 1. Add ICAO Annex-level metadata and SARPs structure where lawful.
 2. Add IMO conventions, codes, and circular families.
-3. Add UNECE vehicle regulations and global technical regulations.
-4. Add relationship edges among transport safety, emissions, labour, trade, and accessibility standards.
+3. Maintain and expand the active CCSDS/ECSS priority metadata slice toward full space standards catalogue coverage.
+4. Add UNECE vehicle regulations and global technical regulations.
+5. Add relationship edges among transport safety, space operations, emissions, labour, trade, and accessibility standards.
 
 ### 7.2 Energy, Electrical, Nuclear, and Smart Infrastructure
 

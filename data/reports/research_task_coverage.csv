@@ -12,7 +12,7 @@ domain_id,domain_name,meta_layer,task_count,done,active,planned,blocked,highest_
 11,Chemical & Process Industries,Physical Sciences & Engineering,1,0,0,1,0,medium
 12,Materials Science & Testing,Physical Sciences & Engineering,1,0,0,1,0,medium
 13,Aerospace & Aviation,Physical Sciences & Engineering,1,0,0,1,0,high
-14,Space & Satellite,Physical Sciences & Engineering,1,0,0,1,0,high
+14,Space & Satellite,Physical Sciences & Engineering,1,0,1,0,0,high
 15,Human Rights,"Society, Governance & Law",1,0,0,1,0,high
 16,Labour & Employment,"Society, Governance & Law",1,1,0,0,0,critical
 17,Humanitarian & Emergency Response,"Society, Governance & Law",2,0,2,0,0,critical

@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,171 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,179 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -89,6 +89,10 @@ The open ICT priority ingestor uses `data/reference/open_ict_priority_sources.cs
 ## Phase 6A IEC Electrotechnical Standards
 
 The IEC priority ingestor uses `data/reference/iec_priority_sources.csv` to build `data/processed/iec_standards.csv` with source-confirmed IEC records for low-voltage installations, medical electrical equipment, EMC testing, functional safety, explosive atmospheres, and industrial automation cybersecurity.
+
+## Phase 6B CCSDS and ECSS Space Standards
+
+The space priority ingestor uses `data/reference/space_priority_sources.csv` to build `data/processed/space_standards.csv` with source-confirmed CCSDS and ECSS records for space packets, telemetry coding, telecommand links, file delivery, systems engineering, project management, and product assurance.
 
 ## Phase 8A National Standards Body Registry
 

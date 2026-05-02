@@ -88,7 +88,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D13-EXPAND | Aerospace & Aviation | domain-expansion | planned | high | Aerospace & Aviation verified catalogue |
 | D32-EXPAND | Transport (Land, Sea, Air, Rail) | domain-expansion | planned | high | Transport (Land, Sea, Air, Rail) verified catalogue |
 | D34-EXPAND | Built Environment & Urban Systems | domain-expansion | planned | medium | Built Environment & Urban Systems verified catalogue |
-| P6-CCSDS | Space & Satellite | ingestion | planned | high | Processed space and satellite standards metadata |
+| P6-CCSDS | Space & Satellite | ingestion | active | high | Processed space and satellite standards metadata |
 | P6-IEC | Electrical & Electronics | ingestion | active | critical | Processed IEC electrotechnical standards metadata |
 
 ## Phase 7: Society culture sports and specialised domains
