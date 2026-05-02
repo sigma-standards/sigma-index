@@ -68,4 +68,4 @@ Run: `.venv/bin/python -m pytest -q`
 
 Run: `make site`
 
-Expected: all tests pass and the release build includes 88,114 entries.
+Expected: all tests pass and the release build includes at least 88,114 entries.

@@ -62,7 +62,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D24-EXPAND | Trade & Customs | domain-expansion | planned | critical | Trade & Customs verified catalogue |
 | D25-EXPAND | Supply Chain & Logistics | domain-expansion | planned | high | Supply Chain & Logistics verified catalogue |
 | D27-EXPAND | Taxation & Public Finance | domain-expansion | planned | medium | Taxation & Public Finance verified catalogue |
-| P4-GRI-SASB | Sustainability, ESG & Circular Economy | ingestion | planned | high | Processed sustainability reporting standards catalogue |
+| P4-GRI-SASB | Sustainability, ESG & Circular Economy | ingestion | active | high | Processed sustainability reporting standards catalogue |
 
 ## Phase 5: ICT digital AI and cybersecurity
 

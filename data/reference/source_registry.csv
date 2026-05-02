@@ -24,7 +24,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 23,"Finance, Banking & Accounting",BIS/BCBS; FSB; IOSCO; FATF; IFRS,seeded
 24,Trade & Customs,WTO; WCO; UN/CEFACT; ICC,seeded
 25,Supply Chain & Logistics,GS1; ISO Open Data; OECD due diligence guidance,seeded
-26,"Sustainability, ESG & Circular Economy",GRI; ISSB; EU ESRS; GHG Protocol; ISO metadata,seeded
+26,"Sustainability, ESG & Circular Economy",GRI; SASB/IFRS Foundation; ISSB; EU ESRS; GHG Protocol; ISO metadata,phase4_active
 27,Taxation & Public Finance,OECD BEPS/CRS; IMF,seeded
 28,Information & Communications Technology (ICT),IETF RFC Editor; W3C; ISO/IEC JTC 1; ETSI,bulk_ietf_iso
 29,Cybersecurity & Data Privacy,NIST CSRC; ISO metadata; ENISA; PCI SSC,seeded
