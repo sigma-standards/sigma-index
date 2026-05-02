@@ -4,7 +4,7 @@
 
 **Goal:** Move SIGMA from the current public MVP into a complete, source-backed, machine-readable global standards index covering all 40 domains, all relevant layers, and all major international, regional, and national standards ecosystems.
 
-**Current baseline:** 88,154 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, national standards bodies, and deterministic release quality gates.
+**Current baseline:** 88,171 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, OASIS/Ecma/GS1 priority records, IEC electrotechnical priority records, national standards bodies, and deterministic release quality gates.
 
 **Completion target:** A v1.0 global release with comprehensive source registry coverage, repeatable ingestion pipelines, explicit provenance, deduplicated relationships, human-readable documentation, rendered project pages, quality reports, and public release artifacts.
 
@@ -433,7 +433,7 @@ pytest
 1. Maintain and expand the active W3C priority Standards metadata slice toward the full Technical Reports standards index.
 2. Maintain and expand the active ITU priority Recommendations slice by sector, series, and study group.
 3. Maintain and expand the active ETSI priority standards slice and cross-links to European standards.
-4. Add OASIS, ECMA, and GS1 standards.
+4. Maintain and expand the active OASIS, Ecma, and GS1 priority metadata slices toward full standards-catalogue coverage.
 5. Create relationships among web, telecom, identity, supply chain, and cybersecurity records.
 
 ### 6.2 Cybersecurity and Privacy
@@ -510,7 +510,7 @@ pytest
 
 **Tasks:**
 
-1. Add IEC catalogue metadata by technical committee and standard family.
+1. Maintain and expand the active IEC priority metadata slice toward full IEC catalogue coverage by technical committee and standard family.
 2. Add ISO energy management family metadata.
 3. Add IAEA Safety Standards and nuclear security series.
 4. Add smart grid, renewable energy, and energy efficiency framework records.
@@ -785,7 +785,7 @@ pytest
 
 1. Complete Phase 3 environment and climate.
 2. Complete Phase 4 finance, trade, and economic governance.
-3. Add W3C, ITU, NIST, ETSI, OASIS, ECMA, and GS1 metadata.
+3. Expand active W3C, ITU, NIST, ETSI, OASIS, Ecma, and GS1 metadata from priority slices toward full catalogue coverage.
 4. Add national standards body expansion to at least all ISO full members.
 5. Add expert review workflow and issue labels.
 

@@ -4,7 +4,7 @@
 
 ---
 
-> **SIGMA incorporation note:** This friend-reviewed analysis has been preserved as a project reference and converted into roadmap and task-matrix actions. Some original observations were written before the latest repository updates. Current SIGMA now has a rendered GitHub Pages site, Pagefind-compatible public search, active W3C, ITU, and ETSI priority standards slices, schema/release/Pages workflows, 20,130 generated relationship edges in `relationships_extracted.csv`, a project knowledge graph, and rendered roadmap/task documentation. The remaining recommendations are treated as prioritized enhancement work, not as a replacement for the source-of-truth research plan.
+> **SIGMA incorporation note:** This friend-reviewed analysis has been preserved as a project reference and converted into roadmap and task-matrix actions. Some original observations were written before the latest repository updates. Current SIGMA now has a rendered GitHub Pages site, Pagefind-compatible public search, active W3C, ITU, ETSI, OASIS, Ecma, GS1, and IEC priority standards slices, schema/release/Pages workflows, 20,130 generated relationship edges in `relationships_extracted.csv`, a project knowledge graph, and rendered roadmap/task documentation. The remaining recommendations are treated as prioritized enhancement work, not as a replacement for the source-of-truth research plan.
 
 ---
 
@@ -780,14 +780,14 @@ These are the actual, confirmed, freely accessible URLs for every missing data s
 | ILO NORMLEX API | `https://www.ilo.org/ilostat-files/Documents/ILOSTAT_API_guidelines.pdf` | JSON | 396 | Already ingested ✅ |
 | WHO IRIS OAI-PMH | `https://iris.who.int/oai/request?verb=ListRecords&metadataPrefix=oai_dc` | XML | 10,000+ | Sample ingested; full harvest needed |
 | Wikidata SPARQL | `https://query.wikidata.org/` | JSON/CSV | 50,000+ | Partially ingested |
-| W3C TR Index | `https://www.w3.org/TR/?status=REC` | HTML (structured) | 400+ | NOT ingested |
-| NIST CSRC API | `https://csrc.nist.gov/api/publications?status=Final` | JSON | 500+ | NOT ingested |
+| W3C TR Index | `https://www.w3.org/TR/?status=REC` | HTML (structured) | 400+ | Priority slice active; full harvest needed |
+| NIST CSRC API | `https://csrc.nist.gov/api/publications?status=Final` | JSON | 500+ | Priority slice active; full API harvest needed |
 | CCSDS Blue Books | `https://public.ccsds.org/Publications/BlueBooks.aspx` | HTML list | 200+ | NOT ingested |
 | Codex standards list | `https://www.fao.org/fao-who-codexalimentarius/codex-texts/en/` | HTML | 3,000+ | Partially ingested |
 | IAEA Safety Standards | `https://www.iaea.org/resources/safety-standards` | HTML list + free PDF | 250+ | NOT ingested |
-| GRI Standards | `https://www.globalreporting.org/standards/download-the-standards/` | PDF + HTML | 40+ | NOT ingested |
-| SASB Standards | `https://sasb.org/standards/` | PDF + HTML | 77 | NOT ingested |
-| IEC Webstore search | `https://webstore.iec.ch/en/search?q=&p=1&size=100` | HTML (paginated) | 12,000+ | NOT ingested |
+| GRI Standards | `https://www.globalreporting.org/standards/download-the-standards/` | PDF + HTML | 40+ | Priority slice active; full expansion needed |
+| SASB Standards | `https://sasb.org/standards/` | PDF + HTML | 77 | Priority slice active; full expansion needed |
+| IEC Webstore search | `https://webstore.iec.ch/en/search?q=&p=1&size=100` | HTML (paginated) | 12,000+ | Priority slice active; full webstore harvest needed |
 
 ### 6.2 Treaty and Legal Instrument Sources
 

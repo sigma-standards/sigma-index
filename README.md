@@ -3,7 +3,7 @@
 **Free. Complete. Machine-readable. Human-navigable.**
 
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey)](LICENSE)
-[![Entries](https://img.shields.io/badge/entries-88%2C154-brightgreen)](#current-data-scope)
+[![Entries](https://img.shields.io/badge/entries-88%2C171-brightgreen)](#current-data-scope)
 [![Domains](https://img.shields.io/badge/domains-40-blue)](data/reference/domain_taxonomy.csv)
 [![Quality Gate](https://img.shields.io/badge/quality%20gate-active-1f5f4b)](docs/QUALITY_GATE.md)
 [![Roadmap](https://img.shields.io/badge/roadmap-to%20100%25-c58b2b)](docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md)
@@ -33,11 +33,11 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,154 master entries** and **20,130 relationship edges** after the Phase 5D ETSI priority slice.
+- Generated release bundle: **88,171 master entries** and **20,130 relationship edges** after the Phase 5E OASIS/Ecma/GS1 slice and Phase 6A IEC priority slice.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, and Phase 8A national standards body records.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, and Phase 8A national standards body records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
-- Additional sources (UN, WHO, Codex, IEC, OASIS, ECMA, GS1, national bodies, etc.) remain planned in phased ingestion.
+- Additional sources (UN treaties, IAEA, CCSDS, ICAO, IMO, ASTM, ASME, CEN/CENELEC, and others) remain planned in phased ingestion.
 
 ## Sample Records
 
@@ -205,6 +205,26 @@ make etsi-priority
 ```
 
 The curated source table is `data/reference/etsi_priority_sources.csv`, and the generated canonical output is `data/processed/etsi_standards.csv`. This slice activates the ETSI roadmap task for Domain 28 and covers priority ETSI standards across ICT accessibility, consumer IoT cybersecurity, radio spectrum access, connected transport, 5G system architecture, NFV interoperability, and conformance assessment.
+
+## Phase 5E OASIS, Ecma, and GS1 Priority Ingestion
+
+The open ICT priority ingestor transforms source-confirmed OASIS, Ecma, and GS1 records into the processed data layer:
+
+```bash
+make open-ict-priority
+```
+
+The curated source table is `data/reference/open_ict_priority_sources.csv`, and the generated canonical output is `data/processed/open_ict_standards.csv`. This slice activates the OASIS, Ecma, and GS1 roadmap tasks with priority records for MQTT, SAML, OpenDocument, STIX, TAXII, ECMAScript, JSON, GS1 General Specifications, EPCIS/CBV, and GS1 Digital Link.
+
+## Phase 6A IEC Electrotechnical Priority Ingestion
+
+The first IEC ingestor transforms source-confirmed IEC Webstore metadata records into the processed data layer:
+
+```bash
+make iec-priority
+```
+
+The curated source table is `data/reference/iec_priority_sources.csv`, and the generated canonical output is `data/processed/iec_standards.csv`. This slice activates the IEC gap-analysis task for Domain 9 and covers priority electrotechnical families including IEC 60364, IEC 60601, IEC 61000, IEC 61508, IEC 62443, and IEC 60079.
 
 ## Life-Science Research Utilities
 

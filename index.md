@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,154 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,171 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -82,6 +82,14 @@ The ITU priority ingestor uses `data/reference/itu_priority_sources.csv` to buil
 
 The ETSI priority ingestor uses `data/reference/etsi_priority_sources.csv` to build `data/processed/etsi_standards.csv` with source-confirmed ETSI records for ICT accessibility, consumer IoT security, radio spectrum, connected transport, 5G architecture, NFV interoperability, and conformance assessment.
 
+## Phase 5E OASIS, Ecma, and GS1 Priority Standards
+
+The open ICT priority ingestor uses `data/reference/open_ict_priority_sources.csv` to build `data/processed/open_ict_standards.csv` with source-confirmed OASIS, Ecma, and GS1 records for identity federation, IoT messaging, cyber threat intelligence exchange, web data interchange, and global supply chain identifiers.
+
+## Phase 6A IEC Electrotechnical Standards
+
+The IEC priority ingestor uses `data/reference/iec_priority_sources.csv` to build `data/processed/iec_standards.csv` with source-confirmed IEC records for low-voltage installations, medical electrical equipment, EMC testing, functional safety, explosive atmospheres, and industrial automation cybersecurity.
+
 ## Phase 8A National Standards Body Registry
 
 The first national standards body registry slice uses `data/reference/national_standards_bodies_sources.csv` to build `data/processed/national_standards_bodies.csv` with source-confirmed ISO member-body records for ANSI, BSI, DIN, BIS, JISC, and other high-impact national standards institutions.
@@ -96,7 +104,7 @@ The remaining-work roadmap is saved at `docs/superpowers/plans/2026-05-02-roadma
 
 ## Gap Analysis
 
-External feedback from `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` is incorporated into the roadmap, research task matrix, and project references. The highest-impact additions are W3C, NIST, IEC, ITU, IAEA, CCSDS, GRI/SASB, culture, sports, HDX, Zenodo, and the now-active static-site search layer.
+External feedback from `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` is incorporated into the roadmap, research task matrix, and project references. The highest-impact additions are W3C, NIST, ITU, ETSI, OASIS, Ecma, GS1, IEC, IAEA, CCSDS, GRI/SASB, culture, sports, HDX, Zenodo, and the now-active static-site search layer.
 
 ## Phase 9A Quality Gate
 

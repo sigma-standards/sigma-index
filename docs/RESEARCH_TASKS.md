@@ -60,7 +60,6 @@ It turns the research plan into an executable task matrix across all phases, dom
 |---|---|---|---|---|---|
 | D23-EXPAND | Finance, Banking & Accounting | domain-expansion | planned | critical | Finance, Banking & Accounting verified catalogue |
 | D24-EXPAND | Trade & Customs | domain-expansion | planned | critical | Trade & Customs verified catalogue |
-| D25-EXPAND | Supply Chain & Logistics | domain-expansion | planned | high | Supply Chain & Logistics verified catalogue |
 | D27-EXPAND | Taxation & Public Finance | domain-expansion | planned | medium | Taxation & Public Finance verified catalogue |
 | P4-GRI-SASB | Sustainability, ESG & Circular Economy | ingestion | active | high | Processed sustainability reporting standards catalogue |
 
@@ -69,9 +68,12 @@ It turns the research plan into an executable task matrix across all phases, dom
 | Task | Domain | Type | Status | Priority | Deliverable |
 |---|---|---|---|---|---|
 | D30-EXPAND | Artificial Intelligence & Emerging Technologies | domain-expansion | planned | critical | Artificial Intelligence & Emerging Technologies verified catalogue |
+| P5-ECMA | Information & Communications Technology (ICT) | ingestion | active | high | Processed Ecma priority standards metadata |
 | P5-ETSI | Information & Communications Technology (ICT) | ingestion | active | high | Processed ETSI priority standards metadata |
+| P5-GS1 | Supply Chain & Logistics | ingestion | active | high | Processed GS1 priority standards metadata |
 | P5-ITU | Information & Communications Technology (ICT) | ingestion | active | high | Processed ITU recommendations metadata |
 | P5-NIST | Cybersecurity & Data Privacy | ingestion | active | critical | Processed NIST cybersecurity and AI standards metadata |
+| P5-OASIS | Information & Communications Technology (ICT) | ingestion | active | high | Processed OASIS priority standards metadata |
 | P5-W3C | Information & Communications Technology (ICT) | ingestion | active | high | Processed W3C Recommendations catalogue |
 
 ## Phase 6: Transport energy manufacturing and built environment
@@ -87,7 +89,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D32-EXPAND | Transport (Land, Sea, Air, Rail) | domain-expansion | planned | high | Transport (Land, Sea, Air, Rail) verified catalogue |
 | D34-EXPAND | Built Environment & Urban Systems | domain-expansion | planned | medium | Built Environment & Urban Systems verified catalogue |
 | P6-CCSDS | Space & Satellite | ingestion | planned | high | Processed space and satellite standards metadata |
-| P6-IEC | Electrical & Electronics | ingestion | planned | critical | Processed IEC electrotechnical standards metadata |
+| P6-IEC | Electrical & Electronics | ingestion | active | critical | Processed IEC electrotechnical standards metadata |
 
 ## Phase 7: Society culture sports and specialised domains
 

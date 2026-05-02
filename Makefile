@@ -1,4 +1,4 @@
-.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage sustainability-reporting nist-priority w3c-priority itu-priority etsi-priority national-standards-bodies release site pagefind-search sync-google-sheet clean
+.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage sustainability-reporting nist-priority w3c-priority itu-priority etsi-priority open-ict-priority iec-priority national-standards-bodies release site pagefind-search sync-google-sheet clean
 
 validate:
 	python3 scripts/validate_domain_registry.py
@@ -12,6 +12,8 @@ validate:
 	python3 scripts/process_w3c_priority.py
 	python3 scripts/process_itu_priority.py
 	python3 scripts/process_etsi_priority.py
+	python3 scripts/process_open_ict_priority.py
+	python3 scripts/process_iec_priority.py
 	python3 scripts/process_national_standards_bodies.py
 	python3 scripts/harvest_who_iris.py --input-xml data/reference/who_iris_oai_sample.xml
 	python3 scripts/validate_schema.py data/processed
@@ -62,6 +64,14 @@ itu-priority:
 etsi-priority:
 	python3 scripts/process_etsi_priority.py
 	python3 scripts/validate_schema.py data/processed/etsi_standards.csv
+
+open-ict-priority:
+	python3 scripts/process_open_ict_priority.py
+	python3 scripts/validate_schema.py data/processed/open_ict_standards.csv
+
+iec-priority:
+	python3 scripts/process_iec_priority.py
+	python3 scripts/validate_schema.py data/processed/iec_standards.csv
 
 national-standards-bodies:
 	python3 scripts/process_national_standards_bodies.py
