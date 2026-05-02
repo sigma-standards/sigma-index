@@ -4,7 +4,7 @@
 
 ---
 
-> **SIGMA incorporation note:** This friend-reviewed analysis has been preserved as a project reference and converted into roadmap and task-matrix actions. Some original observations were written before the latest repository updates. Current SIGMA now has a rendered GitHub Pages site, Pagefind-compatible public search, active W3C and ITU priority standards slices, schema/release/Pages workflows, 20,130 generated relationship edges in `relationships_extracted.csv`, a project knowledge graph, and rendered roadmap/task documentation. The remaining recommendations are treated as prioritized enhancement work, not as a replacement for the source-of-truth research plan.
+> **SIGMA incorporation note:** This friend-reviewed analysis has been preserved as a project reference and converted into roadmap and task-matrix actions. Some original observations were written before the latest repository updates. Current SIGMA now has a rendered GitHub Pages site, Pagefind-compatible public search, active W3C, ITU, and ETSI priority standards slices, schema/release/Pages workflows, 20,130 generated relationship edges in `relationships_extracted.csv`, a project knowledge graph, and rendered roadmap/task documentation. The remaining recommendations are treated as prioritized enhancement work, not as a replacement for the source-of-truth research plan.
 
 ---
 

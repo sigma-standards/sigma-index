@@ -4,7 +4,7 @@
 
 **Goal:** Move SIGMA from the current public MVP into a complete, source-backed, machine-readable global standards index covering all 40 domains, all relevant layers, and all major international, regional, and national standards ecosystems.
 
-**Current baseline:** 88,147 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, national standards bodies, and deterministic release quality gates.
+**Current baseline:** 88,154 release entries, 20,130 relationship edges, all 40 canonical domains represented, and first ingestors completed for ISO, IETF RFCs, ILO, health priority records, Codex priority records, humanitarian priority records, WHO IRIS staging, GRI/SASB sustainability reporting records, NIST cybersecurity and AI priority records, W3C web standards priority records, ITU telecommunications priority records, ETSI ICT priority records, national standards bodies, and deterministic release quality gates.
 
 **Completion target:** A v1.0 global release with comprehensive source registry coverage, repeatable ingestion pipelines, explicit provenance, deduplicated relationships, human-readable documentation, rendered project pages, quality reports, and public release artifacts.
 
@@ -432,7 +432,7 @@ pytest
 
 1. Maintain and expand the active W3C priority Standards metadata slice toward the full Technical Reports standards index.
 2. Maintain and expand the active ITU priority Recommendations slice by sector, series, and study group.
-3. Add ETSI catalogue metadata and cross-links to European standards.
+3. Maintain and expand the active ETSI priority standards slice and cross-links to European standards.
 4. Add OASIS, ECMA, and GS1 standards.
 5. Create relationships among web, telecom, identity, supply chain, and cybersecurity records.
 

@@ -37,6 +37,8 @@ This document is a maintainer map for understanding the repository quickly. It d
 | `scripts/process_w3c_priority.py` | generates | `data/processed/w3c_standards.csv` |
 | ITU Priority Sources | feed | `scripts/process_itu_priority.py` |
 | `scripts/process_itu_priority.py` | generates | `data/processed/itu_recommendations.csv` |
+| ETSI Priority Sources | feed | `scripts/process_etsi_priority.py` |
+| `scripts/process_etsi_priority.py` | generates | `data/processed/etsi_standards.csv` |
 | Processed Data | validates against | Schema |
 | Processed Data | supports | Relationships |
 | Relationships | validates against | Processed Data |
@@ -54,6 +56,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | `make nist-priority` | `data/reference/nist_priority_sources.csv` | `data/processed/nist_priority_standards.csv` |
 | `make w3c-priority` | `data/reference/w3c_priority_sources.csv` | `data/processed/w3c_standards.csv` |
 | `make itu-priority` | `data/reference/itu_priority_sources.csv` | `data/processed/itu_recommendations.csv` |
+| `make etsi-priority` | `data/reference/etsi_priority_sources.csv` | `data/processed/etsi_standards.csv` |
 | `make release` | validated processed data and relationships | `dist/` release bundle |
 | `make site` | release bundle and documentation | `public/` GitHub Pages output |
 | `make pagefind-search` | static site output | `public/pagefind/` static search bundle |
