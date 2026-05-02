@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,104 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,114 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -57,6 +57,10 @@ The humanitarian priority ingestor uses `data/reference/humanitarian_priority_so
 ## Phase 2D WHO IRIS/OAI Staging
 
 The WHO IRIS harvester writes filtered OAI-PMH metadata candidates to `data/staging/who_iris_filtered_metadata.csv` for curator review before publication.
+
+## Phase 8A National Standards Body Registry
+
+The first national standards body registry slice uses `data/reference/national_standards_bodies_sources.csv` to build `data/processed/national_standards_bodies.csv` with source-confirmed ISO member-body records for ANSI, BSI, DIN, BIS, JISC, and other high-impact national standards institutions.
 
 ## Research Task Matrix
 

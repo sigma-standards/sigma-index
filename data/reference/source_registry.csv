@@ -17,7 +17,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 16,Labour & Employment,ILO NORMLEX; ILO Data API,bulk_ilo
 17,Humanitarian & Emergency Response,Sphere; CHS Alliance; IASC; UNHCR,phase2c_active
 18,Legal & Commercial Law,UNCITRAL; UNIDROIT; ICC summaries,seeded
-19,"Governance, Transparency & Anti-Corruption",UNCAC; OECD; ISO metadata; EITI,seeded
+19,"Governance, Transparency & Anti-Corruption",UNCAC; OECD; ISO metadata; EITI; ISO national standards body member profiles,phase8a_active
 20,Education & Research,UNESCO; OECD ISCED; DOI/ORCID metadata,seeded
 21,"Culture, Heritage & Arts",UNESCO; ICOMOS; ICOM,seeded
 22,Sports & Recreation,WADA; IOC; FIFA; World Athletics,seeded

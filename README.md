@@ -24,9 +24,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,104 master entries** and **20,130 relationship edges** after the Phase 2C humanitarian standards expansion.
+- Generated release bundle: **88,114 master entries** and **20,130 relationship edges** after the Phase 8A national standards body registry slice.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, and Phase 2C humanitarian standards records.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, and Phase 8A national standards body records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN, WHO, Codex, ITU, W3C, national bodies, etc.) remain planned in phased ingestion.
 
@@ -124,6 +124,16 @@ make who-iris-stage
 ```
 
 The deterministic fixture is `data/reference/who_iris_oai_sample.xml`, and the staged output is `data/staging/who_iris_filtered_metadata.csv`. Staged rows are deliberately excluded from the release bundle until a curator promotes them into `data/processed`.
+
+## Phase 8A National Standards Body Registry
+
+The first national standards body registry slice transforms source-confirmed ISO member-body records into the processed data layer:
+
+```bash
+make national-standards-bodies
+```
+
+The curated source table is `data/reference/national_standards_bodies_sources.csv`, and the generated canonical output is `data/processed/national_standards_bodies.csv`. This initial slice covers 10 high-impact ISO member bodies and establishes the pattern for expanding toward the full ISO national body network.
 
 ## Research Task Matrix
 

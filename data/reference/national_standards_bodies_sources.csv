@@ -1,0 +1,11 @@
+nsb_id,country,region,acronym,name_full,membership_type,issuer_type,year_first,official_url,iso_member_url,notes
+NSB-ABNT-BR,Brazil,Latin America,ABNT,Associacao Brasileira de Normas Tecnicas,Member body,Professional Body,1940,https://www.abnt.org.br/,https://www.iso.org/member/1579.html,Founding ISO member and Brazilian national standardization forum
+NSB-AFNOR-FR,France,Europe,AFNOR,Association francaise de normalisation,Member body,Professional Body,1926,https://www.afnor.org/en/,https://www.iso.org/member/1738.html,Recognized hub of the French standardization system
+NSB-ANSI-US,United States,North America,ANSI,American National Standards Institute,Member body,Professional Body,1918,https://www.ansi.org/,https://www.iso.org/member/2188.html,U.S. member body to ISO
+NSB-BIS-IN,India,Asia,BIS,Bureau of Indian Standards,Member body,National Government,1987,https://www.bis.gov.in/,https://www.iso.org/fr/member/1794.html,National standards body of India established by statute
+NSB-BSI-GB,United Kingdom,Europe,BSI,British Standards Institution,Member body,Professional Body,1901,https://www.bsigroup.com/,https://www.iso.org/member/2064.html,Recognized UK National Standards Body
+NSB-DIN-DE,Germany,Europe,DIN,DIN Deutsches Institut fuer Normung e.V.,Member body,Professional Body,1917,https://www.din.de/en,https://www.iso.org/fr/member/1511.html,German national standards body
+NSB-JISC-JP,Japan,Asia,JISC,Japanese Industrial Standards Committee,Member body,National Government,1949,https://www.jisc.go.jp/eng/,https://www.iso.org/member/1835.html,Japanese ISO member and industrial standards committee
+NSB-SA-AU,Australia,Oceania,SA,Standards Australia,Member body,Professional Body,1922,https://www.standards.org.au/,https://www.iso.org/cms/%20render/live/en/sites/isoorg/contents/data/member/00/15/1524.html,Australian member of ISO and IEC
+NSB-SAC-CN,China,Asia,SAC,Standardization Administration of China,Member body,National Government,2001,https://www.sac.gov.cn/,https://www.iso.org/fr/member/1635.html,Represents China within ISO and IEC
+NSB-SCC-CA,Canada,North America,SCC,Standards Council of Canada,Member body,National Government,1970,https://scc-ccn.ca/,https://www.iso.org/member/1619.html,Canadian Crown corporation for voluntary standardization
