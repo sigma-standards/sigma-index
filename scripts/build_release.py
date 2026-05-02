@@ -102,6 +102,8 @@ def write_api_index(path: Path, rows: list[dict[str, str]], relationships: list[
             "domain_taxonomy_csv": "domain_taxonomy.csv",
             "source_registry_csv": "source_registry.csv",
             "domain_coverage_csv": "domain_coverage.csv",
+            "research_tasks_csv": "research_tasks.csv",
+            "research_task_coverage_csv": "research_task_coverage.csv",
         },
         "facets": {
             "domains": domains,
@@ -137,13 +139,14 @@ def main() -> int:
     write_csv(args.output_dir / "relationships.csv", relationships, relationship_fields)
     write_json(args.output_dir / "relationships.json", relationships)
 
-    for file_name in ["domain_taxonomy.csv", "source_registry.csv"]:
+    for file_name in ["domain_taxonomy.csv", "source_registry.csv", "research_tasks.csv"]:
         source = args.reference_dir / file_name
         if source.exists():
             shutil.copyfile(source, args.output_dir / file_name)
-    coverage = args.reports_dir / "domain_coverage.csv"
-    if coverage.exists():
-        shutil.copyfile(coverage, args.output_dir / "domain_coverage.csv")
+    for file_name in ["domain_coverage.csv", "research_task_coverage.csv"]:
+        source = args.reports_dir / file_name
+        if source.exists():
+            shutil.copyfile(source, args.output_dir / file_name)
 
     write_api_index(args.output_dir / "api_index.json", rows, relationships)
 

@@ -85,6 +85,16 @@ make sync-google-sheet
 
 The sync reads the public CSV export, keeps the 22-field SIGMA master schema, and writes `data/processed/google_sheet_master.csv`. Sheet-only curation metadata such as `related_sigma_ids`, `llm_enriched`, and `last_updated` is ignored by the release bundle until those fields are formally added to the published schema.
 
+## Research Task Matrix
+
+The 24-month research plan is tracked as machine-readable work items in `data/reference/research_tasks.csv`. Run:
+
+```bash
+make research-tasks
+```
+
+This generates `data/reports/research_task_coverage.csv` and `docs/RESEARCH_TASKS.md`, covering all 40 domains, all major phases, and the enhanced integration roadmap.
+
 ## Publishing
 
 GitHub Actions includes:

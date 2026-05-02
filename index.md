@@ -42,9 +42,14 @@ python3 scripts/build_static_site.py
 
 The shared `000_SIGMA_MASTER_DATABASE` Google Sheet can be synchronized into the processed data layer with `make sync-google-sheet`. The importer preserves the 22-field release schema and ignores temporary curation metadata until those fields are formally promoted.
 
+## Research Task Matrix
+
+The full research plan is tracked in `data/reference/research_tasks.csv` and summarized by `make research-tasks`. The generated task coverage report verifies that all 40 domains have planned, active, or completed work items.
+
 ## Project Documents
 
 - Research plan: `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`
+- Research tasks: `docs/RESEARCH_TASKS.md`
 - Schema: `SCHEMA.md`
 - Contributor guide: `CONTRIBUTING.md`
 - Domain taxonomy: `data/reference/domain_taxonomy.csv`
