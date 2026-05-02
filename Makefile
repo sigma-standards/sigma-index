@@ -1,4 +1,4 @@
-.PHONY: validate relationships release site clean
+.PHONY: validate relationships release site sync-google-sheet clean
 
 validate:
 	python3 scripts/validate_domain_registry.py
@@ -16,6 +16,10 @@ release: relationships validate
 
 site: release
 	python3 scripts/build_static_site.py
+
+sync-google-sheet:
+	python3 scripts/sync_google_sheet.py
+	python3 scripts/validate_schema.py data/processed/google_sheet_master.csv
 
 clean:
 	rm -rf dist build public *.egg-info scripts/__pycache__ tests/__pycache__ .pytest_cache

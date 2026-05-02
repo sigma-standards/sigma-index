@@ -38,6 +38,10 @@ make release
 python3 scripts/build_static_site.py
 ```
 
+## Google Sheet Sync
+
+The shared `000_SIGMA_MASTER_DATABASE` Google Sheet can be synchronized into the processed data layer with `make sync-google-sheet`. The importer preserves the 22-field release schema and ignores temporary curation metadata until those fields are formally promoted.
+
 ## Project Documents
 
 - Research plan: `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`

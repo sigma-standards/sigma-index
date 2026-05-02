@@ -31,6 +31,12 @@ Every entry in the SIGMA index carries the following fields:
 | 21 | `data_source` | String | Where this entry's data was obtained | `ISO Open Data CSV + manual verification` |
 | 22 | `notes` | String | Any additional contextual information | `Replaced 2012 edition; significant restructuring of management requirements` |
 
+## Google Sheet Curation Sync
+
+The shared Google Sheet may include curation-only metadata columns after the 22 master fields, including `related_sigma_ids`, `llm_enriched`, and `last_updated`. These fields are useful for editorial workflow and future enrichment, but they are not part of the published master release schema yet.
+
+Run `make sync-google-sheet` to export the Sheet into `data/processed/google_sheet_master.csv`. The sync script keeps only the 22 master fields so existing validation, release builds, and GitHub Pages downloads remain compatible.
+
 ## Supplementary Entity Tables
 
 ### Standards Bodies Register

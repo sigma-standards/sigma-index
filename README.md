@@ -75,6 +75,16 @@ The release build currently emits:
 
 `dist/` is ignored by Git because release artifacts are generated outputs.
 
+## Google Sheet Sync
+
+The public curation sheet `000_SIGMA_MASTER_DATABASE` can be synchronized into the processed data layer:
+
+```bash
+make sync-google-sheet
+```
+
+The sync reads the public CSV export, keeps the 22-field SIGMA master schema, and writes `data/processed/google_sheet_master.csv`. Sheet-only curation metadata such as `related_sigma_ids`, `llm_enriched`, and `last_updated` is ignored by the release bundle until those fields are formally added to the published schema.
+
 ## Publishing
 
 GitHub Actions includes:
