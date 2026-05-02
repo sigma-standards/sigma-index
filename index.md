@@ -49,7 +49,6 @@ The full research plan is tracked in `data/reference/research_tasks.csv` and sum
 ## Project Documents
 
 - Research plan: `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`
-- Research tasks: `docs/RESEARCH_TASKS.md`
 - Schema: `SCHEMA.md`
 - Contributor guide: `CONTRIBUTING.md`
 - Domain taxonomy: `data/reference/domain_taxonomy.csv`
