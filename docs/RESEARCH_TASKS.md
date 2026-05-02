@@ -69,7 +69,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | Task | Domain | Type | Status | Priority | Deliverable |
 |---|---|---|---|---|---|
 | D30-EXPAND | Artificial Intelligence & Emerging Technologies | domain-expansion | planned | critical | Artificial Intelligence & Emerging Technologies verified catalogue |
-| P5-ITU | Information & Communications Technology (ICT) | ingestion | planned | high | Processed ITU recommendations metadata |
+| P5-ITU | Information & Communications Technology (ICT) | ingestion | active | high | Processed ITU recommendations metadata |
 | P5-NIST | Cybersecurity & Data Privacy | ingestion | active | critical | Processed NIST cybersecurity and AI standards metadata |
 | P5-W3C | Information & Communications Technology (ICT) | ingestion | active | high | Processed W3C Recommendations catalogue |
 

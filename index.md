@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,140 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,147 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -73,6 +73,10 @@ The WHO IRIS harvester writes filtered OAI-PMH metadata candidates to `data/stag
 ## Phase 5B W3C Web Standards
 
 The W3C priority ingestor uses `data/reference/w3c_priority_sources.csv` to build `data/processed/w3c_standards.csv` with source-confirmed W3C Standards records for accessibility, web APIs, verifiable credentials, data catalogues, graphics, real-time communications, and web fonts.
+
+## Phase 5C ITU Telecommunications
+
+The ITU priority ingestor uses `data/reference/itu_priority_sources.csv` to build `data/processed/itu_recommendations.csv` with source-confirmed ITU-T Recommendation records for numbering, optical transport, broadband access, video coding, PKI, quality assessment, and machine learning in future networks.
 
 ## Phase 8A National Standards Body Registry
 

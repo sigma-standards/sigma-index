@@ -26,7 +26,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 25,Supply Chain & Logistics,GS1; ISO Open Data; OECD due diligence guidance,seeded
 26,"Sustainability, ESG & Circular Economy",GRI; SASB/IFRS Foundation; ISSB; EU ESRS; GHG Protocol; ISO metadata,phase4_active
 27,Taxation & Public Finance,OECD BEPS/CRS; IMF,seeded
-28,Information & Communications Technology (ICT),IETF RFC Editor; W3C; ISO/IEC JTC 1; ETSI,bulk_ietf_iso;phase5_w3c_active
+28,Information & Communications Technology (ICT),IETF RFC Editor; W3C; ITU-T; ISO/IEC JTC 1; ETSI,bulk_ietf_iso;phase5_w3c_active;phase5_itu_active
 29,Cybersecurity & Data Privacy,NIST CSRC; ISO metadata; ENISA; PCI SSC,phase5_nist_active
 30,Artificial Intelligence & Emerging Technologies,NIST AI RMF; NIST AI 600 series; OECD AI Principles; UNESCO; ISO metadata,phase5_nist_active
 31,Energy & Utilities,IAEA; IEC metadata; ISO Open Data; IRENA,bulk_iso
