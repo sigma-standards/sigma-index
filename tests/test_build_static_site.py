@@ -73,7 +73,13 @@ def make_fixture_repo(tmp_path):
         ],
     )
 
-    for filename in ["README.md", "SCHEMA.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md"]:
+    for filename in [
+        "README.md",
+        "SCHEMA.md",
+        "CONTRIBUTING.md",
+        "CODE_OF_CONDUCT.md",
+        "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md",
+    ]:
         (tmp_path / filename).write_text(f"# {filename}\n", encoding="utf-8")
 
 
@@ -107,5 +113,27 @@ def test_build_site_copies_downloads_and_docs(tmp_path):
 
     assert (tmp_path / "public" / "downloads" / "sigma_master.csv").exists()
     assert (tmp_path / "public" / "downloads" / "api_index.json").exists()
-    assert (tmp_path / "public" / "docs" / "README.md").exists()
-    assert (tmp_path / "public" / "docs" / "SCHEMA.md").exists()
+    assert (tmp_path / "public" / "docs" / "README.html").exists()
+    assert (tmp_path / "public" / "docs" / "SCHEMA.html").exists()
+
+
+def test_project_reference_links_rendered_html_docs_not_raw_markdown(tmp_path):
+    from scripts.build_static_site import build_site
+
+    make_fixture_repo(tmp_path)
+
+    build_site(tmp_path)
+
+    html = (tmp_path / "public" / "index.html").read_text(encoding="utf-8")
+    readme = (tmp_path / "public" / "docs" / "README.html").read_text(encoding="utf-8")
+    research_plan = (
+        tmp_path / "public" / "docs" / "RESEARCH_PROJECT_PLAN_Global_Standards_Index.html"
+    ).read_text(encoding="utf-8")
+
+    assert 'href="docs/README.html"' in html
+    assert 'href="docs/SCHEMA.html"' in html
+    assert 'href="docs/RESEARCH_PROJECT_PLAN_Global_Standards_Index.html"' in html
+    assert 'href="docs/README.md"' not in html
+    assert "<!doctype html>" in readme
+    assert "<h1>README.md</h1>" in readme
+    assert "<h1>RESEARCH_PROJECT_PLAN_Global_Standards_Index.md</h1>" in research_plan

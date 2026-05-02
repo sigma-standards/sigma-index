@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import html
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -76,13 +77,185 @@ def copy_files(source_dir: Path, target_dir: Path) -> list[str]:
 
 
 def copy_docs(root: Path, target_dir: Path) -> list[str]:
-    copied = []
+    rendered = []
     for name in DOC_FILES:
         source = root / name
         if source.exists():
-            shutil.copy2(source, target_dir / name)
-            copied.append(name)
-    return copied
+            target = target_dir / doc_html_name(name)
+            target.write_text(render_doc_page(name, source.read_text(encoding="utf-8")), encoding="utf-8")
+            rendered.append(name)
+    return rendered
+
+
+def doc_html_name(name: str) -> str:
+    return f"{Path(name).stem}.html"
+
+
+def render_inline_markdown(text: str) -> str:
+    code_spans: list[str] = []
+
+    def stash_code(match: re.Match[str]) -> str:
+        code_spans.append(f"<code>{esc(match.group(1))}</code>")
+        return f"@@CODE{len(code_spans) - 1}@@"
+
+    escaped = esc(re.sub(r"`([^`]+)`", stash_code, text))
+    # Keep this intentionally small and deterministic; source docs stay canonical.
+    for marker in ["**", "__"]:
+        parts = escaped.split(marker)
+        if len(parts) >= 3:
+            rebuilt = [parts[0]]
+            strong = True
+            for part in parts[1:]:
+                rebuilt.append(f"<strong>{part}</strong>" if strong else part)
+                strong = not strong
+            escaped = "".join(rebuilt)
+    for index, code in enumerate(code_spans):
+        escaped = escaped.replace(f"@@CODE{index}@@", code)
+    return escaped
+
+
+def render_markdown_body(markdown_text: str) -> str:
+    lines = markdown_text.splitlines()
+    blocks: list[str] = []
+    paragraph: list[str] = []
+    list_items: list[str] = []
+    ordered_items: list[str] = []
+    table_lines: list[str] = []
+    code_lines: list[str] = []
+    in_code = False
+
+    def flush_paragraph() -> None:
+        nonlocal paragraph
+        if paragraph:
+            blocks.append(f"<p>{render_inline_markdown(' '.join(paragraph))}</p>")
+            paragraph = []
+
+    def flush_list() -> None:
+        nonlocal list_items
+        if list_items:
+            blocks.append("<ul>" + "".join(f"<li>{render_inline_markdown(item)}</li>" for item in list_items) + "</ul>")
+            list_items = []
+
+    def flush_ordered_list() -> None:
+        nonlocal ordered_items
+        if ordered_items:
+            blocks.append(
+                "<ol>" + "".join(f"<li>{render_inline_markdown(item)}</li>" for item in ordered_items) + "</ol>"
+            )
+            ordered_items = []
+
+    def flush_table() -> None:
+        nonlocal table_lines
+        if not table_lines:
+            return
+        rows = [line.strip().strip("|").split("|") for line in table_lines]
+        if len(rows) >= 2 and all(set(cell.strip()) <= {"-", ":"} for cell in rows[1]):
+            header = rows[0]
+            body_rows = rows[2:]
+            header_html = "".join(f"<th>{render_inline_markdown(cell.strip())}</th>" for cell in header)
+            body_html = "".join(
+                "<tr>" + "".join(f"<td>{render_inline_markdown(cell.strip())}</td>" for cell in row) + "</tr>"
+                for row in body_rows
+            )
+            blocks.append(f"<table><thead><tr>{header_html}</tr></thead><tbody>{body_html}</tbody></table>")
+        else:
+            for row in table_lines:
+                blocks.append(f"<p>{render_inline_markdown(row)}</p>")
+        table_lines = []
+
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            if in_code:
+                blocks.append(f"<pre><code>{esc(chr(10).join(code_lines))}</code></pre>")
+                code_lines = []
+                in_code = False
+            else:
+                flush_paragraph()
+                flush_list()
+                flush_ordered_list()
+                flush_table()
+                in_code = True
+            continue
+        if in_code:
+            code_lines.append(line)
+            continue
+        if not stripped:
+            flush_paragraph()
+            flush_list()
+            flush_ordered_list()
+            flush_table()
+            continue
+        if stripped.startswith("|"):
+            flush_paragraph()
+            flush_list()
+            flush_ordered_list()
+            table_lines.append(stripped)
+            continue
+        if stripped.startswith("#"):
+            flush_paragraph()
+            flush_list()
+            flush_ordered_list()
+            flush_table()
+            level = min(len(stripped) - len(stripped.lstrip("#")), 4)
+            text = stripped[level:].strip()
+            blocks.append(f"<h{level}>{render_inline_markdown(text)}</h{level}>")
+            continue
+        if stripped.startswith(("- ", "* ")):
+            flush_paragraph()
+            flush_ordered_list()
+            flush_table()
+            list_items.append(stripped[2:].strip())
+            continue
+        ordered_match = re.match(r"\d+\.\s+(.+)", stripped)
+        if ordered_match:
+            flush_paragraph()
+            flush_list()
+            flush_table()
+            ordered_items.append(ordered_match.group(1).strip())
+            continue
+        paragraph.append(stripped)
+
+    flush_paragraph()
+    flush_list()
+    flush_ordered_list()
+    flush_table()
+    if in_code:
+        blocks.append(f"<pre><code>{esc(chr(10).join(code_lines))}</code></pre>")
+    return "\n".join(blocks)
+
+
+def render_doc_page(source_name: str, markdown_text: str) -> str:
+    labels = doc_labels()
+    title = labels.get(source_name, source_name)
+    body = render_markdown_body(markdown_text)
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{esc(title)} · SIGMA</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="SIGMA home">
+      <span class="brand-mark">S</span>
+      <span><strong>SIGMA</strong><small>Global Standards Index</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Documentation navigation">
+      <a href="../index.html#docs">Project References</a>
+      <a href="../index.html#downloads">Downloads</a>
+    </nav>
+  </header>
+  <main class="doc-shell">
+    <article class="doc-content">
+      {body}
+    </article>
+  </main>
+</body>
+</html>
+"""
 
 
 def merge_domain_rows(domain_rows: list[dict[str, str]], coverage_rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -163,16 +336,20 @@ def render_source_rows(sources: list[dict[str, str]]) -> str:
 
 
 def render_doc_links(docs: list[str]) -> str:
-    labels = {
+    labels = doc_labels()
+    return "\n".join(
+        f'<a class="doc-link" href="docs/{esc(doc_html_name(name))}">{esc(labels.get(name, name))}</a>' for name in docs
+    )
+
+
+def doc_labels() -> dict[str, str]:
+    return {
         "README.md": "Project Overview",
         "SCHEMA.md": "Data Schema",
         "CONTRIBUTING.md": "Contributing",
         "CODE_OF_CONDUCT.md": "Code of Conduct",
         "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md": "Research Plan",
     }
-    return "\n".join(
-        f'<a class="doc-link" href="docs/{esc(name)}">{esc(labels.get(name, name))}</a>' for name in docs
-    )
 
 
 def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str, str]], downloads: list[str], docs: list[str]) -> str:
@@ -717,6 +894,56 @@ td:first-child {
 .site-footer a {
   color: #f5c46d;
   text-decoration: none;
+}
+
+.doc-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 20px 84px;
+}
+
+.doc-content {
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+
+.doc-content h1 {
+  color: var(--forest);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+}
+
+.doc-content h2 {
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.doc-content p,
+.doc-content li,
+.doc-content td {
+  line-height: 1.7;
+}
+
+.doc-content code {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: #edf4ef;
+  font-size: 0.92em;
+}
+
+.doc-content pre {
+  overflow-x: auto;
+  padding: 16px;
+  border-radius: 8px;
+  background: #10171b;
+}
+
+.doc-content pre code {
+  padding: 0;
+  color: #eef7f1;
+  background: transparent;
 }
 
 @media (max-width: 820px) {
