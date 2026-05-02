@@ -1,4 +1,4 @@
-.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage sustainability-reporting national-standards-bodies release site sync-google-sheet clean
+.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage sustainability-reporting nist-priority national-standards-bodies release site sync-google-sheet clean
 
 validate:
 	python3 scripts/validate_domain_registry.py
@@ -8,6 +8,7 @@ validate:
 	python3 scripts/process_codex.py
 	python3 scripts/process_humanitarian_priority.py
 	python3 scripts/process_sustainability_reporting.py
+	python3 scripts/process_nist_priority.py
 	python3 scripts/process_national_standards_bodies.py
 	python3 scripts/harvest_who_iris.py --input-xml data/reference/who_iris_oai_sample.xml
 	python3 scripts/validate_schema.py data/processed
@@ -42,6 +43,10 @@ who-iris-stage:
 sustainability-reporting:
 	python3 scripts/process_sustainability_reporting.py
 	python3 scripts/validate_schema.py data/processed/sustainability_reporting_standards.csv
+
+nist-priority:
+	python3 scripts/process_nist_priority.py
+	python3 scripts/validate_schema.py data/processed/nist_priority_standards.csv
 
 national-standards-bodies:
 	python3 scripts/process_national_standards_bodies.py

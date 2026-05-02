@@ -27,8 +27,8 @@ domain_id,domain_name,meta_layer,entry_count,coverage_status
 26,"Sustainability, ESG & Circular Economy",Economy & Trade,11,seeded
 27,Taxation & Public Finance,Economy & Trade,1,seeded
 28,Information & Communications Technology (ICT),Technology & Infrastructure,1,seeded
-29,Cybersecurity & Data Privacy,Technology & Infrastructure,1,seeded
-30,Artificial Intelligence & Emerging Technologies,Technology & Infrastructure,1,seeded
+29,Cybersecurity & Data Privacy,Technology & Infrastructure,7,seeded
+30,Artificial Intelligence & Emerging Technologies,Technology & Infrastructure,3,seeded
 31,Energy & Utilities,Technology & Infrastructure,1,seeded
 32,"Transport (Land, Sea, Air, Rail)",Technology & Infrastructure,1,seeded
 33,"Water, Sanitation & Hygiene (WASH)",Technology & Infrastructure,4,seeded

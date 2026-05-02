@@ -27,7 +27,7 @@ domain_id,domain_name,meta_layer,task_count,done,active,planned,blocked,highest_
 26,"Sustainability, ESG & Circular Economy",Economy & Trade,1,0,1,0,0,high
 27,Taxation & Public Finance,Economy & Trade,1,0,0,1,0,medium
 28,Information & Communications Technology (ICT),Technology & Infrastructure,3,1,0,2,0,critical
-29,Cybersecurity & Data Privacy,Technology & Infrastructure,1,0,0,1,0,critical
+29,Cybersecurity & Data Privacy,Technology & Infrastructure,1,0,1,0,0,critical
 30,Artificial Intelligence & Emerging Technologies,Technology & Infrastructure,1,0,0,1,0,critical
 31,Energy & Utilities,Technology & Infrastructure,1,0,0,1,0,high
 32,"Transport (Land, Sea, Air, Rail)",Technology & Infrastructure,1,0,0,1,0,high

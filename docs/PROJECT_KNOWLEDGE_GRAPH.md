@@ -30,6 +30,8 @@ This document is a maintainer map for understanding the repository quickly. It d
 | Raw Data | feeds | Processing Scripts |
 | Reference Data | feeds | Processing Scripts |
 | Processing Scripts | generate | Processed Data |
+| NIST Priority Sources | feed | `scripts/process_nist_priority.py` |
+| `scripts/process_nist_priority.py` | generates | `data/processed/nist_priority_standards.csv` |
 | Processed Data | validates against | Schema |
 | Processed Data | supports | Relationships |
 | Relationships | validates against | Processed Data |
@@ -43,6 +45,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | Command | Inputs | Outputs |
 |---|---|---|
 | `make validate` | reference data, processed data, relationships, staging fixture | schema checks, relationship checks, quality gate, generated task docs |
+| `make nist-priority` | `data/reference/nist_priority_sources.csv` | `data/processed/nist_priority_standards.csv` |
 | `make release` | validated processed data and relationships | `dist/` release bundle |
 | `make site` | release bundle and documentation | `public/` GitHub Pages output |
 | `make clean` | generated local artifacts | removes `dist/`, `public/`, caches, build outputs |

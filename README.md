@@ -3,7 +3,7 @@
 **Free. Complete. Machine-readable. Human-navigable.**
 
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey)](LICENSE)
-[![Entries](https://img.shields.io/badge/entries-88%2C124-brightgreen)](#current-data-scope)
+[![Entries](https://img.shields.io/badge/entries-88%2C132-brightgreen)](#current-data-scope)
 [![Domains](https://img.shields.io/badge/domains-40-blue)](data/reference/domain_taxonomy.csv)
 [![Quality Gate](https://img.shields.io/badge/quality%20gate-active-1f5f4b)](docs/QUALITY_GATE.md)
 [![Roadmap](https://img.shields.io/badge/roadmap-to%20100%25-c58b2b)](docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md)
@@ -33,9 +33,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,124 master entries** and **20,130 relationship edges** after the Phase 4A sustainability reporting slice.
+- Generated release bundle: **88,132 master entries** and **20,130 relationship edges** after the Phase 5A NIST priority slice.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 4A GRI/SASB sustainability reporting records, and Phase 8A national standards body records.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, and Phase 8A national standards body records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN, WHO, Codex, ITU, W3C, national bodies, etc.) remain planned in phased ingestion.
 
@@ -155,6 +155,16 @@ make sustainability-reporting
 ```
 
 The curated source table is `data/reference/sustainability_reporting_sources.csv`, and the generated canonical output is `data/processed/sustainability_reporting_standards.csv`. This slice activates the GRI/SASB gap-analysis task for Domain 26 and establishes the pattern for expanding into ISSB, ESRS, and GHG Protocol records.
+
+## Phase 5A NIST Cybersecurity and AI Priority Ingestion
+
+The first NIST ingestor transforms source-confirmed CSRC and AI RMF records into the processed data layer:
+
+```bash
+make nist-priority
+```
+
+The curated source table is `data/reference/nist_priority_sources.csv`, and the generated canonical output is `data/processed/nist_priority_standards.csv`. This slice activates the NIST gap-analysis task for Domain 29 and includes cross-domain AI RMF records for Domain 30.
 
 ## Life-Science Research Utilities
 
