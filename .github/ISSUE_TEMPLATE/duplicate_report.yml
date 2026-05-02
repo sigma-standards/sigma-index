@@ -1,0 +1,42 @@
+name: Duplicate report
+description: Report two or more SIGMA records that appear to describe the same standard or source.
+title: "[DUPLICATE] "
+labels:
+  - duplicate
+  - curation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to report duplicate records. Include official evidence so curators can decide which record should remain canonical.
+  - type: input
+    id: primary_sigma_id
+    attributes:
+      label: Preferred or primary SIGMA ID
+      description: If known, identify the record that should remain.
+      placeholder: ICT-W3C-WCAG-22
+    validations:
+      required: true
+  - type: input
+    id: duplicate_sigma_id
+    attributes:
+      label: Duplicate SIGMA ID
+      description: Identify the record that may duplicate the primary record.
+      placeholder: ICT-W3C-WAI-WCAG22
+    validations:
+      required: true
+  - type: input
+    id: evidence_url
+    attributes:
+      label: Evidence URL
+      description: Link to an official source showing the records describe the same item.
+      placeholder: https://www.w3.org/TR/WCAG22/
+    validations:
+      required: true
+  - type: textarea
+    id: comparison_notes
+    attributes:
+      label: Comparison notes
+      description: Explain which fields overlap and which record should be retained.
+    validations:
+      required: true

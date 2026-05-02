@@ -1,0 +1,73 @@
+name: Missing standard
+description: Propose an official standard, treaty, framework, guideline, or code that SIGMA should include.
+title: "[MISSING STANDARD] "
+labels:
+  - missing-standard
+  - curation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for source-backed entries that are missing from SIGMA. Please include an official source URL.
+  - type: input
+    id: standard_name
+    attributes:
+      label: Standard or instrument name
+      description: Full official name of the missing item.
+      placeholder: International Health Regulations (2005)
+    validations:
+      required: true
+  - type: input
+    id: official_identifier
+    attributes:
+      label: Official identifier
+      description: Official code, treaty number, recommendation number, or catalogue identifier if one exists.
+      placeholder: IHR (2005)
+    validations:
+      required: false
+  - type: input
+    id: issuing_body
+    attributes:
+      label: Issuing body
+      description: Organization, standards body, treaty secretariat, or authority that issued the item.
+      placeholder: World Health Organization
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: SIGMA domain
+      description: Select the closest domain from the 40-domain taxonomy.
+      options:
+        - Health & Medical
+        - Food Safety & Agriculture
+        - Labour & Employment
+        - Environment & Climate
+        - Information & Communications Technology (ICT)
+        - Humanitarian & Emergency Response
+        - Other or unsure
+    validations:
+      required: true
+  - type: input
+    id: official_url
+    attributes:
+      label: Official source URL
+      description: Link to the publisher, catalogue, treaty page, or authoritative record.
+      placeholder: https://www.who.int/health-topics/international-health-regulations
+    validations:
+      required: true
+  - type: textarea
+    id: inclusion_reason
+    attributes:
+      label: Why should SIGMA include it?
+      description: Explain the standard's public value, affected sectors, and whether it is binding, voluntary, or widely adopted.
+      placeholder: This is a globally binding public-health instrument used by governments and health agencies.
+    validations:
+      required: true
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Add related standards, translations, source notes, or known duplicates.
+    validations:
+      required: false

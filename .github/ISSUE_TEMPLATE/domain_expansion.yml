@@ -1,0 +1,61 @@
+name: Domain expansion
+description: Propose a source family or catalogue expansion for a SIGMA domain.
+title: "[DOMAIN EXPANSION] "
+labels:
+  - domain-expansion
+  - roadmap
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to propose a new source family, standards body, catalogue, or domain-specific ingestion target.
+  - type: dropdown
+    id: domain
+    attributes:
+      label: SIGMA domain
+      description: Select the closest domain for the expansion.
+      options:
+        - Health & Medical
+        - Food Safety & Agriculture
+        - Labour & Employment
+        - Environment & Climate
+        - Information & Communications Technology (ICT)
+        - Cybersecurity & Data Privacy
+        - Engineering & Product Safety
+        - Law, Rights & Governance
+        - Culture, Heritage & Memory
+        - Sports & Recreation
+        - National Standards Bodies
+        - Other or cross-domain
+    validations:
+      required: true
+  - type: input
+    id: source_family
+    attributes:
+      label: Source family or catalogue
+      description: Name the source, standards body, catalogue, treaty collection, or data feed.
+      placeholder: ISO national standards body catalogue
+    validations:
+      required: true
+  - type: input
+    id: official_catalogue_url
+    attributes:
+      label: Official catalogue URL
+      description: Link to the official catalogue, search page, bulk data endpoint, or source documentation.
+      placeholder: https://example.org/standards-catalogue
+    validations:
+      required: true
+  - type: textarea
+    id: coverage_value
+    attributes:
+      label: Coverage value
+      description: Explain what this source adds to SIGMA and which users would benefit.
+    validations:
+      required: true
+  - type: textarea
+    id: access_notes
+    attributes:
+      label: Access and licensing notes
+      description: Mention whether metadata is open, whether full text is restricted, and any rate limits or API notes.
+    validations:
+      required: false

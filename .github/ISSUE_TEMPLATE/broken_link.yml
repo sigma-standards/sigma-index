@@ -1,0 +1,54 @@
+name: Broken official link
+description: Report a broken or redirected official URL in a SIGMA record.
+title: "[BROKEN LINK] "
+labels:
+  - broken-link
+  - curation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when a SIGMA official URL is broken, redirects to an unrelated page, or should be replaced by a better official source.
+  - type: input
+    id: sigma_id
+    attributes:
+      label: SIGMA ID or entry name
+      description: Provide the exact record identifier when available.
+      placeholder: CY-NIST-CSF-20
+    validations:
+      required: true
+  - type: input
+    id: broken_url
+    attributes:
+      label: Broken or problematic URL
+      description: Paste the URL currently present in SIGMA.
+      placeholder: https://example.org/old-page
+    validations:
+      required: true
+  - type: input
+    id: replacement_url
+    attributes:
+      label: Replacement official URL
+      description: Paste the preferred official source URL, if known.
+      placeholder: https://example.org/current-page
+    validations:
+      required: false
+  - type: dropdown
+    id: problem_type
+    attributes:
+      label: Problem type
+      options:
+        - 404 or not found
+        - Redirects to unrelated page
+        - Requires replacement with canonical official page
+        - Access restricted or blocked
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Add dates checked, archive links, or relevant redirect details.
+    validations:
+      required: false

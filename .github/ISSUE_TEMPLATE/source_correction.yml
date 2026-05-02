@@ -1,0 +1,56 @@
+name: Source correction
+description: Report a source-backed correction to an existing SIGMA record.
+title: "[SOURCE CORRECTION] "
+labels:
+  - correction
+  - curation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when an existing SIGMA field is inaccurate and an official source supports the correction.
+  - type: input
+    id: sigma_id
+    attributes:
+      label: SIGMA ID or entry name
+      description: Provide the exact `sigma_id` when available.
+      placeholder: HL-WHO-IHR-2005
+    validations:
+      required: true
+  - type: input
+    id: field_name
+    attributes:
+      label: Field to correct
+      description: Name the CSV field, such as `issuer`, `year_published`, `status`, or `official_url`.
+      placeholder: year_published
+    validations:
+      required: true
+  - type: textarea
+    id: current_value
+    attributes:
+      label: Current value
+      description: Paste the value currently shown in SIGMA.
+    validations:
+      required: false
+  - type: textarea
+    id: corrected_value
+    attributes:
+      label: Corrected value
+      description: Paste the corrected value exactly as it should appear.
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: Official source URL
+      description: Link to the official page, catalogue, document, or publisher record proving the correction.
+      placeholder: https://example.org/official-record
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Add publication dates, access notes, or archival context.
+    validations:
+      required: false
