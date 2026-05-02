@@ -1,0 +1,41 @@
+domain_id,meta_layer,domain_name,domain_code
+1,Life Sciences & Health,Health & Medical,HL
+2,Life Sciences & Health,Food Safety & Agriculture,FS
+3,Life Sciences & Health,Animal Health & Veterinary,AV
+4,Life Sciences & Health,Plant Health & Phytosanitary,PH
+5,Life Sciences & Health,Occupational Health & Safety,OH
+6,Life Sciences & Health,Pharmaceuticals & Medicines,PM
+7,Physical Sciences & Engineering,Measurement & Metrology,MM
+8,Physical Sciences & Engineering,Manufacturing & Industry,MI
+9,Physical Sciences & Engineering,Electrical & Electronics,EE
+10,Physical Sciences & Engineering,Construction & Built Environment,CB
+11,Physical Sciences & Engineering,Chemical & Process Industries,CP
+12,Physical Sciences & Engineering,Materials Science & Testing,MS
+13,Physical Sciences & Engineering,Aerospace & Aviation,AA
+14,Physical Sciences & Engineering,Space & Satellite,SS
+15,"Society, Governance & Law",Human Rights,HR
+16,"Society, Governance & Law",Labour & Employment,LE
+17,"Society, Governance & Law",Humanitarian & Emergency Response,HM
+18,"Society, Governance & Law",Legal & Commercial Law,LC
+19,"Society, Governance & Law","Governance, Transparency & Anti-Corruption",GT
+20,"Society, Governance & Law",Education & Research,ER
+21,"Society, Governance & Law","Culture, Heritage & Arts",CH
+22,"Society, Governance & Law",Sports & Recreation,SR
+23,Economy & Trade,"Finance, Banking & Accounting",FB
+24,Economy & Trade,Trade & Customs,TC
+25,Economy & Trade,Supply Chain & Logistics,SL
+26,Economy & Trade,"Sustainability, ESG & Circular Economy",SE
+27,Economy & Trade,Taxation & Public Finance,TP
+28,Technology & Infrastructure,Information & Communications Technology (ICT),ICT
+29,Technology & Infrastructure,Cybersecurity & Data Privacy,CY
+30,Technology & Infrastructure,Artificial Intelligence & Emerging Technologies,AI
+31,Technology & Infrastructure,Energy & Utilities,EU
+32,Technology & Infrastructure,"Transport (Land, Sea, Air, Rail)",TR
+33,Technology & Infrastructure,"Water, Sanitation & Hygiene (WASH)",WS
+34,Technology & Infrastructure,Built Environment & Urban Systems,BU
+35,Technology & Infrastructure,Defence & Security (Declassified),DS
+36,Environment & Natural Systems,Environment & Climate,EC
+37,Environment & Natural Systems,Marine & Ocean,MO
+38,Environment & Natural Systems,Biodiversity & Conservation,BC
+39,Environment & Natural Systems,Disaster Risk & Humanitarian Preparedness,DR
+40,Environment & Natural Systems,Extractive Industries & Natural Resources,EX

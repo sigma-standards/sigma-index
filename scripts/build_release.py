@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -98,6 +99,9 @@ def write_api_index(path: Path, rows: list[dict[str, str]], relationships: list[
             "jsonl": "sigma_master.jsonl",
             "relationships_csv": "relationships.csv",
             "relationships_json": "relationships.json",
+            "domain_taxonomy_csv": "domain_taxonomy.csv",
+            "source_registry_csv": "source_registry.csv",
+            "domain_coverage_csv": "domain_coverage.csv",
         },
         "facets": {
             "domains": domains,
@@ -112,6 +116,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Build SIGMA release artifacts.")
     parser.add_argument("--processed-dir", type=Path, default=Path("data/processed"))
     parser.add_argument("--relationships-dir", type=Path, default=Path("data/relationships"))
+    parser.add_argument("--reference-dir", type=Path, default=Path("data/reference"))
+    parser.add_argument("--reports-dir", type=Path, default=Path("data/reports"))
     parser.add_argument("--output-dir", type=Path, default=Path("dist"))
     args = parser.parse_args()
 
@@ -130,6 +136,15 @@ def main() -> int:
     relationship_fields = ["from_id", "to_id", "relationship_type", "confidence", "source_url", "notes"]
     write_csv(args.output_dir / "relationships.csv", relationships, relationship_fields)
     write_json(args.output_dir / "relationships.json", relationships)
+
+    for file_name in ["domain_taxonomy.csv", "source_registry.csv"]:
+        source = args.reference_dir / file_name
+        if source.exists():
+            shutil.copyfile(source, args.output_dir / file_name)
+    coverage = args.reports_dir / "domain_coverage.csv"
+    if coverage.exists():
+        shutil.copyfile(coverage, args.output_dir / "domain_coverage.csv")
+
     write_api_index(args.output_dir / "api_index.json", rows, relationships)
 
     print(f"Built {len(rows)} entries and {len(relationships)} relationships in {args.output_dir}")

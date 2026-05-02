@@ -1,0 +1,41 @@
+domain_id,domain_name,primary_free_sources,collection_status
+1,Health & Medical,WHO IRIS; ISO Open Data TC 212; HL7; SNOMED metadata,seeded
+2,Food Safety & Agriculture,Codex Alimentarius; ISO Open Data TC 34; FAOLEX,seeded
+3,Animal Health & Veterinary,WOAH codes; FAOLEX,seeded
+4,Plant Health & Phytosanitary,IPPC ISPMs; FAOLEX,seeded
+5,Occupational Health & Safety,ILO NORMLEX; ISO Open Data TC 283; OSHA publications,seeded
+6,Pharmaceuticals & Medicines,ICH guidelines; WHO prequalification; EMA public docs,seeded
+7,Measurement & Metrology,BIPM; OIML; ILAC,seeded
+8,Manufacturing & Industry,ISO Open Data; ASTM metadata; ASME metadata,bulk_iso
+9,Electrical & Electronics,IEC metadata; ISO Open Data; CIE,bulk_iso
+10,Construction & Built Environment,ISO Open Data TC 59/268; ICC summaries; NFPA free view,bulk_iso
+11,Chemical & Process Industries,UNECE GHS; REACH/EUR-Lex; ISO Open Data,bulk_iso
+12,Materials Science & Testing,ISO Open Data; ASTM metadata,bulk_iso
+13,Aerospace & Aviation,ICAO summaries; ISO Open Data TC 20; SAE metadata,bulk_iso
+14,Space & Satellite,CCSDS; ECSS; ISO TC 20 SC 14; ITU Radio Regulations,seeded
+15,Human Rights,OHCHR; UN Treaty Collection,seeded
+16,Labour & Employment,ILO NORMLEX; ILO Data API,bulk_ilo
+17,Humanitarian & Emergency Response,Sphere; CHS Alliance; IASC; UNHCR,seeded
+18,Legal & Commercial Law,UNCITRAL; UNIDROIT; ICC summaries,seeded
+19,"Governance, Transparency & Anti-Corruption",UNCAC; OECD; ISO metadata; EITI,seeded
+20,Education & Research,UNESCO; OECD ISCED; DOI/ORCID metadata,seeded
+21,"Culture, Heritage & Arts",UNESCO; ICOMOS; ICOM,seeded
+22,Sports & Recreation,WADA; IOC; FIFA; World Athletics,seeded
+23,"Finance, Banking & Accounting",BIS/BCBS; FSB; IOSCO; FATF; IFRS,seeded
+24,Trade & Customs,WTO; WCO; UN/CEFACT; ICC,seeded
+25,Supply Chain & Logistics,GS1; ISO Open Data; OECD due diligence guidance,seeded
+26,"Sustainability, ESG & Circular Economy",GRI; ISSB; EU ESRS; GHG Protocol; ISO metadata,seeded
+27,Taxation & Public Finance,OECD BEPS/CRS; IMF,seeded
+28,Information & Communications Technology (ICT),IETF RFC Editor; W3C; ISO/IEC JTC 1; ETSI,bulk_ietf_iso
+29,Cybersecurity & Data Privacy,NIST CSRC; ISO metadata; ENISA; PCI SSC,seeded
+30,Artificial Intelligence & Emerging Technologies,NIST AI RMF; OECD AI Principles; UNESCO; ISO metadata,seeded
+31,Energy & Utilities,IAEA; IEC metadata; ISO Open Data; IRENA,bulk_iso
+32,"Transport (Land, Sea, Air, Rail)",UNECE; ICAO summaries; IMO summaries; ISO Open Data,bulk_iso
+33,"Water, Sanitation & Hygiene (WASH)",WHO; Sphere; JMP; WPDx,seeded
+34,Built Environment & Urban Systems,ISO 37100 series; ITU-T; IEC SyC Smart Cities,bulk_iso
+35,Defence & Security (Declassified),UN Arms Trade Treaty; OPCW; CTBTO; declassified MIL-STDs,seeded
+36,Environment & Climate,UNFCCC; CBD; UNEP conventions; ISO 14000 metadata,bulk_iso
+37,Marine & Ocean,UNCLOS; IMO summaries; FAO fisheries; regional seas,seeded
+38,Biodiversity & Conservation,CBD; CITES; Ramsar; IUCN,seeded
+39,Disaster Risk & Humanitarian Preparedness,UNDRR Sendai; ISO 22300 series; WHO EDRM,seeded
+40,Extractive Industries & Natural Resources,EITI; ICMM; API metadata; ISO TC 82,seeded

@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,043 entries and 20,130 relationship edges.
+**Current generated bundle:** 88,083 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -23,6 +23,7 @@ Search and understand global standards across health, climate, trade, governance
 - Master JSONL: `dist/sigma_master.jsonl`
 - Relationships CSV: `dist/relationships.csv`
 - API index: `dist/api_index.json`
+- Domain coverage: `dist/domain_coverage.csv`
 
 Generated files are built locally with `make release` and published through the GitHub Pages workflow.
 
@@ -31,4 +32,6 @@ Generated files are built locally with `make release` and published through the 
 - Research plan: `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`
 - Schema: `SCHEMA.md`
 - Contributor guide: `CONTRIBUTING.md`
+- Domain taxonomy: `data/reference/domain_taxonomy.csv`
+- Source registry: `data/reference/source_registry.csv`
 - Raw ISO seed datasets: `data/raw/iso/`

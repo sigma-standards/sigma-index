@@ -30,7 +30,9 @@ dev = [
 
 [project.scripts]
 sigma-build-release = "sigma_index.build_release:main"
+sigma-build-domain-coverage = "sigma_index.build_domain_coverage:main"
 sigma-extract-relationships = "sigma_index.extract_relationships:main"
+sigma-validate-domain-registry = "sigma_index.validate_domain_registry:main"
 sigma-validate-relationships = "sigma_index.validate_relationships:main"
 sigma-validate-schema = "sigma_index.validate_schema:main"
 

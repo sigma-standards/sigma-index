@@ -16,12 +16,16 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - `CODE_OF_CONDUCT.md` — code of conduct.
 - `pyproject.toml` — Python project configuration.
 - `scripts/` — data processing scripts.
+- `data/reference/domain_taxonomy.csv` — canonical 40-domain registry.
+- `data/reference/source_registry.csv` — source map for all 40 domains.
+- `data/reports/domain_coverage.csv` — generated coverage report.
 - `data/relationships/relationships_template.csv` — relationship map template for graph edges.
 - `.github/` — GitHub configuration (issues, workflows).
 
 ## Current Data Scope
 
-- Generated release bundle: **88,043 master entries** and **20,130 relationship edges**.
+- Generated release bundle: **88,083 master entries** and **20,130 relationship edges**.
+- All **40 canonical domains** are represented through bulk ingestors and curated seed records.
 - Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, and Wikidata standards-body metadata.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN, WHO, Codex, ITU, W3C, national bodies, etc.) remain planned in phased ingestion.
@@ -65,6 +69,9 @@ The release build currently emits:
 - `relationships.csv`
 - `relationships.json`
 - `api_index.json`
+- `domain_taxonomy.csv`
+- `source_registry.csv`
+- `domain_coverage.csv`
 
 `dist/` is ignored by Git because release artifacts are generated outputs.
 

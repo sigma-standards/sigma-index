@@ -1350,9 +1350,10 @@ Initial implementation now begins from the final roadmap layer rather than the e
 - Added relationship-map validation for graph edge fields, provenance, and known SIGMA IDs.
 - Added relationship extraction for ILO `supersedes` and source-resolved ISO `references` links.
 - Added release artifact generation for CSV, JSON, JSONL, relationship exports, and a lightweight API index.
+- Added a canonical 40-domain registry, domain source map, curated domain seed records, and generated coverage report.
 - Added `Makefile`, GitHub release-build workflow, and GitHub Pages workflow to make validation, artifact builds, and publishing repeatable.
 - Updated schema documentation to align graph relationship terminology with the enhanced roadmap.
 
-Current generated bundle: 88,043 master entries and 20,130 relationship edges.
+Current generated bundle: 88,083 master entries, 20,130 relationship edges, and all 40 canonical domains represented.
 
 Next implementation step: expand relationship extraction to source-confirmed `national_adoption_of` links and add additional source ingestors for priority domains.

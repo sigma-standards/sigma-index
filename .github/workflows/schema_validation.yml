@@ -22,6 +22,7 @@ jobs:
 
       - name: Validate processed datasets
         run: |
+          python3 scripts/validate_domain_registry.py
           python3 scripts/validate_schema.py data/processed
 
       - name: Validate relationship maps
