@@ -15,7 +15,7 @@
 - Local path: `/home/health-pm/sigma-index`
 - Remote: `https://github.com/sigma-standards/sigma-index.git`
 - Branch: `main`
-- Current local and remote commit: `7f4f11e9987f872c5165ba17cd4d3565fdaeb1d8`
+- Baseline local and remote commit before this plan was added: `7f4f11e9987f872c5165ba17cd4d3565fdaeb1d8`
 - GitHub connector account: `code-and-brain`
 - GitHub CLI account: `arwa-zarish`
 - Open GitHub PRs: none found by connector query
