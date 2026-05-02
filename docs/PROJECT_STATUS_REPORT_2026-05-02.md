@@ -17,13 +17,13 @@ Current release baseline:
 
 | Metric | Current value |
 |---|---:|
-| Release entries | 88,187 |
+| Release entries | 88,195 |
 | Relationship edges | 20,130 |
 | Canonical domains represented | 40 |
 | Research tasks tracked | 35 |
 | Done tasks | 5 |
-| Active tasks | 23 |
-| Planned tasks | 7 |
+| Active tasks | 24 |
+| Planned tasks | 6 |
 
 The project should be considered about **22 percent complete against the full 100 percent global vision** and about **70 percent complete against the public MVP layer**. That distinction matters: SIGMA already has visible public value, but the complete project still requires deeper source expansion, richer metadata, broader relationship modeling, and formal publication packages.
 
@@ -71,6 +71,7 @@ Completed or active data families:
 | Phase 5E | OASIS, Ecma, and GS1 | Active processed ingestor |
 | Phase 6A | IEC electrotechnical standards | Active processed ingestor |
 | Phase 6B | CCSDS and ECSS space standards | Active processed ingestor |
+| Phase 7A | UNESCO, ICOMOS, ICOM, and ICCROM culture and heritage records | Active processed ingestor |
 | Phase 8A | National standards body registry | Active processed ingestor |
 
 ### 2.3 Documentation and Governance
@@ -300,17 +301,17 @@ Important official resources:
 
 ### Phase 7 - Society, Culture, Sports, Legal, and Specialised Domains
 
-Status: next major planned workstream.
+Status: culture and heritage priority work is active; sports remains the next planned critical slice.
 
-Planned high-impact next slices:
+Current and planned high-impact slices:
 
 1. Culture and heritage standards.
 2. Sports and recreation standards.
 
 Recommended execution order:
 
-1. Start with culture and heritage because UNESCO conventions and ICOMOS charters are source-backed, globally important, and legally/governance relevant.
-2. Then add sports and recreation because WADA, IOC, IFAB, World Athletics, and CAS standards are widely used and have strong public source trails.
+1. Expand culture and heritage beyond the first UNESCO, ICOMOS, ICOM, and ICCROM priority records.
+2. Add sports and recreation because WADA, IOC, IFAB, World Athletics, and CAS standards are widely used and have strong public source trails.
 
 Important official resources:
 
@@ -384,27 +385,23 @@ Remaining:
 
 ## 5. Recommended Next Execution Steps
 
-### Step 1 - Phase 7A Culture and Heritage Priority Ingestion
+### Step 1 - Phase 7A Culture and Heritage Expansion
 
 Deliverables:
 
-1. `data/reference/culture_priority_sources.csv`
-2. `scripts/process_culture_priority.py`
-3. `data/processed/culture_heritage_standards.csv`
-4. `tests/test_process_culture_priority.py`
-5. Updated `research_tasks.csv`
-6. Updated `source_registry.csv`
-7. Updated README, index, roadmap, knowledge graph, and gap analysis
+1. Expand `data/reference/culture_priority_sources.csv`.
+2. Expand `data/processed/culture_heritage_standards.csv`.
+3. Add more ICOMOS doctrinal texts and ICCROM publication families.
+4. Add relationship edges to humanitarian response, education, indigenous rights, environment, and disaster risk.
+5. Keep README, index, roadmap, knowledge graph, and gap analysis synchronized.
 
 Candidate records:
 
-1. 1972 World Heritage Convention.
-2. 2003 Intangible Cultural Heritage Convention.
-3. 1954 Hague Convention for Protection of Cultural Property.
-4. 2005 Convention on Cultural Diversity.
-5. Venice Charter.
-6. Nara Document on Authenticity.
-7. ICOM Code of Ethics for Museums.
+1. Burra Charter.
+2. Valletta Principles.
+3. Historic Urban Landscape Recommendation.
+4. Additional ICCROM conservation and collections-care resources.
+5. Additional UNESCO cultural property and restitution instruments.
 
 ### Step 2 - Phase 7B Sports and Recreation Priority Ingestion
 
@@ -499,7 +496,7 @@ For each source family:
 
 The next milestone should be considered complete when:
 
-1. Phase 7A culture and heritage records are processed and validated.
+1. Phase 7A culture and heritage records are expanded beyond the first priority slice.
 2. Phase 7B sports and recreation records are processed and validated.
 3. UN treaty candidates have a promotion pathway.
 4. WHO IRIS staging has stricter filters.

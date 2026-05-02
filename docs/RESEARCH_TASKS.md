@@ -99,7 +99,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D19-EXPAND | Governance, Transparency & Anti-Corruption | domain-expansion | planned | medium | Governance, Transparency & Anti-Corruption verified catalogue |
 | D35-EXPAND | Defence & Security (Declassified) | domain-expansion | planned | medium | Defence & Security (Declassified) verified catalogue |
 | D39-EXPAND | Disaster Risk & Humanitarian Preparedness | domain-expansion | planned | high | Disaster Risk & Humanitarian Preparedness verified catalogue |
-| P7-CULTURE | Culture, Heritage & Arts | curation | planned | critical | Curated culture and heritage standards catalogue |
+| P7-CULTURE | Culture, Heritage & Arts | curation | active | critical | Curated culture and heritage standards catalogue |
 | P7-SPORTS | Sports & Recreation | curation | planned | critical | Curated sports and recreation standards catalogue |
 
 ## Phase 8: National standards bodies comprehensive expansion

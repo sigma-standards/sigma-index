@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,187 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,195 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 **Current staged candidates:** UN/OHCHR core human-rights treaty records and WHO IRIS normative metadata candidates are staged for curator review before release promotion.
 
@@ -103,6 +103,10 @@ The IEC priority ingestor uses `data/reference/iec_priority_sources.csv` to buil
 ## Phase 6B CCSDS and ECSS Space Standards
 
 The space priority ingestor uses `data/reference/space_priority_sources.csv` to build `data/processed/space_standards.csv` with source-confirmed CCSDS and ECSS records for space packets, telemetry coding, telecommand links, file delivery, systems engineering, project management, and product assurance.
+
+## Phase 7A Culture and Heritage Standards
+
+The culture priority ingestor uses `data/reference/culture_priority_sources.csv` to build `data/processed/culture_heritage_standards.csv` with source-confirmed UNESCO, ICOMOS, ICOM, and ICCROM records for heritage conventions, conservation frameworks, museum ethics, and cultural heritage crisis response.
 
 ## Phase 8A National Standards Body Registry
 

@@ -379,17 +379,18 @@ No processing script, no confirmed data source for:
 - ITF (tennis) Rules of Tennis
 - FIBA Basketball Rules
 
-#### Gap 3.3.B — Culture, Heritage & Arts (Domain 21) — ESSENTIALLY EMPTY
+#### Gap 3.3.B — Culture, Heritage & Arts (Domain 21) — INITIAL PRIORITY SLICE ACTIVE
 
-No confirmed processing for:
-- UNESCO World Heritage Convention (1972) — `https://whc.unesco.org/en/convention`
-- UNESCO Convention for the Safeguarding of the Intangible Cultural Heritage (2003) — `https://ich.unesco.org/en/convention`
-- UNESCO 1954 Hague Convention for the Protection of Cultural Property in Armed Conflict — `https://www.unesco.org/en/legal-affairs/convention-protection-cultural-property-event-armed-conflict`
-- ICOMOS International Charters (Venice Charter, Athens Charter, Burra Charter, Nara Document, Valletta Principles) — all free at `https://www.icomos.org/en/what-we-do/spreading-scientific-knowledge/charters-and-texts`
-- ICOM Code of Ethics for Museums (2022) — `https://icom.museum/en/resources/standards-guidelines/code-of-ethics`
-- ICCROM Conservation Standards and Guidelines — `https://www.iccrom.org/resources/publications`
+SIGMA now has an active Phase 7A priority ingestor for:
+- UNESCO World Heritage Convention (1972) — `https://whc.unesco.org/en/conventiontext/`
+- UNESCO Convention for the Safeguarding of the Intangible Cultural Heritage (2003) — `https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage`
+- UNESCO 1954 Hague Convention for the Protection of Cultural Property in Armed Conflict — `https://www.unesco.org/en/legal-affairs/convention-protection-cultural-property-event-armed-conflict-regulations-execution-convention`
+- UNESCO Convention on the Protection and Promotion of the Diversity of Cultural Expressions (2005)
+- ICOMOS Venice Charter and Nara Document priority records
+- ICOM Code of Ethics for Museums — `https://icom.museum/en/resources/standards-guidelines/code-of-ethics/`
+- ICCROM First Aid to Cultural Heritage in Times of Crisis
 
-This entire domain is foundational to cultural property protection in conflict, heritage site management, museum standards, and UNESCO programming — all directly relevant to humanitarian and development actors.
+Remaining work: expand beyond the initial priority slice into the full ICOMOS doctrinal text catalogue, ICCROM publication families, additional UNESCO culture instruments, and relationship links to humanitarian response, education, indigenous rights, environment, and disaster risk.
 
 #### Gap 3.3.C — Space & Satellite (Domain 14) — SKELETON ONLY
 
@@ -618,7 +619,7 @@ Based on confirmed processing scripts and data sources, here is the honest cover
 | 18 | Legal & Commercial Law | ISO OD + some curation | ~30% | UNCITRAL texts, UNIDROIT instruments, ICC Incoterms | HIGH |
 | 19 | Governance, Transparency & AC | ISO OD (TC 309) | ~35% | UNCAC text, OECD anti-bribery framework, EITI | HIGH |
 | 20 | Education & Research | ISO OD (TC 232) | ~20% | UNESCO qualifications conventions, ISCED, research ethics codes | HIGH |
-| 21 | Culture, Heritage & Arts | ISO OD | ~5% | UNESCO Conventions, ICOMOS Charters, ICOM Code | CRITICAL |
+| 21 | Culture, Heritage & Arts | ISO OD + Phase 7A priority curation | ~25% | Full ICOMOS catalogue, ICCROM publication families, UNESCO culture instruments | CRITICAL |
 | 22 | Sports & Recreation | ISO OD (TC 83) | ~5% | WADA Code, IOC Charter, FIFA Laws, World Athletics | CRITICAL |
 | 23 | Finance, Banking & Accounting | Curated entries | ~55% | Full BCBS/FSB/FATF/IOSCO library, IFRS/IAS complete | HIGH |
 | 24 | Trade & Customs | WTO texts (partial) | ~45% | WTO full legal texts, WCO HS detailed chapters | MEDIUM |
