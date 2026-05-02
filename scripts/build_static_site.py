@@ -35,6 +35,25 @@ DOWNLOAD_LABELS = {
     "domain_coverage.csv": "Domain Coverage",
 }
 
+SEARCH_FIELDS = [
+    "sigma_id",
+    "name_full",
+    "name_short",
+    "standard_id",
+    "domain",
+    "sub_domain",
+    "meta_layer",
+    "issuer",
+    "year_published",
+    "status",
+    "mandate",
+    "why_it_matters",
+    "key_outputs",
+    "official_url",
+]
+
+SEARCH_RECORD_CHUNK_SIZE = 1000
+
 PROJECT_PROGRESS = {
     "full_vision_percent": 22,
     "public_mvp_percent": 70,
@@ -99,6 +118,245 @@ def copy_docs(root: Path, target_dir: Path) -> list[str]:
             target.write_text(render_doc_page(name, source.read_text(encoding="utf-8")), encoding="utf-8")
             rendered.append(name)
     return rendered
+
+
+def searchable_title(row: dict[str, str]) -> str:
+    return row.get("name_full") or row.get("name") or row.get("standard_id") or row.get("sigma_id", "")
+
+
+def search_text(row: dict[str, str]) -> str:
+    return " ".join(str(row.get(field, "")) for field in SEARCH_FIELDS if row.get(field))
+
+
+def normalize_search_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
+    normalized = []
+    for row in rows:
+        sigma_id = row.get("sigma_id", "").strip()
+        title = searchable_title(row).strip()
+        if not sigma_id or not title:
+            continue
+        normalized.append(
+            {
+                "sigma_id": sigma_id,
+                "title": title,
+                "short": (row.get("name_short") or row.get("standard_id") or "").strip(),
+                "standard_id": row.get("standard_id", "").strip(),
+                "domain": row.get("domain", "").strip(),
+                "issuer": row.get("issuer", "").strip(),
+                "year": row.get("year_published", "").strip(),
+                "status": row.get("status", "").strip(),
+                "mandate": row.get("mandate", "").strip(),
+                "official_url": row.get("official_url", "").strip(),
+                "summary": row.get("why_it_matters", "").strip(),
+                "text": search_text(row).strip(),
+            }
+        )
+    return normalized
+
+
+def write_search_index(public: Path, rows: list[dict[str, str]]) -> None:
+    compact_rows = [
+        {
+            "sigma_id": row["sigma_id"],
+            "title": row["title"],
+            "short": row["short"],
+            "standard_id": row["standard_id"],
+            "domain": row["domain"],
+            "issuer": row["issuer"],
+            "year": row["year"],
+            "status": row["status"],
+            "mandate": row["mandate"],
+            "official_url": row["official_url"],
+            "summary": row["summary"],
+            "text": row["text"],
+        }
+        for row in rows
+    ]
+    (public / "search-index.json").write_text(
+        json.dumps(compact_rows, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+
+
+def render_search_record_article(row: dict[str, str]) -> str:
+    url = row.get("official_url", "")
+    official_link = f'<a href="{esc(url)}">Official source</a>' if url else ""
+    return f"""
+      <article class="search-record" data-pagefind-body data-pagefind-meta="domain:{esc(row['domain'])}" data-pagefind-filter="domain:{esc(row['domain'])}">
+        <p class="eyebrow">{esc(row['domain'])}</p>
+        <h2>{esc(row['title'])}</h2>
+        <p class="record-short">{esc(row['short'])}</p>
+        <p class="record-short">{esc(row['standard_id'])}</p>
+        <dl>
+          <div><dt>SIGMA ID</dt><dd>{esc(row['sigma_id'])}</dd></div>
+          <div><dt>Issuer</dt><dd>{esc(row['issuer'])}</dd></div>
+          <div><dt>Mandate</dt><dd>{esc(row['mandate'])}</dd></div>
+          <div><dt>Status</dt><dd>{esc(row['status'])}</dd></div>
+        </dl>
+        <p>{esc(row['summary'] or row['text'])}</p>
+        {official_link}
+      </article>
+    """
+
+
+def render_search_record_page(rows: list[dict[str, str]], page_number: int) -> str:
+    start = (page_number - 1) * SEARCH_RECORD_CHUNK_SIZE + 1
+    end = start + len(rows) - 1
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIGMA Search Records {page_number:04d}</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="SIGMA home">
+      <span class="brand-mark">S</span>
+      <span><strong>SIGMA</strong><small>Global Standards Index</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Search record navigation">
+      <a href="../search.html">Search</a>
+      <a href="../index.html#downloads">Downloads</a>
+      <a href="../index.html#docs">Docs</a>
+    </nav>
+  </header>
+  <main class="doc-shell">
+    <section class="doc-content">
+      <h1>Search Records {start:,}-{end:,}</h1>
+      <p>This generated page gives Pagefind static HTML content for SIGMA records while the canonical data remains in the release bundle.</p>
+      {"".join(render_search_record_article(row) for row in rows)}
+    </section>
+  </main>
+</body>
+</html>
+"""
+
+
+def write_search_record_pages(public: Path, rows: list[dict[str, str]]) -> list[str]:
+    search_records = public / "search-records"
+    search_records.mkdir()
+    pages = []
+    for index in range(0, len(rows), SEARCH_RECORD_CHUNK_SIZE):
+        chunk = rows[index : index + SEARCH_RECORD_CHUNK_SIZE]
+        page_number = (index // SEARCH_RECORD_CHUNK_SIZE) + 1
+        filename = f"records-{page_number:04d}.html"
+        (search_records / filename).write_text(render_search_record_page(chunk, page_number), encoding="utf-8")
+        pages.append(filename)
+    return pages
+
+
+def render_search_page(api: dict, row_count: int) -> str:
+    entry_count = fmt_number(api.get("entry_count") or row_count)
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search · SIGMA Global Standards Index</title>
+  <meta name="description" content="Search SIGMA standards metadata across domains, issuers, mandates, and source-backed release records.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="pagefind/pagefind-component-ui.css">
+  <script src="pagefind/pagefind-component-ui.js" type="module"></script>
+</head>
+<body class="search-page">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="SIGMA home">
+      <span class="brand-mark">S</span>
+      <span><strong>SIGMA</strong><small>Global Standards Index</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html#progress">Progress</a>
+      <a href="index.html#downloads">Downloads</a>
+      <a href="index.html#domains">Domains</a>
+      <a href="index.html#sources">Sources</a>
+      <a href="index.html#docs">Docs</a>
+    </nav>
+  </header>
+  <main class="search-shell">
+    <section class="search-hero" data-pagefind-ignore>
+      <p class="eyebrow">Standards browser</p>
+      <h1>Search {entry_count} SIGMA records</h1>
+      <p>Look up standards, treaties, guidelines, issuers, domains, mandates, and source-backed metadata from the current release bundle.</p>
+    </section>
+    <section class="search-panel" data-pagefind-ignore>
+      <div id="pagefind-search">
+        <pagefind-searchbox placeholder="Search SIGMA records..." show-sub-results></pagefind-searchbox>
+      </div>
+      <form class="fallback-search" role="search">
+        <label for="fallback-query">Fallback search</label>
+        <div class="fallback-row">
+          <input id="fallback-query" type="search" autocomplete="off" placeholder="Search by ID, title, issuer, domain, or mandate">
+          <select id="fallback-domain" aria-label="Filter by domain">
+            <option value="">All domains</option>
+          </select>
+          <button type="submit">Search</button>
+        </div>
+      </form>
+      <div id="fallback-results" class="fallback-results" aria-live="polite"></div>
+    </section>
+  </main>
+  <script>
+    const form = document.querySelector(".fallback-search");
+    const input = document.getElementById("fallback-query");
+    const domain = document.getElementById("fallback-domain");
+    const results = document.getElementById("fallback-results");
+    let records = [];
+
+    function escapeHtml(value) {{
+      return String(value || "").replace(/[&<>"']/g, (character) => ({{
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }})[character]);
+    }}
+
+    function renderResults(items) {{
+      if (!items.length) {{
+        results.innerHTML = "<p>No matching records found.</p>";
+        return;
+      }}
+      results.innerHTML = items.slice(0, 50).map((item) => `
+        <article class="fallback-result">
+          <span>${{escapeHtml(item.domain || "Unclassified")}}</span>
+          <h2>${{escapeHtml(item.title)}}</h2>
+          <p>${{escapeHtml(item.summary || item.issuer || item.sigma_id)}}</p>
+          <small>${{escapeHtml(item.sigma_id)}} · ${{escapeHtml(item.issuer || "Unknown issuer")}} · ${{escapeHtml(item.status || "unknown")}}</small>
+          ${{item.official_url ? `<a href="${{escapeHtml(item.official_url)}}">Official source</a>` : ""}}
+        </article>
+      `).join("");
+    }}
+
+    fetch("search-index.json")
+      .then((response) => response.json())
+      .then((data) => {{
+        records = data;
+        const domains = [...new Set(records.map((item) => item.domain).filter(Boolean))].sort();
+        domain.insertAdjacentHTML("beforeend", domains.map((name) => `<option value="${{escapeHtml(name)}}">${{escapeHtml(name)}}</option>`).join(""));
+      }})
+      .catch(() => {{
+        results.innerHTML = "<p>The fallback index is not available in this build.</p>";
+      }});
+
+    form.addEventListener("submit", (event) => {{
+      event.preventDefault();
+      const query = input.value.trim().toLowerCase();
+      const selectedDomain = domain.value;
+      const matches = records.filter((item) => {{
+        const domainMatch = !selectedDomain || item.domain === selectedDomain;
+        const textMatch = !query || item.text.toLowerCase().includes(query);
+        return domainMatch && textMatch;
+      }});
+      renderResults(matches);
+    }});
+  </script>
+</body>
+</html>
+"""
 
 
 def doc_html_name(name: str) -> str:
@@ -400,6 +658,7 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="#progress">Progress</a>
+      <a href="search.html">Search</a>
       <a href="#downloads">Downloads</a>
       <a href="#domains">Domains</a>
       <a href="#sources">Sources</a>
@@ -415,7 +674,7 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
         <p class="lede">A unified, machine-readable map of global standards, treaties, frameworks, guidelines, and classification systems across public-interest domains.</p>
         <div class="hero-actions">
           <a class="primary-action" href="#downloads">Get the data</a>
-          <a class="secondary-action" href="#domains">Explore coverage</a>
+          <a class="secondary-action" href="search.html">Search records</a>
         </div>
       </div>
       <div class="hero-panel" aria-label="Current release metrics">
@@ -707,7 +966,10 @@ h1 {
 .layer-grid article,
 .download-card,
 .domain-card,
-.doc-link {
+.doc-link,
+.search-panel,
+.fallback-result,
+.search-record {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
@@ -1005,6 +1267,130 @@ td:first-child {
   text-decoration: none;
 }
 
+.search-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 20px 84px;
+}
+
+.search-hero {
+  padding: 24px 0 34px;
+}
+
+.search-hero h1 {
+  color: var(--forest);
+  font-size: clamp(2.2rem, 6vw, 4.7rem);
+}
+
+.search-hero p:not(.eyebrow) {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.search-panel {
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.fallback-search {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.fallback-search label {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.fallback-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.55fr) auto;
+  gap: 10px;
+}
+
+.fallback-row input,
+.fallback-row select,
+.fallback-row button {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.fallback-row button {
+  color: white;
+  background: var(--forest);
+  border-color: var(--forest);
+  font-weight: 800;
+}
+
+.fallback-results {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.fallback-result,
+.search-record {
+  padding: 16px;
+}
+
+.fallback-result span {
+  color: var(--berry);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.fallback-result h2,
+.search-record h2 {
+  margin: 8px 0;
+  font-size: 1.15rem;
+}
+
+.fallback-result p,
+.fallback-result small,
+.search-record p,
+.search-record dd {
+  color: var(--muted);
+}
+
+.fallback-result a,
+.search-record a {
+  display: inline-flex;
+  margin-top: 10px;
+  color: var(--forest);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.search-record {
+  margin-top: 14px;
+}
+
+.search-record dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.search-record dt {
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.search-record dd {
+  margin: 4px 0 0;
+}
+
 .site-footer {
   display: flex;
   flex-wrap: wrap;
@@ -1093,6 +1479,10 @@ td:first-child {
   .layer-grid {
     grid-template-columns: 1fr;
   }
+
+  .fallback-row {
+    grid-template-columns: 1fr;
+  }
 }
 """
 
@@ -1111,9 +1501,13 @@ def build_site(root: Path | str = Path(".")) -> Path:
     if not coverage_rows:
         coverage_rows = read_csv(root / "data" / "reports" / "domain_coverage.csv")
     source_rows = read_csv(root / "data" / "reference" / "source_registry.csv")
+    search_rows = normalize_search_rows(read_csv(dist_dir / "sigma_master.csv"))
     domains = merge_domain_rows(domain_rows, coverage_rows)
 
     (public / "assets" / "styles.css").write_text(render_css(), encoding="utf-8")
+    write_search_index(public, search_rows)
+    write_search_record_pages(public, search_rows)
+    (public / "search.html").write_text(render_search_page(api, len(search_rows)), encoding="utf-8")
     (public / "index.html").write_text(
         render_html(api, domains, source_rows, downloads, docs),
         encoding="utf-8",

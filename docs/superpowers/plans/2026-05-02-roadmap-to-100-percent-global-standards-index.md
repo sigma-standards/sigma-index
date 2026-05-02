@@ -724,8 +724,8 @@ pytest
 
 **Tasks:**
 
-1. Add static full-text search to GitHub Pages.
-2. Add domain, issuer, country, source family, status, and phase filters.
+1. Maintain the active Pagefind-compatible static full-text search layer in GitHub Pages.
+2. Extend domain filtering into issuer, country, source family, status, and phase filters.
 3. Add API index documentation with examples.
 4. Add downloadable slices for standards bodies, treaties, health, humanitarian, environment, finance, ICT, and national body records.
 5. Add accessibility checks for the published Pages site.
@@ -920,14 +920,14 @@ The external feedback document `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md`
 
 1. **Full CI gate:** add one explicit `ci.yml` that runs `make validate` and the pytest suite on push and pull request, complementing the existing schema, release, URL check, and Pages workflows.
 2. **README credibility signals:** keep badges, sample records, and contributor pathways visible from the first screen of the repository.
-3. **Search and discovery:** plan a static full-text search layer, preferably Pagefind-compatible, before public v1.0.
+3. **Search and discovery:** maintain the active Pagefind-compatible static search layer and extend it with richer filters before public v1.0.
 4. **Priority ingestors:** add W3C, NIST, IEC, ITU, IAEA, CCSDS, GRI/SASB, UN Treaty Collection, sports, and culture/heritage work items to the task matrix.
 5. **Publication and outreach:** track HDX submission and Zenodo DOI publication as launch-quality tasks.
 
 ### 15.2 Current-State Corrections
 
 1. GitHub Actions are present; the gap is unified CI coverage and report publication, not total absence of workflows.
-2. GitHub Pages is present and designed; the gap is search, faceting, and entry-level browsing.
+2. GitHub Pages is present and designed with Pagefind-compatible search; the remaining gap is richer faceting and entry-level browsing.
 3. Issue templates exist; the gap is structured YAML forms for domain contributions and source corrections.
 4. Relationship edges exist in `relationships_extracted.csv`; the remaining quality task is confidence review and source traceability.
 

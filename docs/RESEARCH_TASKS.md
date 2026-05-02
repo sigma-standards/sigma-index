@@ -119,5 +119,5 @@ It turns the research plan into an executable task matrix across all phases, dom
 |---|---|---|---|---|---|
 | P19-AUTOMATION | Program | automation | planned | high | Freshness automation plan |
 | P19-GRAPH | Program | architecture | planned | high | Hybrid data architecture plan |
-| P19-SEARCH | Program | publication | planned | critical | Searchable public standards browser |
+| P19-SEARCH | Program | publication | active | critical | Searchable public standards browser |
 | P19-UX | Program | publication | planned | high | Enhanced publication roadmap |

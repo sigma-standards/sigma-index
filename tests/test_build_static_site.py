@@ -28,7 +28,59 @@ def make_fixture_repo(tmp_path):
         ),
         encoding="utf-8",
     )
-    (tmp_path / "dist" / "sigma_master.csv").write_text("sigma_id,name\nSIGMA-1,One\n", encoding="utf-8")
+    write_csv(
+        tmp_path / "dist" / "sigma_master.csv",
+        [
+            {
+                "sigma_id": "HL-WHO-IHR-2005",
+                "entry_type": "standard",
+                "meta_layer": "Life Sciences & Health",
+                "domain": "Health & Medical",
+                "sub_domain": "Public health emergency",
+                "name_full": "International Health Regulations",
+                "name_short": "IHR",
+                "standard_id": "IHR (2005)",
+                "issuer": "World Health Organization",
+                "issuer_type": "UN specialized agency",
+                "governance_layer": "Global",
+                "geographic_scope": "Global",
+                "year_published": "2005",
+                "year_first": "1969",
+                "status": "active",
+                "mandate": "Treaty-binding",
+                "sector_applicability": "Public health",
+                "why_it_matters": "Core framework for cross-border public health risk response.",
+                "key_outputs": "Notification, coordination, core capacities",
+                "official_url": "https://www.who.int/health-topics/international-health-regulations",
+                "data_source": "WHO",
+                "notes": "fixture",
+            },
+            {
+                "sigma_id": "CY-NIST-SP800-53R5",
+                "entry_type": "standard",
+                "meta_layer": "Technology & Infrastructure",
+                "domain": "Cybersecurity & Data Privacy",
+                "sub_domain": "Security controls",
+                "name_full": "Security and Privacy Controls for Information Systems and Organizations",
+                "name_short": "SP 800-53 Rev. 5",
+                "standard_id": "NIST SP 800-53 Rev. 5",
+                "issuer": "National Institute of Standards and Technology",
+                "issuer_type": "National standards body",
+                "governance_layer": "National",
+                "geographic_scope": "United States",
+                "year_published": "2020",
+                "year_first": "2005",
+                "status": "active",
+                "mandate": "Voluntary-with-regulatory-adoption",
+                "sector_applicability": "Cybersecurity",
+                "why_it_matters": "Baseline controls for federal and enterprise systems.",
+                "key_outputs": "Control catalog",
+                "official_url": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
+                "data_source": "NIST",
+                "notes": "fixture",
+            },
+        ],
+    )
     (tmp_path / "dist" / "api_index.json").write_text(
         json.dumps({"entry_count": 88083, "relationship_count": 20130}),
         encoding="utf-8",
@@ -147,6 +199,31 @@ def test_build_site_copies_downloads_and_docs(tmp_path):
     assert (tmp_path / "public" / "docs" / "RESEARCH_TASKS.html").exists()
     assert (tmp_path / "public" / "docs" / "PROJECT_KNOWLEDGE_GRAPH.html").exists()
     assert (tmp_path / "public" / "docs" / "SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.html").exists()
+
+
+def test_build_site_creates_search_page_and_pagefind_records(tmp_path):
+    from scripts.build_static_site import build_site
+
+    make_fixture_repo(tmp_path)
+
+    build_site(tmp_path)
+
+    index_html = (tmp_path / "public" / "index.html").read_text(encoding="utf-8")
+    search_html = (tmp_path / "public" / "search.html").read_text(encoding="utf-8")
+    search_index = json.loads((tmp_path / "public" / "search-index.json").read_text(encoding="utf-8"))
+    records_html = (tmp_path / "public" / "search-records" / "records-0001.html").read_text(encoding="utf-8")
+
+    assert 'href="search.html"' in index_html
+    assert 'id="pagefind-search"' in search_html
+    assert "pagefind/pagefind-component-ui.js" in search_html
+    assert "<pagefind-searchbox" in search_html
+    assert "search-index.json" in search_html
+    assert search_index[0]["sigma_id"] == "HL-WHO-IHR-2005"
+    assert search_index[1]["sigma_id"] == "CY-NIST-SP800-53R5"
+    assert 'data-pagefind-body' in records_html
+    assert 'data-pagefind-meta="domain:Health &amp; Medical"' in records_html
+    assert "International Health Regulations" in records_html
+    assert "NIST SP 800-53 Rev. 5" in records_html
 
 
 def test_project_reference_links_rendered_html_docs_not_raw_markdown(tmp_path):

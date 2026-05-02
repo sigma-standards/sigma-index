@@ -1,4 +1,4 @@
-.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage sustainability-reporting nist-priority national-standards-bodies release site sync-google-sheet clean
+.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage sustainability-reporting nist-priority national-standards-bodies release site pagefind-search sync-google-sheet clean
 
 validate:
 	python3 scripts/validate_domain_registry.py
@@ -58,6 +58,9 @@ release: relationships validate
 
 site: release
 	python3 scripts/build_static_site.py
+
+pagefind-search: site
+	npx -y pagefind@1.5.2 --site public --output-subdir pagefind
 
 sync-google-sheet:
 	python3 scripts/sync_google_sheet.py

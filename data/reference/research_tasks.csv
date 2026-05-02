@@ -29,4 +29,4 @@ P9-ZENODO,9,Verification publication and community launch,,,Program,publication,
 P19-GRAPH,19,Enhanced integration roadmap,,,Program,architecture,"Tabular canonical layer; graph layer; vector layer; GraphRAG query path","Hybrid data architecture plan",planned,high
 P19-AUTOMATION,19,Enhanced integration roadmap,,,Program,automation,"Scheduled ISO deltas; Wikidata sync; ratification refresh; automated changelogs","Freshness automation plan",planned,high
 P19-UX,19,Enhanced integration roadmap,,,Program,publication,"Faceted browsing; semantic search; API; accessibility; multilingual priorities","Enhanced publication roadmap",planned,high
-P19-SEARCH,19,Enhanced integration roadmap,,,Program,publication,"Pagefind or equivalent static search; domain filters; entry-level browsing","Searchable public standards browser",planned,critical
+P19-SEARCH,19,Enhanced integration roadmap,,,Program,publication,"Pagefind static search; fallback JSON search; domain filters; entry-level browsing","Searchable public standards browser",active,critical

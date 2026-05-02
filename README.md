@@ -96,6 +96,16 @@ The release build currently emits:
 
 `dist/` is ignored by Git because release artifacts are generated outputs.
 
+## Public Search
+
+The GitHub Pages build now publishes a searchable standards browser:
+
+```bash
+make pagefind-search
+```
+
+The static site generator writes `public/search.html`, `public/search-index.json`, and Pagefind-readable record pages under `public/search-records/`. The Pages workflow then runs `npx -y pagefind@1.5.2 --site public --output-subdir pagefind` so the deployed site has a low-bandwidth Pagefind search bundle plus a JSON fallback search for local previews.
+
 ## Google Sheet Sync
 
 The public curation sheet `000_SIGMA_MASTER_DATABASE` can be synchronized into the processed data layer:
@@ -227,7 +237,7 @@ GitHub Actions includes:
 
 - Schema validation on pull requests and main-branch pushes.
 - Release artifact build/upload on main-branch pushes.
-- GitHub Pages publishing for a designed static site, generated data downloads, source registry, domain coverage, and project documentation.
+- GitHub Pages publishing for a designed static site, generated data downloads, source registry, domain coverage, Pagefind search, fallback JSON search, and project documentation.
 
 Enable Pages in repository settings with **GitHub Actions** as the source, then run the `Publish Pages` workflow.
 

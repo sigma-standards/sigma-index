@@ -16,7 +16,8 @@ This document is a maintainer map for understanding the repository quickly. It d
 | Processed Data | Canonical data layer | `data/processed/` | Normalized source-backed records used by release builds |
 | Relationships | Graph edge layer | `data/relationships/` | Relationship edges between standards, bodies, domains, and source records |
 | Reports | Generated report layer | `data/reports/` and `docs/` | Quality, domain coverage, and task coverage summaries |
-| Static Site | Publication layer | `scripts/build_static_site.py` and `public/` | GitHub Pages site generated from release artifacts and documentation |
+| Static Site | Publication layer | `scripts/build_static_site.py` and `public/` | GitHub Pages site generated from release artifacts, searchable record pages, and documentation |
+| Pagefind Search | Publication layer | `public/search.html`, `public/search-records/`, `public/pagefind/` | Static full-text search surface for the generated Pages site |
 
 ## 2. Pipeline Edges
 
@@ -38,6 +39,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | Processed Data | builds | Release Bundle |
 | Reports | explain | Release Bundle |
 | Release Bundle | publishes through | Static Site |
+| Release Bundle | feeds | Pagefind Search |
 | Documentation | renders through | Static Site |
 
 ## 3. Command Graph
@@ -48,6 +50,7 @@ This document is a maintainer map for understanding the repository quickly. It d
 | `make nist-priority` | `data/reference/nist_priority_sources.csv` | `data/processed/nist_priority_standards.csv` |
 | `make release` | validated processed data and relationships | `dist/` release bundle |
 | `make site` | release bundle and documentation | `public/` GitHub Pages output |
+| `make pagefind-search` | static site output | `public/pagefind/` static search bundle |
 | `make clean` | generated local artifacts | removes `dist/`, `public/`, caches, build outputs |
 | GitHub Actions `ci.yml` | repository checkout and installed package | `make validate` and pytest status on push and pull request |
 
