@@ -5,6 +5,9 @@ on:
     - cron: '0 0 1 * *'  # Run monthly on the 1st
   workflow_dispatch:  # Allow manual trigger
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   check-urls:
     runs-on: ubuntu-latest
