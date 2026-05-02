@@ -1251,3 +1251,91 @@ LIMIT 1000
 | Next Review | November 2026 |
 
 > *"Standards are the architecture of trust. SIGMA is the map of that architecture."*
+
+---
+
+## 19. ENHANCED INTEGRATION ROADMAP (ADDED MAY 2026)
+
+This section incorporates the latest improvement recommendations and aligns implementation with a scalable, self-improving, open infrastructure.
+
+### 19.1 Strategic Upgrade Summary
+
+SIGMA remains metadata-first and free-first, while adding:
+
+1. **Hybrid storage model**: tabular datasets (CSV/JSON/Parquet) plus a relationship-centric knowledge graph.
+2. **Continuous ingestion**: scheduled source refresh for rapidly changing registries (especially ISO open data).
+3. **LLM-assisted operations**: enrichment, classification, deduplication, and quality checks.
+4. **Improved publication UX**: faceted navigation, semantic search, multilingual support, and public API endpoints.
+5. **Institutional resilience**: formal partner pathways and mirrored archival strategy.
+
+### 19.2 Architecture Extension — Tabular + Graph + Vector
+
+- **Tabular canonical layer**: maintains master schema and source-truth records.
+- **Graph layer** (Neo4j Community / RDF4J / Apache Jena): models `references`, `supersedes`, `adopted_by`, `implements`, `aligned_with`.
+- **Vector layer** (Qdrant or equivalent): enables semantic retrieval over summaries and metadata fields.
+- **GraphRAG query path**: combines symbolic relationships + semantic retrieval for higher-precision answers.
+
+### 19.3 Automation and Freshness
+
+Add scheduled jobs (GitHub Actions and/or Dagster/n8n) for:
+
+- Daily ISO open data delta ingestion (deliverables, TCs, ICS).
+- Weekly Wikidata SPARQL sync for organisations and identifiers.
+- Periodic refresh of treaty ratification and instrument status sources.
+- Automated change logs and dataset version snapshots.
+
+### 19.4 LLM Integration (Open/Low-cost Stack)
+
+Use open/free model workflows for curation support:
+
+- Auto-generate draft `why_it_matters` notes from source metadata.
+- Suggest domain/sub-domain tags and relationship candidates.
+- Detect potential duplicates, stale links, and schema anomalies.
+- Support multilingual summaries for high-impact entries.
+
+Human review remains mandatory for publication to preserve source-truth principles.
+
+### 19.5 Quality Controls at Scale
+
+In addition to existing QA:
+
+- Add rule-based schema validation gates in CI.
+- Add graph consistency constraints (SHACL-style rules where feasible).
+- Add LLM-assisted consistency review with explicit confidence flags.
+- Track data provenance and transformation lineage for each record.
+
+### 19.6 UX, Accessibility, and API
+
+Enhance discoverability for non-technical users:
+
+- Faceted browsing by domain, body, status, geography, and year.
+- Natural language search interface over indexed metadata.
+- Lightweight public API for filtered retrieval and integrations.
+- Accessibility-first publishing (clear language, low-bandwidth pages, multilingual priorities).
+
+### 19.7 Sustainability and Ecosystem Strategy
+
+To reduce single-maintainer risk:
+
+- Mirror releases to Zenodo and other archival platforms.
+- Publish reusable ingestion scripts and data contracts.
+- Build contributor playbooks for domain maintainers.
+- Pursue collaborations with universities, open-data communities, and standards-focused civil society groups.
+
+### 19.8 Revised 8-Week Execution Sprint
+
+**Week 1–2**
+- Ingest latest ISO + Wikidata updates into canonical schema.
+- Stand up initial graph schema and relationship extractor.
+
+**Week 3–4**
+- Launch automated sync pipeline and validation workflow.
+- Enable first LLM-assisted enrichment pass with human approval.
+
+**Week 5–6**
+- Publish MVP search + faceted navigation + downloadable bundles.
+- Expose minimal API and changelog feed.
+
+**Week 7–8**
+- Expand to 5–10 high-impact domains with enriched relationship mapping.
+- Publish contributor onboarding and partnership outreach package.
