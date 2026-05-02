@@ -7,6 +7,7 @@ SIGMA is an open project to build the world’s most complete public index of gl
 ## Repository Contents
 
 - `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md` — full strategy and execution plan (v1.1 enhanced roadmap).
+- `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md` — detailed remaining-work roadmap from the current MVP toward a complete v1.0 global standards index.
 - `index.md` — lightweight public landing-page copy.
 - `data/raw/iso/ICS.csv` — ISO International Classification for Standards seed data.
 - `data/raw/iso/iso_deliverables_metadata.csv` — ISO deliverables metadata.
@@ -146,6 +147,10 @@ make research-tasks
 ```
 
 This generates `data/reports/research_task_coverage.csv` and `docs/RESEARCH_TASKS.md`, covering all 40 domains, all major phases, and the enhanced integration roadmap.
+
+## Roadmap to 100 Percent
+
+The remaining work toward the complete global standards index is documented in `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md`. It follows the canonical Phase 0 through Phase 9 research plan, then extends into the enhanced graph, API, automation, multilingual, and sustainability roadmap.
 
 ## Phase 9A Quality Gate
 

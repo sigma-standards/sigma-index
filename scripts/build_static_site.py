@@ -16,6 +16,8 @@ DOC_FILES = [
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
     "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md",
+    "docs/RESEARCH_TASKS.md",
+    "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md",
 ]
 
 
@@ -109,6 +111,11 @@ def render_inline_markdown(text: str) -> str:
                 rebuilt.append(f"<strong>{part}</strong>" if strong else part)
                 strong = not strong
             escaped = "".join(rebuilt)
+    escaped = re.sub(
+        r"(https?://[^\s<]+[^\s<.,)])",
+        lambda match: f'<a href="{match.group(1)}">{match.group(1)}</a>',
+        escaped,
+    )
     for index, code in enumerate(code_spans):
         escaped = escaped.replace(f"@@CODE{index}@@", code)
     return escaped
@@ -349,6 +356,8 @@ def doc_labels() -> dict[str, str]:
         "CONTRIBUTING.md": "Contributing",
         "CODE_OF_CONDUCT.md": "Code of Conduct",
         "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md": "Research Plan",
+        "docs/RESEARCH_TASKS.md": "Research Task Matrix",
+        "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md": "Roadmap to 100%",
     }
 
 
