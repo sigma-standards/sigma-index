@@ -1,0 +1,4 @@
+check_id,severity,status,detail
+processed_duplicate_sigma_ids,critical,pass,0 duplicate sigma_id values
+processed_required_fields,critical,pass,0 missing required field values
+processed_url_shape,critical,pass,0 non-http official_url values

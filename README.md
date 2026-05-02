@@ -40,6 +40,7 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 - Master entry schema: `python3 scripts/validate_schema.py data/processed`
 - Relationship maps: `python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed`
+- Deterministic release quality gate: `python3 scripts/build_quality_gate.py`
 - Full local check: `make validate`
 
 ## Relationship Extraction
@@ -72,6 +73,7 @@ The release build currently emits:
 - `domain_taxonomy.csv`
 - `source_registry.csv`
 - `domain_coverage.csv`
+- `quality_gate.csv`
 
 `dist/` is ignored by Git because release artifacts are generated outputs.
 
@@ -144,6 +146,16 @@ make research-tasks
 ```
 
 This generates `data/reports/research_task_coverage.csv` and `docs/RESEARCH_TASKS.md`, covering all 40 domains, all major phases, and the enhanced integration roadmap.
+
+## Phase 9A Quality Gate
+
+The first release quality gate performs deterministic checks that are safe for local and CI runs:
+
+```bash
+make quality-gate
+```
+
+It writes `data/reports/quality_gate.csv` and `docs/QUALITY_GATE.md`, covering duplicate `sigma_id` values, missing required master-schema fields, and malformed `official_url` values. Live URL reachability remains a separate audit step because source sites can rate-limit, redirect, or block automated requests.
 
 ## Publishing
 

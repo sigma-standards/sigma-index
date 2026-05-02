@@ -1,8 +1,9 @@
-.PHONY: validate relationships research-tasks health-priority codex humanitarian-priority who-iris-stage national-standards-bodies release site sync-google-sheet clean
+.PHONY: validate relationships research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage national-standards-bodies release site sync-google-sheet clean
 
 validate:
 	python3 scripts/validate_domain_registry.py
 	python3 scripts/build_research_task_report.py
+	python3 scripts/build_quality_gate.py
 	python3 scripts/process_health_priority.py
 	python3 scripts/process_codex.py
 	python3 scripts/process_humanitarian_priority.py
@@ -18,6 +19,9 @@ relationships:
 
 research-tasks:
 	python3 scripts/build_research_task_report.py
+
+quality-gate:
+	python3 scripts/build_quality_gate.py
 
 health-priority:
 	python3 scripts/process_health_priority.py

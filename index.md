@@ -66,6 +66,10 @@ The first national standards body registry slice uses `data/reference/national_s
 
 The full research plan is tracked in `data/reference/research_tasks.csv` and summarized by `make research-tasks`. The generated task coverage report verifies that all 40 domains have planned, active, or completed work items.
 
+## Phase 9A Quality Gate
+
+The deterministic quality gate writes `data/reports/quality_gate.csv` and `docs/QUALITY_GATE.md` for duplicate IDs, missing required fields, and malformed official URLs before release artifacts are built.
+
 ## Project Documents
 
 - Research plan: `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`
@@ -73,4 +77,5 @@ The full research plan is tracked in `data/reference/research_tasks.csv` and sum
 - Contributor guide: `CONTRIBUTING.md`
 - Domain taxonomy: `data/reference/domain_taxonomy.csv`
 - Source registry: `data/reference/source_registry.csv`
+- Quality gate: `docs/QUALITY_GATE.md`
 - Raw ISO seed datasets: `data/raw/iso/`

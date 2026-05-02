@@ -12,7 +12,7 @@ P2B-CODEX,2,Human rights humanitarian and development priority domains,2,Food Sa
 P2C-HUMANITARIAN,2,Human rights humanitarian and development priority domains,17,Humanitarian & Emergency Response,"Society, Governance & Law",ingestion,"CHS; INEE; IASC; UNHCR; WHO Emergency Medical Teams","Processed Phase 2C humanitarian standards",active,critical
 P2D-WHO-IRIS,2,Human rights humanitarian and development priority domains,1,Health & Medical,Life Sciences & Health,staging,"WHO IRIS OAI-PMH Dublin Core metadata","Filtered WHO IRIS normative candidate metadata",active,high
 P8-NSB,8,National standards bodies comprehensive expansion,,,Program,domain-expansion,"176 ISO national standards bodies; ARSO; ASEAN; MENA; Pacific NSBs","National standards body register",active,critical
-P9-QA,9,Verification publication and community launch,,,Program,quality,"URL verification; completeness review; duplicate detection; expert review; release tags","v1.0 quality launch checklist",planned,critical
+P9-QA,9,Verification publication and community launch,,,Program,quality,"URL verification; completeness review; duplicate detection; expert review; release tags","v1.0 quality launch checklist",active,critical
 P19-GRAPH,19,Enhanced integration roadmap,,,Program,architecture,"Tabular canonical layer; graph layer; vector layer; GraphRAG query path","Hybrid data architecture plan",planned,high
 P19-AUTOMATION,19,Enhanced integration roadmap,,,Program,automation,"Scheduled ISO deltas; Wikidata sync; ratification refresh; automated changelogs","Freshness automation plan",planned,high
 P19-UX,19,Enhanced integration roadmap,,,Program,publication,"Faceted browsing; semantic search; API; accessibility; multilingual priorities","Enhanced publication roadmap",planned,high
