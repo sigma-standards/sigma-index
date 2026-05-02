@@ -1,6 +1,6 @@
 domain_id,domain_name,primary_free_sources,collection_status
 1,Health & Medical,WHO IRIS; ISO Open Data TC 212; HL7; SNOMED metadata,phase2a_active
-2,Food Safety & Agriculture,Codex Alimentarius; ISO Open Data TC 34; FAOLEX,seeded
+2,Food Safety & Agriculture,Codex Alimentarius; ISO Open Data TC 34; FAOLEX,phase2b_active
 3,Animal Health & Veterinary,WOAH codes; FAOLEX,seeded
 4,Plant Health & Phytosanitary,IPPC ISPMs; FAOLEX,seeded
 5,Occupational Health & Safety,ILO NORMLEX; ISO Open Data TC 283; OSHA publications,seeded

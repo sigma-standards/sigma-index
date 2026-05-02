@@ -24,9 +24,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,091 master entries** and **20,130 relationship edges** after the Phase 2A health priority ingestion.
+- Generated release bundle: **88,099 master entries** and **20,130 relationship edges** after the Phase 2B Codex priority ingestion.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, and Phase 2A WHO/Sphere health priority records.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, and Phase 2B Codex food-safety records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN, WHO, Codex, ITU, W3C, national bodies, etc.) remain planned in phased ingestion.
 
@@ -94,6 +94,16 @@ make health-priority
 ```
 
 The curated source table is `data/reference/health_priority_sources.csv`, and the generated canonical output is `data/processed/health_priority_standards.csv`. This slice expands Domain 1 Health & Medical, Domain 33 Water, Sanitation & Hygiene, and related humanitarian WASH coverage without duplicating the original seed IDs.
+
+## Phase 2B Codex Priority Ingestion
+
+The first Codex Alimentarius ingestor transforms source-confirmed food-safety records into the processed data layer:
+
+```bash
+make codex
+```
+
+The curated source table is `data/reference/codex_priority_sources.csv`, and the generated canonical output is `data/processed/codex_standards.csv`. This slice expands Domain 2 Food Safety & Agriculture with cross-cutting Codex hygiene, additive, contaminant, labelling, analysis, sampling, and import/export inspection records.
 
 ## Research Task Matrix
 

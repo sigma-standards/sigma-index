@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,091 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,099 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -45,6 +45,10 @@ The shared `000_SIGMA_MASTER_DATABASE` Google Sheet can be synchronized into the
 ## Phase 2A Health Priority Ingestion
 
 The first priority-domain ingestor uses `data/reference/health_priority_sources.csv` to build `data/processed/health_priority_standards.csv` with source-confirmed WHO/Sphere/WASH records for Health & Medical, WASH, and humanitarian response coverage.
+
+## Phase 2B Codex Priority Ingestion
+
+The Codex priority ingestor uses `data/reference/codex_priority_sources.csv` to build `data/processed/codex_standards.csv` with source-confirmed FAO/WHO Codex records for Food Safety & Agriculture.
 
 ## Research Task Matrix
 
