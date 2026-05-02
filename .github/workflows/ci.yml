@@ -31,5 +31,25 @@ jobs:
       - name: Run deterministic validation
         run: make validate
 
+      - name: Build release artifacts and reports
+        run: make release
+
       - name: Run tests
         run: python -m pytest
+
+      - name: Upload validation reports
+        uses: actions/upload-artifact@v7
+        with:
+          name: sigma-validation-reports
+          path: |
+            data/reports/*.csv
+            docs/QUALITY_GATE.md
+            docs/RESEARCH_TASKS.md
+
+      - name: Upload release manifest
+        uses: actions/upload-artifact@v7
+        with:
+          name: sigma-release-manifest
+          path: |
+            dist/api_index.json
+            dist/domain_coverage.csv
