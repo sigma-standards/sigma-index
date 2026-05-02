@@ -74,6 +74,10 @@ The full research plan is tracked in `data/reference/research_tasks.csv` and sum
 
 The remaining-work roadmap is saved at `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md`. It serializes the path from the current public MVP to a complete v1.0 global standards index by research-plan phase, domain, source family, task, validation gate, and publication step.
 
+## Gap Analysis
+
+External feedback from `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` is incorporated into the roadmap, research task matrix, and project references. The highest-impact additions are W3C, NIST, IEC, ITU, IAEA, CCSDS, GRI/SASB, culture, sports, HDX, Zenodo, and static-site search.
+
 ## Phase 9A Quality Gate
 
 The deterministic quality gate writes `data/reports/quality_gate.csv` and `docs/QUALITY_GATE.md` for duplicate IDs, missing required fields, and malformed official URLs before release artifacts are built.
@@ -88,4 +92,5 @@ The deterministic quality gate writes `data/reports/quality_gate.csv` and `docs/
 - Source registry: `data/reference/source_registry.csv`
 - Quality gate: `docs/QUALITY_GATE.md`
 - Project knowledge graph: `docs/PROJECT_KNOWLEDGE_GRAPH.md`
+- Gap analysis and enhancement plan: `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md`
 - Raw ISO seed datasets: `data/raw/iso/`

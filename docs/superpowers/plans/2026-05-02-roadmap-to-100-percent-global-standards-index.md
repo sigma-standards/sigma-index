@@ -910,3 +910,31 @@ pytest
 10. Static site builds and renders relevant docs.
 11. Changes are committed locally and published remotely.
 
+---
+
+## 15. Gap Analysis Incorporation Register
+
+The external feedback document `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` has been reviewed against the current repository state. Items below are now accepted into the roadmap and reflected in `data/reference/research_tasks.csv` where they require follow-up work.
+
+### 15.1 Accepted Critical Enhancements
+
+1. **Full CI gate:** add one explicit `ci.yml` that runs `make validate` and the pytest suite on push and pull request, complementing the existing schema, release, URL check, and Pages workflows.
+2. **README credibility signals:** keep badges, sample records, and contributor pathways visible from the first screen of the repository.
+3. **Search and discovery:** plan a static full-text search layer, preferably Pagefind-compatible, before public v1.0.
+4. **Priority ingestors:** add W3C, NIST, IEC, ITU, IAEA, CCSDS, GRI/SASB, UN Treaty Collection, sports, and culture/heritage work items to the task matrix.
+5. **Publication and outreach:** track HDX submission and Zenodo DOI publication as launch-quality tasks.
+
+### 15.2 Current-State Corrections
+
+1. GitHub Actions are present; the gap is unified CI coverage and report publication, not total absence of workflows.
+2. GitHub Pages is present and designed; the gap is search, faceting, and entry-level browsing.
+3. Issue templates exist; the gap is structured YAML forms for domain contributions and source corrections.
+4. Relationship edges exist in `relationships_extracted.csv`; the remaining quality task is confidence review and source traceability.
+
+### 15.3 First Implementation Order
+
+1. Add full CI workflow.
+2. Render the gap analysis as a project reference.
+3. Convert accepted recommendations into `research_tasks.csv`.
+4. Generate updated task coverage docs.
+5. Keep future harvester implementation in separate source-specific slices so each source can be tested and reviewed safely.

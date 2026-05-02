@@ -2,6 +2,12 @@
 
 **Free. Complete. Machine-readable. Human-navigable.**
 
+[![License](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey)](LICENSE)
+[![Entries](https://img.shields.io/badge/entries-88%2C114-brightgreen)](#current-data-scope)
+[![Domains](https://img.shields.io/badge/domains-40-blue)](data/reference/domain_taxonomy.csv)
+[![Quality Gate](https://img.shields.io/badge/quality%20gate-active-1f5f4b)](docs/QUALITY_GATE.md)
+[![Roadmap](https://img.shields.io/badge/roadmap-to%20100%25-c58b2b)](docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md)
+
 SIGMA is an open project to build the world’s most complete public index of global standards, treaties, frameworks, guidelines, and classification systems.
 
 ## Repository Contents
@@ -21,6 +27,7 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - `data/reference/source_registry.csv` — source map for all 40 domains.
 - `data/reports/domain_coverage.csv` — generated coverage report.
 - `docs/PROJECT_KNOWLEDGE_GRAPH.md` — maintainer-oriented map of source-of-truth documents, generated artifacts, and pipeline relationships.
+- `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` — external feedback gap analysis incorporated into the roadmap and task matrix.
 - `data/relationships/relationships_template.csv` — relationship map template for graph edges.
 - `.github/` — GitHub configuration (issues, workflows).
 
@@ -31,6 +38,16 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, and Phase 8A national standards body records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN, WHO, Codex, ITU, W3C, national bodies, etc.) remain planned in phased ingestion.
+
+## Sample Records
+
+| SIGMA ID | Name | Domain | Mandate | Why it matters |
+|---|---|---|---|---|
+| `HL-WHO-IHR-2005` | International Health Regulations | Health & Medical | Treaty-binding | Core legally binding framework for preventing and responding to cross-border public health risks. |
+| `FS-CAC-CXG2-1985` | Guidelines on Nutrition Labelling | Food Safety & Agriculture | Voluntary-with-regulatory-adoption | International guidance for nutrition declarations and related food labelling information. |
+| `RFC-9110` | HTTP Semantics | ICT | Voluntary-with-regulatory-adoption | Foundation for interoperable web communication and API semantics. |
+| `ILO-C087` | Freedom of Association and Protection of the Right to Organise Convention | Labour & Employment | Treaty-binding | One of the core international labour rights instruments. |
+| `NSB-ANSI-USA` | American National Standards Institute | National Standards Body Registry | Standards body | Key national standards body and ISO member for the United States. |
 
 ## Setup
 
@@ -152,6 +169,12 @@ This generates `data/reports/research_task_coverage.csv` and `docs/RESEARCH_TASK
 ## Roadmap to 100 Percent
 
 The remaining work toward the complete global standards index is documented in `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md`. It follows the canonical Phase 0 through Phase 9 research plan, then extends into the enhanced graph, API, automation, multilingual, and sustainability roadmap.
+
+The friend-reviewed gap analysis is preserved in `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md`. Its actionable recommendations have been converted into roadmap checkpoints and machine-readable research tasks.
+
+## Contribute Without Coding
+
+Non-technical contributors can propose corrections, missing standards, or new source families through GitHub Issues. Use the issue templates for new entries and corrections, and include an official source URL for every claim.
 
 ## Project Owner and Contact
 
