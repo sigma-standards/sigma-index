@@ -6,6 +6,7 @@ venv/
 *.egg-info/
 build/
 dist/
+public/
 
 # Python bytecode
 __pycache__/

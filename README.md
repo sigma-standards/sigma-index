@@ -81,9 +81,18 @@ GitHub Actions includes:
 
 - Schema validation on pull requests and main-branch pushes.
 - Release artifact build/upload on main-branch pushes.
-- GitHub Pages publishing for a static download page and generated data files.
+- GitHub Pages publishing for a designed static site, generated data downloads, source registry, domain coverage, and project documentation.
 
 Enable Pages in repository settings with **GitHub Actions** as the source, then run the `Publish Pages` workflow.
+
+Build the same site locally after creating release artifacts:
+
+```bash
+make release
+python3 scripts/build_static_site.py
+```
+
+The local and remote Pages builds use the same script so navigation, downloads, documentation links, and all-domain coverage stay synchronized.
 
 ## Enhancement Focus Added (May 2026)
 
