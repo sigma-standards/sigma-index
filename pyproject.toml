@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sigma-index"
+version = "0.1.0"
+description = "SIGMA — Unified Global Standards Index"
+readme = "README.md"
+license = {text = "CC-BY-4.0"}
+authors = [
+    {name = "Mohammad Ariful Islam", email = "ariful@example.com"},
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "beautifulsoup4",
+    "SPARQLWrapper",
+    "pandas",
+    "openpyxl",  # for Excel support
+    "pyarrow",   # for Parquet
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyter",
+    "notebook",
+    "pytest",
+]
+
+[project.scripts]
+sigma-build-release = "sigma_index.build_release:main"
+sigma-extract-relationships = "sigma_index.extract_relationships:main"
+sigma-validate-relationships = "sigma_index.validate_relationships:main"
+sigma-validate-schema = "sigma_index.validate_schema:main"
+
+[tool.setuptools]
+packages = ["sigma_index"]
+
+[tool.setuptools.package-dir]
+sigma_index = "scripts"

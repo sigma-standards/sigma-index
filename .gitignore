@@ -1,0 +1,22 @@
+# Python environment folders
+venv/
+.venv/
+
+# Packaging/build artifacts
+*.egg-info/
+build/
+dist/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Misc
+.DS_Store
+*.log
+.env

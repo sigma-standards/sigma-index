@@ -1,0 +1,103 @@
+name: Publish Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+
+      - name: Build data bundle
+        run: |
+          python3 scripts/extract_relationships.py
+          python3 scripts/validate_schema.py data/processed
+          python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed
+          python3 scripts/build_release.py
+
+      - name: Build static site
+        run: |
+          mkdir -p public/downloads public/docs
+          cp dist/* public/downloads/
+          cp README.md SCHEMA.md CONTRIBUTING.md CODE_OF_CONDUCT.md RESEARCH_PROJECT_PLAN_Global_Standards_Index.md public/docs/
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          api = json.loads(Path("dist/api_index.json").read_text())
+          html = f"""<!doctype html>
+          <html lang=\"en\">
+          <head>
+            <meta charset=\"utf-8\">
+            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+            <title>SIGMA Global Standards Index</title>
+            <style>
+              body {{ font-family: system-ui, sans-serif; margin: 0; color: #172026; background: #f7f7f4; }}
+              main {{ max-width: 980px; margin: 0 auto; padding: 56px 20px; }}
+              h1 {{ font-size: clamp(2rem, 5vw, 4rem); margin: 0 0 12px; }}
+              p {{ line-height: 1.6; }}
+              .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 28px 0; }}
+              a.card {{ display: block; padding: 18px; border: 1px solid #d8d8d0; border-radius: 8px; background: white; color: #0f4c5c; text-decoration: none; }}
+              .stat {{ font-weight: 700; font-size: 1.4rem; }}
+              footer {{ margin-top: 48px; font-size: .9rem; color: #526066; }}
+            </style>
+          </head>
+          <body>
+            <main>
+              <h1>SIGMA Global Standards Index</h1>
+              <p>Open, machine-readable metadata for global standards, treaties, frameworks, guidelines, and classification systems.</p>
+              <p><span class=\"stat\">{api['entry_count']:,}</span> entries · <span class=\"stat\">{api['relationship_count']:,}</span> relationship edges</p>
+              <section class=\"grid\" aria-label=\"Downloads\">
+                <a class=\"card\" href=\"downloads/sigma_master.csv\">Master CSV</a>
+                <a class=\"card\" href=\"downloads/sigma_master.json\">Master JSON</a>
+                <a class=\"card\" href=\"downloads/sigma_master.jsonl\">Master JSONL</a>
+                <a class=\"card\" href=\"downloads/relationships.csv\">Relationships CSV</a>
+                <a class=\"card\" href=\"downloads/api_index.json\">API Index</a>
+                <a class=\"card\" href=\"docs/RESEARCH_PROJECT_PLAN_Global_Standards_Index.md\">Research Plan</a>
+                <a class=\"card\" href=\"docs/SCHEMA.md\">Schema</a>
+                <a class=\"card\" href=\"docs/CONTRIBUTING.md\">Contributing</a>
+              </section>
+              <footer>Data and documentation are released under CC BY 4.0.</footer>
+            </main>
+          </body>
+          </html>
+          """
+          Path("public/index.html").write_text(html, encoding="utf-8")
+          PY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

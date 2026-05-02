@@ -1,12 +1,14 @@
 # SIGMA — Global Standards Index
 
-**Free. Complete. For Everyone.**
+**Free. Machine-readable. Human-navigable.**
 
 Search and understand global standards across health, climate, trade, governance, technology, and beyond — without subscriptions.
 
 ## Current Status
 
-**Phase:** Foundation + Enhanced Architecture Planning (May 2026)
+**Phase:** Foundation build + generated release artifacts (May 2026)
+
+**Current generated bundle:** 88,043 entries and 20,130 relationship edges.
 
 ## Core Goals
 
@@ -14,14 +16,19 @@ Search and understand global standards across health, climate, trade, governance
 - Keep data machine-readable (CSV/JSON/Parquet) and human-friendly.
 - Maintain open governance with transparent version history.
 
-## What’s New in the Enhanced Plan
+## Downloads
 
-- Knowledge graph layer for relationships and advanced queries.
-- LLM-assisted enrichment (`why_it_matters`, classification, deduplication).
-- Continuous ingestion pipelines from major open sources.
-- Multilingual support and improved non-technical discovery UX.
+- Master CSV: `dist/sigma_master.csv`
+- Master JSON: `dist/sigma_master.json`
+- Master JSONL: `dist/sigma_master.jsonl`
+- Relationships CSV: `dist/relationships.csv`
+- API index: `dist/api_index.json`
+
+Generated files are built locally with `make release` and published through the GitHub Pages workflow.
 
 ## Project Documents
 
 - Research plan: `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`
-- Seed datasets: `ICS.csv`, `iso_technical_committees.csv`
+- Schema: `SCHEMA.md`
+- Contributor guide: `CONTRIBUTING.md`
+- Raw ISO seed datasets: `data/raw/iso/`

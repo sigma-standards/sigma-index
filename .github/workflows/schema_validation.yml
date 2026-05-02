@@ -1,0 +1,29 @@
+name: Schema Validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  validate-schema:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+
+      - name: Validate processed datasets
+        run: |
+          python3 scripts/validate_schema.py data/processed
+
+      - name: Validate relationship maps
+        run: |
+          python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed

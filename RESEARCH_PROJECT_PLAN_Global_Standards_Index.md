@@ -1339,3 +1339,20 @@ To reduce single-maintainer risk:
 **Week 7–8**
 - Expand to 5–10 high-impact domains with enriched relationship mapping.
 - Publish contributor onboarding and partnership outreach package.
+
+### 19.9 Implementation Checkpoint — Started from Final Roadmap
+
+Initial implementation now begins from the final roadmap layer rather than the earliest research phases:
+
+- Added a schema validation gate for processed CSV datasets.
+- Added GitHub Actions validation workflow for pull requests and main-branch pushes.
+- Added a relationship-map template for the graph layer with confidence/provenance fields.
+- Added relationship-map validation for graph edge fields, provenance, and known SIGMA IDs.
+- Added relationship extraction for ILO `supersedes` and source-resolved ISO `references` links.
+- Added release artifact generation for CSV, JSON, JSONL, relationship exports, and a lightweight API index.
+- Added `Makefile`, GitHub release-build workflow, and GitHub Pages workflow to make validation, artifact builds, and publishing repeatable.
+- Updated schema documentation to align graph relationship terminology with the enhanced roadmap.
+
+Current generated bundle: 88,043 master entries and 20,130 relationship edges.
+
+Next implementation step: expand relationship extraction to source-confirmed `national_adoption_of` links and add additional source ingestors for priority domains.
