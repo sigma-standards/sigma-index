@@ -1,5 +1,5 @@
 domain_id,domain_name,meta_layer,entry_count,coverage_status
-1,Health & Medical,Life Sciences & Health,1,seeded
+1,Health & Medical,Life Sciences & Health,5,seeded
 2,Food Safety & Agriculture,Life Sciences & Health,1,seeded
 3,Animal Health & Veterinary,Life Sciences & Health,1,seeded
 4,Plant Health & Phytosanitary,Life Sciences & Health,1,seeded
@@ -15,7 +15,7 @@ domain_id,domain_name,meta_layer,entry_count,coverage_status
 14,Space & Satellite,Physical Sciences & Engineering,1,seeded
 15,Human Rights,"Society, Governance & Law",1,seeded
 16,Labour & Employment,"Society, Governance & Law",252,seeded
-17,Humanitarian & Emergency Response,"Society, Governance & Law",1,seeded
+17,Humanitarian & Emergency Response,"Society, Governance & Law",2,seeded
 18,Legal & Commercial Law,"Society, Governance & Law",1,seeded
 19,"Governance, Transparency & Anti-Corruption","Society, Governance & Law",1,seeded
 20,Education & Research,"Society, Governance & Law",1,seeded
@@ -31,7 +31,7 @@ domain_id,domain_name,meta_layer,entry_count,coverage_status
 30,Artificial Intelligence & Emerging Technologies,Technology & Infrastructure,1,seeded
 31,Energy & Utilities,Technology & Infrastructure,1,seeded
 32,"Transport (Land, Sea, Air, Rail)",Technology & Infrastructure,1,seeded
-33,"Water, Sanitation & Hygiene (WASH)",Technology & Infrastructure,1,seeded
+33,"Water, Sanitation & Hygiene (WASH)",Technology & Infrastructure,4,seeded
 34,Built Environment & Urban Systems,Technology & Infrastructure,1,seeded
 35,Defence & Security (Declassified),Technology & Infrastructure,1,seeded
 36,Environment & Climate,Environment & Natural Systems,1,seeded

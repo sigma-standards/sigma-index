@@ -1,8 +1,9 @@
-.PHONY: validate relationships research-tasks release site sync-google-sheet clean
+.PHONY: validate relationships research-tasks health-priority release site sync-google-sheet clean
 
 validate:
 	python3 scripts/validate_domain_registry.py
 	python3 scripts/build_research_task_report.py
+	python3 scripts/process_health_priority.py
 	python3 scripts/validate_schema.py data/processed
 	python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed
 	PYTHONDONTWRITEBYTECODE=1 python3 -m py_compile scripts/*.py
@@ -13,6 +14,10 @@ relationships:
 
 research-tasks:
 	python3 scripts/build_research_task_report.py
+
+health-priority:
+	python3 scripts/process_health_priority.py
+	python3 scripts/validate_schema.py data/processed/health_priority_standards.csv
 
 release: relationships validate
 	python3 scripts/build_domain_coverage.py

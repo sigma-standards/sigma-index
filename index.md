@@ -8,7 +8,7 @@ Search and understand global standards across health, climate, trade, governance
 
 **Phase:** Foundation build + generated release artifacts (May 2026)
 
-**Current generated bundle:** 88,083 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
+**Current generated bundle:** 88,091 entries, 20,130 relationship edges, and coverage across all 40 canonical domains.
 
 ## Core Goals
 
@@ -41,6 +41,10 @@ python3 scripts/build_static_site.py
 ## Google Sheet Sync
 
 The shared `000_SIGMA_MASTER_DATABASE` Google Sheet can be synchronized into the processed data layer with `make sync-google-sheet`. The importer preserves the 22-field release schema and ignores temporary curation metadata until those fields are formally promoted.
+
+## Phase 2A Health Priority Ingestion
+
+The first priority-domain ingestor uses `data/reference/health_priority_sources.csv` to build `data/processed/health_priority_standards.csv` with source-confirmed WHO/Sphere/WASH records for Health & Medical, WASH, and humanitarian response coverage.
 
 ## Research Task Matrix
 

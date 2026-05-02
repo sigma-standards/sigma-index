@@ -1,5 +1,5 @@
 domain_id,domain_name,primary_free_sources,collection_status
-1,Health & Medical,WHO IRIS; ISO Open Data TC 212; HL7; SNOMED metadata,seeded
+1,Health & Medical,WHO IRIS; ISO Open Data TC 212; HL7; SNOMED metadata,phase2a_active
 2,Food Safety & Agriculture,Codex Alimentarius; ISO Open Data TC 34; FAOLEX,seeded
 3,Animal Health & Veterinary,WOAH codes; FAOLEX,seeded
 4,Plant Health & Phytosanitary,IPPC ISPMs; FAOLEX,seeded
@@ -15,7 +15,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 14,Space & Satellite,CCSDS; ECSS; ISO TC 20 SC 14; ITU Radio Regulations,seeded
 15,Human Rights,OHCHR; UN Treaty Collection,seeded
 16,Labour & Employment,ILO NORMLEX; ILO Data API,bulk_ilo
-17,Humanitarian & Emergency Response,Sphere; CHS Alliance; IASC; UNHCR,seeded
+17,Humanitarian & Emergency Response,Sphere; CHS Alliance; IASC; UNHCR,phase2a_active
 18,Legal & Commercial Law,UNCITRAL; UNIDROIT; ICC summaries,seeded
 19,"Governance, Transparency & Anti-Corruption",UNCAC; OECD; ISO metadata; EITI,seeded
 20,Education & Research,UNESCO; OECD ISCED; DOI/ORCID metadata,seeded
@@ -31,7 +31,7 @@ domain_id,domain_name,primary_free_sources,collection_status
 30,Artificial Intelligence & Emerging Technologies,NIST AI RMF; OECD AI Principles; UNESCO; ISO metadata,seeded
 31,Energy & Utilities,IAEA; IEC metadata; ISO Open Data; IRENA,bulk_iso
 32,"Transport (Land, Sea, Air, Rail)",UNECE; ICAO summaries; IMO summaries; ISO Open Data,bulk_iso
-33,"Water, Sanitation & Hygiene (WASH)",WHO; Sphere; JMP; WPDx,seeded
+33,"Water, Sanitation & Hygiene (WASH)",WHO; Sphere; JMP; WPDx,phase2a_active
 34,Built Environment & Urban Systems,ISO 37100 series; ITU-T; IEC SyC Smart Cities,bulk_iso
 35,Defence & Security (Declassified),UN Arms Trade Treaty; OPCW; CTBTO; declassified MIL-STDs,seeded
 36,Environment & Climate,UNFCCC; CBD; UNEP conventions; ISO 14000 metadata,bulk_iso

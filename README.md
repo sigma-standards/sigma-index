@@ -24,9 +24,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,083 master entries** and **20,130 relationship edges**.
+- Generated release bundle: **88,091 master entries** and **20,130 relationship edges** after the Phase 2A health priority ingestion.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, and Wikidata standards-body metadata.
+- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, and Phase 2A WHO/Sphere health priority records.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN, WHO, Codex, ITU, W3C, national bodies, etc.) remain planned in phased ingestion.
 
@@ -84,6 +84,16 @@ make sync-google-sheet
 ```
 
 The sync reads the public CSV export, keeps the 22-field SIGMA master schema, and writes `data/processed/google_sheet_master.csv`. Sheet-only curation metadata such as `related_sigma_ids`, `llm_enriched`, and `last_updated` is ignored by the release bundle until those fields are formally added to the published schema.
+
+## Phase 2A Health Priority Ingestion
+
+The first Life Sciences & Health priority ingestor transforms source-confirmed WHO/Sphere/WASH records into the processed data layer:
+
+```bash
+make health-priority
+```
+
+The curated source table is `data/reference/health_priority_sources.csv`, and the generated canonical output is `data/processed/health_priority_standards.csv`. This slice expands Domain 1 Health & Medical, Domain 33 Water, Sanitation & Hygiene, and related humanitarian WASH coverage without duplicating the original seed IDs.
 
 ## Research Task Matrix
 
