@@ -146,6 +146,17 @@ make who-iris-stage
 
 The deterministic fixture is `data/reference/who_iris_oai_sample.xml`, and the staged output is `data/staging/who_iris_filtered_metadata.csv`. Staged rows are deliberately excluded from the release bundle until a curator promotes them into `data/processed`.
 
+## Life-Science Research Utilities
+
+BindingDB ligand and target lookups can be run through the compact REST wrapper:
+
+```bash
+python3 scripts/bindingdb_lookup.py pdb 1Q0L --cutoff 100 --identity 92 --max-items 10
+python3 scripts/bindingdb_lookup.py smiles 'CC(=O)OC1=CC=CC=C1C(=O)O' --cutoff 0.9
+```
+
+The wrapper delegates requests to `scripts/rest_request.py`, defaults broad lookups to compact output, and supports `--save-raw --raw-output-path ...` when a curator needs to archive the full BindingDB payload.
+
 ## Phase 8A National Standards Body Registry
 
 The first national standards body registry slice transforms source-confirmed ISO member-body records into the processed data layer:
