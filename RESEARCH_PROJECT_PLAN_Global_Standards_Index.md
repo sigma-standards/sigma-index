@@ -1354,6 +1354,6 @@ Initial implementation now begins from the final roadmap layer rather than the e
 - Added `Makefile`, GitHub release-build workflow, and GitHub Pages workflow to make validation, artifact builds, and publishing repeatable.
 - Updated schema documentation to align graph relationship terminology with the enhanced roadmap.
 
-Current generated bundle: 88,083 master entries, 20,130 relationship edges, and all 40 canonical domains represented.
+Current generated bundle: 88,204 master entries, 20,140 relationship edges, and all 40 canonical domains represented.
 
 Next implementation step: expand relationship extraction to source-confirmed `national_adoption_of` links and add additional source ingestors for priority domains.

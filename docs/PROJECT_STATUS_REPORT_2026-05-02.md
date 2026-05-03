@@ -17,8 +17,8 @@ Current release baseline:
 
 | Metric | Current value |
 |---|---:|
-| Release entries | 88,203 |
-| Relationship edges | 20,130 |
+| Release entries | 88,204 |
+| Relationship edges | 20,140 |
 | Canonical domains represented | 40 |
 | Research tasks tracked | 35 |
 | Done tasks | 5 |

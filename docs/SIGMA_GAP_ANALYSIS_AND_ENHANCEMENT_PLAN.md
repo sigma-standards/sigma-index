@@ -4,7 +4,7 @@
 
 ---
 
-> **SIGMA incorporation note:** This friend-reviewed analysis has been preserved as a project reference and converted into roadmap and task-matrix actions. Some original observations were written before the latest repository updates. Current SIGMA now has a rendered GitHub Pages site, Pagefind-compatible public search, active W3C, ITU, ETSI, OASIS, Ecma, GS1, and IEC priority standards slices, schema/release/Pages workflows, 20,130 generated relationship edges in `relationships_extracted.csv`, a project knowledge graph, and rendered roadmap/task documentation. The remaining recommendations are treated as prioritized enhancement work, not as a replacement for the source-of-truth research plan.
+> **SIGMA incorporation note:** This friend-reviewed analysis has been preserved as a project reference and converted into roadmap and task-matrix actions. Some original observations were written before the latest repository updates. Current SIGMA now has a rendered GitHub Pages site, Pagefind-compatible public search, active W3C, ITU, ETSI, OASIS, Ecma, GS1, and IEC priority standards slices, schema/release/Pages workflows, 20,140 generated relationship edges in `relationships_extracted.csv`, a project knowledge graph, and rendered roadmap/task documentation. The remaining recommendations are treated as prioritized enhancement work, not as a replacement for the source-of-truth research plan.
 
 ---
 
@@ -105,8 +105,8 @@ sigma-standards/sigma-index/
 
 According to the README:
 
-- **88,114 master entries** generated in the Phase 8A national standards body slice
-- **20,130 relationship edges** generated
+- **88,204 master entries** generated in the Phase 8A national standards body slice
+- **20,140 relationship edges** generated
 - **All 40 canonical domains** represented (at minimum with one entry each)
 - Processed sources include: ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, WHO/Sphere health priority records (Phase 2A), Codex food-safety records (Phase 2B), humanitarian standards (Phase 2C, partial), national standards bodies (Phase 8A)
 
@@ -532,7 +532,7 @@ The `why_it_matters` field is intended for plain-language explanation, but there
 
 #### Gap 3.6.D — LLM-Suggested Relationships Not Yet Reviewed
 
-**What is observed:** The SCHEMA.md explicitly warns: *"LLM-suggested relationships must not be published as final graph edges until a human reviewer confirms the source."* The 20,130 relationship edges are confirmed to exist, but the confidence levels of these edges are unknown. If the majority are `llm-suggested` rather than `source-confirmed` or `curator-reviewed`, the relationship graph is not yet publication-quality.
+**What is observed:** The SCHEMA.md explicitly warns: *"LLM-suggested relationships must not be published as final graph edges until a human reviewer confirms the source."* The 20,140 relationship edges are confirmed to exist, but the confidence levels of these edges are unknown. If the majority are `llm-suggested` rather than `source-confirmed` or `curator-reviewed`, the relationship graph is not yet publication-quality.
 
 #### Gap 3.6.E — No `replaces` / `replaced_by` Cross-Reference in Main Schema
 
@@ -760,7 +760,7 @@ WHO, ILO, UN all publish in 6 languages. Add `name_full_fr`, `name_full_es`, `na
 The schema for the `ratification_tracker` table exists as a template. Populate it with OHCHR treaty ratification data (free JSON downloads) for the 9 core human rights treaties × 193 countries = ~1,700 rows as a starting dataset.
 
 **P4.3 — Relationship graph review and validation**
-Human-review the 20,130 relationship edges; confirm or reject LLM-suggested ones with source citations. Publish only `source-confirmed` and `curator-reviewed` edges in official releases.
+Human-review the 20,140 relationship edges; confirm or reject LLM-suggested ones with source citations. Publish only `source-confirmed` and `curator-reviewed` edges in official releases.
 
 **P4.4 — Build REST API**
 Deploy a minimal read-only API on Cloudflare Workers (free tier — 100,000 requests/day free, no credit card with free plan via CLI deployment).
