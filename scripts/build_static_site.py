@@ -295,7 +295,6 @@ async function loadExtractor() {
         env.allowLocalModels = false;
         return pipeline("feature-extraction", MODEL_ID, {
           dtype: "q8",
-          device: "wasm",
           progress_callback: (progress) => {
             if (progress.status) {
               setStatus(`Loading semantic model: ${progress.status}`);

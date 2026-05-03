@@ -155,7 +155,7 @@ jobs:
 
           branch_name="agent-cycle/${{ inputs.agent_id }}-${{ github.run_id }}"
           git checkout -B "${branch_name}"
-          git add data/processed data/relationships data/reports docs
+          git add data/processed data/relationships data/reports/*.csv docs
 
           if git diff --cached --quiet; then
             echo "No committable source changes produced by agent cycle."

@@ -35,5 +35,7 @@ def test_agent_cycle_workflow_creates_review_pr_without_direct_main_commit():
     assert "--base main" in content
     assert "git checkout -B" in content
     assert "git push --set-upstream origin" in content
+    assert "git add data/processed data/relationships data/reports/*.csv docs" in content
+    assert "git add data/processed data/relationships data/reports docs" not in content
     assert "git push origin main" not in content
     assert "git checkout main" not in content
