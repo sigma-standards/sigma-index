@@ -1,0 +1,208 @@
+name: Domain Agents
+
+on:
+  workflow_dispatch:
+    inputs:
+      agent_id:
+        description: Domain agent to run
+        required: true
+        default: validate
+        type: choice
+        options:
+          - validate
+          - health
+          - humanitarian
+          - food
+          - ict
+          - telecom
+          - open-ict
+          - sustainability
+          - safety
+          - iec
+          - culture
+          - sports
+          - national-bodies
+          - release
+          - all
+      dry_run:
+        description: Plan only, without changing generated files
+        required: true
+        default: true
+        type: boolean
+  schedule:
+    - cron: "17 3 * * 1"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+  DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+  NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+  APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+  HF_TOKEN: ${{ secrets.HF_TOKEN }}
+  OPENALEX_MAILTO: ${{ secrets.OPENALEX_MAILTO }}
+  CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
+  NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: domain-agents-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  manual-agent:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install package and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run selected domain agents
+        run: |
+          if [ "${{ inputs.agent_id }}" = "all" ]; then
+            agents="health humanitarian food ict telecom open-ict sustainability safety iec culture sports national-bodies"
+          else
+            agents="${{ inputs.agent_id }}"
+          fi
+
+          dry_run_flag=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            dry_run_flag="--dry-run"
+          fi
+
+          for agent_id in ${agents}; do
+            # Runner source: scripts/run_domain_worker.py
+            python3 -m scripts.run_domain_worker \
+              --agent "${agent_id}" \
+              --python python3 \
+              --state-path "data/reports/domain_agent_state_${agent_id}.json" \
+              ${dry_run_flag}
+          done
+
+      - name: Validate generated data
+        if: inputs.dry_run != true
+        run: make PYTHON=python3 validate
+
+      - name: Upload domain agent state
+        uses: actions/upload-artifact@v7
+        with:
+          name: domain-agent-state-${{ inputs.agent_id }}
+          path: data/reports/domain_agent_state_*.json
+
+      - name: Create pull request for agent changes
+        if: inputs.dry_run != true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes produced by domain agent."
+            exit 0
+          fi
+
+          git config user.name "${SIGMA_BOT_NAME:-github-actions[bot]}"
+          git config user.email "${SIGMA_BOT_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
+
+          branch_name="agent/${{ inputs.agent_id }}-${{ github.run_id }}"
+          git checkout -B "${branch_name}"
+          git add data/processed data/staging docs data/reports/*.csv
+          git commit -m "agent: refresh ${{ inputs.agent_id }} domain outputs"
+          git push --set-upstream origin "${branch_name}"
+
+          gh pr create \
+            --title "agent: refresh ${{ inputs.agent_id }} domain outputs" \
+            --body "Automated domain-agent refresh for '${{ inputs.agent_id }}'. This PR was created with GitHub Actions, uses repository secrets by name only, and requires human review before merge." \
+            --base main \
+            --head "${branch_name}"
+
+  scheduled-domain-agents:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        agent_id:
+          - health
+          - humanitarian
+          - food
+          - ict
+          - telecom
+          - open-ict
+          - sustainability
+          - safety
+          - iec
+          - culture
+          - sports
+          - national-bodies
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install package and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run scheduled domain agent
+        run: |
+          # Runner source: scripts/run_domain_worker.py
+          python3 -m scripts.run_domain_worker \
+            --agent "${{ matrix.agent_id }}" \
+            --python python3 \
+            --state-path "data/reports/domain_agent_state_${{ matrix.agent_id }}.json"
+
+      - name: Validate generated data
+        run: make PYTHON=python3 validate
+
+      - name: Upload domain agent state
+        uses: actions/upload-artifact@v7
+        with:
+          name: domain-agent-state-${{ matrix.agent_id }}
+          path: data/reports/domain_agent_state_${{ matrix.agent_id }}.json
+
+      - name: Create pull request for agent changes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes produced by domain agent."
+            exit 0
+          fi
+
+          git config user.name "${SIGMA_BOT_NAME:-github-actions[bot]}"
+          git config user.email "${SIGMA_BOT_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
+
+          branch_name="agent/${{ matrix.agent_id }}-${{ github.run_id }}"
+          git checkout -B "${branch_name}"
+          git add data/processed data/staging docs data/reports/*.csv
+          git commit -m "agent: refresh ${{ matrix.agent_id }} domain outputs"
+          git push --set-upstream origin "${branch_name}"
+
+          gh pr create \
+            --title "agent: refresh ${{ matrix.agent_id }} domain outputs" \
+            --body "Automated domain-agent refresh for '${{ matrix.agent_id }}'. This PR was created with GitHub Actions, uses repository secrets by name only, and requires human review before merge." \
+            --base main \
+            --head "${branch_name}"
