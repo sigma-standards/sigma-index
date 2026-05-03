@@ -29,7 +29,9 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - `docs/PROJECT_KNOWLEDGE_GRAPH.md` — maintainer-oriented map of source-of-truth documents, generated artifacts, and pipeline relationships.
 - `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` — external feedback gap analysis incorporated into the roadmap and task matrix.
 - `docs/PROJECT_STATUS_REPORT_2026-05-02.md` — current journey summary, accomplishments, challenges, best practices, and next steps.
+- `docs/GITHUB_AGENTIC_SETUP_GUIDE.md` — click-by-click GitHub setup guide for free-safe domain-agent automation and optional API secrets.
 - `data/relationships/relationships_template.csv` — relationship map template for graph edges.
+- `data/reference/domain_worker_registry.csv` — GitHub domain-agent registry for scheduled and manual cloud workers.
 - `.github/` — GitHub configuration (issues, workflows).
 
 ## Current Data Scope
@@ -63,6 +65,12 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - Relationship maps: `python3 scripts/validate_relationships.py data/relationships --processed-dir data/processed`
 - Deterministic release quality gate: `python3 scripts/build_quality_gate.py`
 - Full local check: `make validate`
+
+## GitHub Domain Agents
+
+SIGMA includes a free-safe GitHub Actions scaffold for domain-based automation. The `Domain Agents` workflow can be run manually or on a weekly schedule; it dispatches registered agents from `data/reference/domain_worker_registry.csv`, writes a state artifact, validates generated data, and opens a pull request when a worker changes tracked source or report files.
+
+Start with `dry_run` enabled in GitHub Actions. Add optional provider tokens only through GitHub repository secrets, never in commits. See `docs/GITHUB_AGENTIC_SETUP_GUIDE.md` for the fillable secret template and click-by-click setup.
 
 ## Relationship Extraction
 

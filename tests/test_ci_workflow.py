@@ -2,6 +2,7 @@ from pathlib import Path
 
 
 CI_WORKFLOW = Path(".github") / "workflows" / "ci.yml"
+REQUIRED_GATE_WORKFLOW = Path(".github") / "workflows" / "required_gate.yml"
 WORKFLOW_DIR = Path(".github") / "workflows"
 
 
@@ -32,3 +33,12 @@ def test_workflows_use_make_python_override_for_python_scripts():
     for workflow_path in WORKFLOW_DIR.glob("*.yml"):
         content = workflow_path.read_text(encoding="utf-8")
         assert "python3 scripts/" not in content
+
+
+def test_required_gate_workflow_matches_branch_rule_status_name():
+    content = REQUIRED_GATE_WORKFLOW.read_text(encoding="utf-8")
+
+    assert "name: Require CI / Schema Validation / Release Build." in content
+    assert "make PYTHON=python3 validate" in content
+    assert "make PYTHON=python3 release" in content
+    assert "python -m pytest" in content
