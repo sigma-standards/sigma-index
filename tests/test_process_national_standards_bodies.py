@@ -1,5 +1,6 @@
 import csv
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 MASTER_FIELDS = [
@@ -33,6 +34,16 @@ def read_rows(path):
         return list(csv.DictReader(handle))
 
 
+def is_iso_data_source(data_source):
+    _, separator, source_url = data_source.partition(": ")
+    parsed = urlparse(source_url if separator else data_source)
+    return (
+        parsed.scheme == "https"
+        and parsed.hostname is not None
+        and (parsed.hostname == "www.iso.org" or parsed.hostname.endswith(".iso.org"))
+    )
+
+
 def test_process_national_standards_bodies_writes_master_schema_records(tmp_path):
     from scripts.process_national_standards_bodies import process_national_standards_bodies
 
@@ -59,4 +70,4 @@ def test_national_standards_body_ids_are_unique_and_source_linked(tmp_path):
 
     assert len(sigma_ids) == len(set(sigma_ids))
     assert all(row["sigma_id"].startswith("NSB-") for row in rows)
-    assert all("https://www.iso.org" in row["data_source"] for row in rows)
+    assert all(is_iso_data_source(row["data_source"]) for row in rows)
