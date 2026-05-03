@@ -114,10 +114,15 @@ Known optional names:
 - `XAI_API_KEY`
 - `DEEPSEEK_API_KEY`
 - `NCBI_API_KEY`
+- `NCBI_USERNAME`
 - `APIFY_TOKEN`
 - `HF_TOKEN`
 - `OPENALEX_MAILTO`
 - `CROSSREF_MAILTO`
 - `NVD_API_KEY`
+
+Known optional variable names:
+
+- `APIFY_USER_ID`
 - `SIGMA_BOT_NAME`
 - `SIGMA_BOT_EMAIL`

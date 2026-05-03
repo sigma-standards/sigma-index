@@ -70,8 +70,11 @@ def test_domain_agent_workflow_uses_pr_gates_and_secret_names_only():
     assert "gh pr create" in content
     assert "XAI_API_KEY: ${{ secrets.XAI_API_KEY }}" in content
     assert "DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}" in content
+    assert "NCBI_USERNAME: ${{ secrets.NCBI_USERNAME }}" in content
+    assert "APIFY_USER_ID: ${{ vars.APIFY_USER_ID }}" in content
     assert "HF_TOKEN: ${{ secrets.HF_TOKEN }}" in content
     assert "APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}" in content
+    assert "SIGMA_BOT_NAME: ${{ vars.SIGMA_BOT_NAME }}" in content
     assert "sk-" not in content
     assert "xai-" not in content
 
@@ -83,7 +86,10 @@ def test_github_agentic_setup_guide_has_fillable_secret_template():
     assert "| `XAI_API_KEY` |" in content
     assert "| `DEEPSEEK_API_KEY` |" in content
     assert "| `NCBI_API_KEY` |" in content
+    assert "| `NCBI_USERNAME` |" in content
     assert "| `APIFY_TOKEN` |" in content
+    assert "Fillable Variables Template" in content
+    assert "| `APIFY_USER_ID` |" in content
     assert "| `HF_TOKEN` |" in content
     assert "Do not paste secrets into commits" in content
     assert "Settings -> Secrets and variables -> Actions" in content

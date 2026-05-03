@@ -23,11 +23,20 @@ Copy the value from each provider into GitHub Web. Leave blank when you do not h
 | `XAI_API_KEY` | No | xAI/Grok API keys may require credits or billing; use only if you have a no-payment/free-credit option. | `________________________________` |
 | `DEEPSEEK_API_KEY` | No | DeepSeek API is usage-priced in official pricing; use only if your account has free balance and no payment requirement. | `________________________________` |
 | `NCBI_API_KEY` | No | Optional free NCBI key for higher E-utilities rate limits. | `________________________________` |
+| `NCBI_USERNAME` | No | Optional NCBI account email/username; store as a secret if used. | `________________________________` |
 | `APIFY_TOKEN` | No | Optional Apify token for Apify MCP/platform access; use only within free allowances. | `________________________________` |
 | `HF_TOKEN` | No | Optional Hugging Face user access token; use read/fine-grained scope unless writes are truly needed. | `________________________________` |
 | `OPENALEX_MAILTO` | No | Email string for polite OpenAlex API usage. | `________________________________` |
 | `CROSSREF_MAILTO` | No | Email string for polite Crossref API usage. | `________________________________` |
 | `NVD_API_KEY` | No | Optional free NVD key for higher rate limits. | `________________________________` |
+
+## Fillable Variables Template
+
+Use repository variables for non-secret configuration values.
+
+| Variable name | Required | Note | Fill here before pasting into GitHub |
+|---|---:|---|---|
+| `APIFY_USER_ID` | No | Optional Apify user/account identifier. | `________________________________` |
 | `SIGMA_BOT_NAME` | No | Optional commit author name for workflow-created PRs. | `________________________________` |
 | `SIGMA_BOT_EMAIL` | No | Optional commit author email for workflow-created PRs. | `________________________________` |
 
