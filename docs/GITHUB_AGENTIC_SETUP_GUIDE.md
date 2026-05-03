@@ -8,7 +8,7 @@ Do not paste secrets into commits, issues, pull requests, workflow logs, or chat
 
 - Domain-based agents declared in `data/reference/domain_worker_registry.csv`.
 - A single runner, `scripts/run_domain_worker.py`, that executes one registered worker.
-- A GitHub workflow, `.github/workflows/domain_agents.yml`, with manual and weekly scheduled runs.
+- GitHub workflows for agents: `.github/workflows/domain_agents.yml` for individual/manual/scheduled workers and `.github/workflows/agent_cycle.yml` for GitHub-web plan, run, and follow-up cycles.
 - Human-in-the-loop PR gates instead of direct writes to `main`.
 - Retry behavior through each registry row's `retry_limit`.
 - State reports in `data/reports/domain_agent_state_<agent>.json`.
@@ -88,6 +88,17 @@ Use repository variables for non-secret configuration values.
 8. Open the completed run and download the `domain-agent-state-*` artifact.
 9. Run again with `dry_run` disabled only after the dry run looks right.
 10. Review the PR created by the workflow before merging.
+
+## Click By Click: Run The Agent Cycle
+
+1. Open the repository on GitHub.
+2. Click `Actions`.
+3. Click `Agent Cycle`.
+4. Click `Run workflow`.
+5. Choose an `agent_id`, or choose `all`.
+6. Choose `plan` first to upload state artifacts without changing data.
+7. Choose `run` to execute, validate, optionally build release artifacts, and open a PR for review.
+8. Choose `follow-up` to produce a web-run summary of recent cycle runs and open agent PRs.
 
 ## Agentic Design Coverage
 

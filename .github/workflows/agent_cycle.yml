@@ -1,0 +1,172 @@
+name: Agent Cycle
+
+on:
+  workflow_dispatch:
+    inputs:
+      agent_id:
+        description: Domain agent to run, or all domain agents
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - validate
+          - health
+          - humanitarian
+          - food
+          - ict
+          - telecom
+          - open-ict
+          - sustainability
+          - safety
+          - iec
+          - culture
+          - sports
+          - national-bodies
+          - release
+      cycle_mode:
+        description: Plan, execute, or summarize follow-up from GitHub web
+        required: true
+        default: plan
+        type: choice
+        options:
+          - plan
+          - run
+          - follow-up
+      include_release:
+        description: Build release artifacts after a run
+        required: true
+        default: true
+        type: boolean
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  SIGMA_BOT_NAME: ${{ vars.SIGMA_BOT_NAME }}
+  SIGMA_BOT_EMAIL: ${{ vars.SIGMA_BOT_EMAIL }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: agent-cycle-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  agent-cycle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        if: inputs.cycle_mode != 'follow-up'
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install package and test dependencies
+        if: inputs.cycle_mode != 'follow-up'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Resolve selected agents
+        id: agents
+        run: |
+          case "${{ inputs.agent_id }}" in
+            all)
+              agents="health humanitarian food ict telecom open-ict sustainability safety iec culture sports national-bodies"
+              ;;
+            *)
+              agents="${{ inputs.agent_id }}"
+              ;;
+          esac
+
+          echo "agents=${agents}" >> "${GITHUB_OUTPUT}"
+          printf "Selected agents: %s\n" "${agents}" >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Run or plan selected domain agents
+        if: inputs.cycle_mode != 'follow-up'
+        run: |
+          dry_run_flag=""
+          if [ "${{ inputs.cycle_mode }}" = "plan" ]; then
+            dry_run_flag="--dry-run"
+          fi
+
+          for agent_id in ${{ steps.agents.outputs.agents }}; do
+            # Runner source: scripts/run_domain_worker.py
+            python3 -m scripts.run_domain_worker \
+              --agent "${agent_id}" \
+              --python python3 \
+              --state-path "data/reports/domain_agent_state_${agent_id}.json" \
+              ${dry_run_flag}
+          done
+
+      - name: Validate generated data
+        if: inputs.cycle_mode == 'run'
+        run: make PYTHON=python3 validate
+
+      - name: Build release artifacts
+        if: inputs.cycle_mode == 'run' && inputs.include_release == true
+        run: make PYTHON=python3 release
+
+      - name: Write follow-up summary
+        if: inputs.cycle_mode == 'follow-up'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p data/reports
+          {
+            echo "# Agent Cycle Follow-Up"
+            echo
+            echo "## Recent Agent Cycle Runs"
+            gh run list --workflow agent_cycle.yml --limit 10
+            echo
+            echo "## Open Agent Pull Requests"
+            gh pr list --state open --search "head:agent-cycle/"
+            echo
+            echo "## Existing Domain Agent Runs"
+            gh run list --workflow domain_agents.yml --limit 10
+          } > data/reports/agent_cycle_follow_up.md
+
+          cat data/reports/agent_cycle_follow_up.md >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload agent cycle state
+        uses: actions/upload-artifact@v7
+        with:
+          name: agent-cycle-state-${{ inputs.agent_id }}-${{ inputs.cycle_mode }}
+          path: |
+            data/reports/domain_agent_state_*.json
+            data/reports/agent_cycle_follow_up.md
+          if-no-files-found: warn
+
+      - name: Create pull request for cycle changes
+        if: inputs.cycle_mode == 'run'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "${SIGMA_BOT_NAME:-github-actions[bot]}"
+          git config user.email "${SIGMA_BOT_EMAIL:-41898282+github-actions[bot]@users.noreply.github.com}"
+
+          branch_name="agent-cycle/${{ inputs.agent_id }}-${{ github.run_id }}"
+          git checkout -B "${branch_name}"
+          git add data/processed data/relationships data/reports/*.csv docs
+
+          if git diff --cached --quiet; then
+            echo "No committable source changes produced by agent cycle."
+            exit 0
+          fi
+
+          git commit -m "agent: run ${{ inputs.agent_id }} cycle"
+          git push --set-upstream origin "${branch_name}"
+
+          gh pr create \
+            --title "agent: run ${{ inputs.agent_id }} cycle" \
+            --body "Automated SIGMA agent cycle for '${{ inputs.agent_id }}'. This GitHub Actions run uses free-safe repository automation, uploads state artifacts, and requires human review before merge." \
+            --base main \
+            --head "${branch_name}"
