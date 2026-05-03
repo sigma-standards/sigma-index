@@ -1,5 +1,6 @@
 import csv
 from pathlib import Path
+from urllib.parse import urlparse
 
 
 MASTER_FIELDS = [
@@ -59,4 +60,9 @@ def test_national_standards_body_ids_are_unique_and_source_linked(tmp_path):
 
     assert len(sigma_ids) == len(set(sigma_ids))
     assert all(row["sigma_id"].startswith("NSB-") for row in rows)
-    assert all("https://www.iso.org" in row["data_source"] for row in rows)
+    assert all(
+        (parsed := urlparse(row["data_source"])).scheme == "https"
+        and parsed.hostname is not None
+        and (parsed.hostname == "www.iso.org" or parsed.hostname.endswith(".iso.org"))
+        for row in rows
+    )
