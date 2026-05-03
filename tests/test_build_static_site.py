@@ -231,6 +231,30 @@ def test_build_site_creates_search_page_and_pagefind_records(tmp_path):
     assert "NIST SP 800-53 Rev. 5" in records_html
 
 
+def test_build_site_adds_free_safe_semantic_search_helper(tmp_path):
+    from scripts.build_static_site import build_site
+
+    make_fixture_repo(tmp_path)
+
+    build_site(tmp_path)
+
+    search_html = (tmp_path / "public" / "search.html").read_text(encoding="utf-8")
+    semantic_js = (tmp_path / "public" / "assets" / "semantic-search.js").read_text(encoding="utf-8")
+
+    assert 'id="semantic-search"' in search_html
+    assert 'data-semantic-search' in search_html
+    assert 'type="module" src="assets/semantic-search.js"' in search_html
+    assert "Semantic search is optional. Lexical search works even when the model is unavailable." in search_html
+    assert "@huggingface/transformers" in semantic_js
+    assert "Xenova/all-MiniLM-L6-v2" in semantic_js
+    assert "dtype: \"q8\"" in semantic_js
+    assert "feature-extraction" in semantic_js
+    assert "search-index.json" in semantic_js
+    assert "dispose()" in semantic_js
+    assert "beforeunload" in semantic_js
+    assert "Semantic model unavailable. Lexical search remains available." in semantic_js
+
+
 def test_project_reference_links_rendered_html_docs_not_raw_markdown(tmp_path):
     from scripts.build_static_site import build_site
 

@@ -179,6 +179,226 @@ def write_search_index(public: Path, rows: list[dict[str, str]]) -> None:
     )
 
 
+def render_semantic_search_js() -> str:
+    return """const TRANSFORMERS_CDN = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1";
+const MODEL_ID = "Xenova/all-MiniLM-L6-v2";
+const MAX_LEXICAL_CANDIDATES = 48;
+const MAX_SEMANTIC_RESULTS = 12;
+
+const root = document.querySelector("[data-semantic-search]");
+const form = root?.querySelector("[data-semantic-form]");
+const input = root?.querySelector("[data-semantic-query]");
+const status = root?.querySelector("[data-semantic-status]");
+const results = root?.querySelector("[data-semantic-results]");
+const loadButton = root?.querySelector("[data-semantic-load]");
+const searchButton = root?.querySelector("[data-semantic-submit]");
+
+let records = [];
+let extractorPromise = null;
+let extractor = null;
+
+function escapeHtml(value) {
+  return String(value || "").replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+function setStatus(message) {
+  if (status) {
+    status.textContent = message;
+  }
+}
+
+function setUnavailable() {
+  setStatus("Semantic model unavailable. Lexical search remains available.");
+  if (loadButton) {
+    loadButton.disabled = false;
+  }
+  if (searchButton) {
+    searchButton.disabled = true;
+  }
+}
+
+function lexicalScore(record, query) {
+  if (!query) {
+    return 0;
+  }
+  const text = `${record.title || ""} ${record.short || ""} ${record.domain || ""} ${record.issuer || ""} ${record.text || ""}`.toLowerCase();
+  const words = query.toLowerCase().split(/\\s+/).filter(Boolean);
+  return words.reduce((score, word) => score + (text.includes(word) ? 1 : 0), 0);
+}
+
+function lexicalCandidates(query) {
+  return records
+    .map((record) => ({ record, lexical: lexicalScore(record, query) }))
+    .filter((item) => item.lexical > 0)
+    .sort((left, right) => right.lexical - left.lexical)
+    .slice(0, MAX_LEXICAL_CANDIDATES)
+    .map((item) => item.record);
+}
+
+function resultText(record) {
+  return [
+    record.title,
+    record.short,
+    record.standard_id,
+    record.domain,
+    record.issuer,
+    record.mandate,
+    record.summary,
+    record.text
+  ].filter(Boolean).join(" ");
+}
+
+function renderResults(items) {
+  if (!results) {
+    return;
+  }
+  if (!items.length) {
+    results.innerHTML = "<p>No semantic matches found. Try the lexical search below.</p>";
+    return;
+  }
+  results.innerHTML = items.map(({ record, score }) => `
+    <article class="semantic-result">
+      <span>${escapeHtml(record.domain || "Unclassified")}</span>
+      <h2>${escapeHtml(record.title)}</h2>
+      <p>${escapeHtml(record.summary || record.issuer || record.sigma_id)}</p>
+      <small>${escapeHtml(record.sigma_id)} · ${escapeHtml(record.issuer || "Unknown issuer")} · similarity ${score.toFixed(3)}</small>
+      ${record.official_url ? `<a href="${escapeHtml(record.official_url)}">Official source</a>` : ""}
+    </article>
+  `).join("");
+}
+
+async function loadRecords() {
+  if (records.length) {
+    return records;
+  }
+  const response = await fetch("search-index.json");
+  if (!response.ok) {
+    throw new Error(`Search index request failed: ${response.status}`);
+  }
+  records = await response.json();
+  return records;
+}
+
+async function loadExtractor() {
+  if (extractor) {
+    return extractor;
+  }
+  if (!extractorPromise) {
+    extractorPromise = import(TRANSFORMERS_CDN)
+      .then(({ env, pipeline }) => {
+        env.allowLocalModels = false;
+        return pipeline("feature-extraction", MODEL_ID, {
+          dtype: "q8",
+          device: "wasm",
+          progress_callback: (progress) => {
+            if (progress.status) {
+              setStatus(`Loading semantic model: ${progress.status}`);
+            }
+          }
+        });
+      })
+      .then((pipelineInstance) => {
+        extractor = pipelineInstance;
+        setStatus("Semantic search ready. Queries run fully in this browser.");
+        if (searchButton) {
+          searchButton.disabled = false;
+        }
+        return extractor;
+      })
+      .catch((error) => {
+        console.warn("SIGMA semantic search disabled:", error);
+        extractorPromise = null;
+        setUnavailable();
+        throw error;
+      });
+  }
+  return extractorPromise;
+}
+
+function dot(left, right) {
+  const length = Math.min(left.length, right.length);
+  let total = 0;
+  for (let index = 0; index < length; index += 1) {
+    total += left[index] * right[index];
+  }
+  return total;
+}
+
+async function embed(texts) {
+  const pipe = await loadExtractor();
+  const output = await pipe(texts, { pooling: "mean", normalize: true });
+  const dims = output.dims || [];
+  const width = dims[dims.length - 1] || output.data.length;
+  const vectors = [];
+  for (let offset = 0; offset < output.data.length; offset += width) {
+    vectors.push(Array.from(output.data.slice(offset, offset + width)));
+  }
+  if (typeof output.dispose === "function") {
+    output.dispose();
+  }
+  return vectors;
+}
+
+async function runSemanticSearch(query) {
+  await loadRecords();
+  const candidates = lexicalCandidates(query);
+  if (!candidates.length) {
+    renderResults([]);
+    return;
+  }
+  setStatus(`Embedding ${candidates.length} lexical candidates in this browser...`);
+  const [queryVector, ...candidateVectors] = await embed([query, ...candidates.map(resultText)]);
+  const ranked = candidates
+    .map((record, index) => ({ record, score: dot(queryVector, candidateVectors[index]) }))
+    .sort((left, right) => right.score - left.score)
+    .slice(0, MAX_SEMANTIC_RESULTS);
+  renderResults(ranked);
+  setStatus("Semantic results ranked locally. Lexical search remains available below.");
+}
+
+async function cleanup() {
+  if (extractor && typeof extractor.dispose === "function") {
+    await extractor.dispose();
+  }
+  extractor = null;
+  extractorPromise = null;
+}
+
+if (root && form && input) {
+  loadRecords().catch(() => setStatus("Semantic helper could not load the local search index. Lexical search remains available."));
+
+  loadButton?.addEventListener("click", () => {
+    setStatus("Loading semantic model in this browser...");
+    if (loadButton) {
+      loadButton.disabled = true;
+    }
+    loadExtractor().catch(() => undefined);
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const query = input.value.trim();
+    if (!query) {
+      renderResults([]);
+      setStatus("Enter a question or concept to search semantically.");
+      return;
+    }
+    runSemanticSearch(query).catch(() => setUnavailable());
+  });
+
+  window.addEventListener("beforeunload", () => {
+    cleanup();
+  });
+}
+"""
+
+
 def render_search_record_article(row: dict[str, str]) -> str:
     url = row.get("official_url", "")
     official_link = f'<a href="{esc(url)}">Official source</a>' if url else ""
@@ -286,6 +506,23 @@ def render_search_page(api: dict, row_count: int) -> str:
       <div id="pagefind-search">
         <pagefind-searchbox placeholder="Search SIGMA records..." show-sub-results></pagefind-searchbox>
       </div>
+      <section id="semantic-search" class="semantic-search" data-semantic-search>
+        <div class="semantic-copy">
+          <p class="eyebrow">Optional semantic helper</p>
+          <h2>Rank a small lexical candidate set with browser embeddings</h2>
+          <p>Semantic search is optional. Lexical search works even when the model is unavailable.</p>
+        </div>
+        <form class="semantic-form" data-semantic-form role="search">
+          <label for="semantic-query">Semantic query</label>
+          <div class="semantic-row">
+            <input id="semantic-query" data-semantic-query type="search" autocomplete="off" placeholder="Example: public health emergency reporting">
+            <button type="button" data-semantic-load>Load model</button>
+            <button type="submit" data-semantic-submit disabled>Rank</button>
+          </div>
+        </form>
+        <p class="semantic-status" data-semantic-status aria-live="polite">Uses a small quantized Transformers.js feature-extraction model only after you load it.</p>
+        <div class="semantic-results" data-semantic-results aria-live="polite"></div>
+      </section>
       <form class="fallback-search" role="search">
         <label for="fallback-query">Fallback search</label>
         <div class="fallback-row">
@@ -355,6 +592,7 @@ def render_search_page(api: dict, row_count: int) -> str:
       renderResults(matches);
     }});
   </script>
+  <script type="module" src="assets/semantic-search.js"></script>
 </body>
 </html>
 """
@@ -971,6 +1209,7 @@ h1 {
 .doc-link,
 .search-panel,
 .fallback-result,
+.semantic-result,
 .search-record {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1308,6 +1547,71 @@ td:first-child {
   font-weight: 800;
 }
 
+.semantic-search {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.semantic-copy h2 {
+  margin: 0;
+  color: var(--forest);
+  font-size: 1.35rem;
+}
+
+.semantic-copy p:not(.eyebrow),
+.semantic-status {
+  max-width: 760px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.semantic-form {
+  display: grid;
+  gap: 10px;
+}
+
+.semantic-form label {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.semantic-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 10px;
+}
+
+.semantic-row input,
+.semantic-row button {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.semantic-row button {
+  color: white;
+  background: var(--teal);
+  border-color: var(--teal);
+  font-weight: 800;
+}
+
+.semantic-row button:disabled {
+  cursor: not-allowed;
+  background: #8aa0a2;
+  border-color: #8aa0a2;
+}
+
+.semantic-results {
+  display: grid;
+  gap: 12px;
+}
+
 .fallback-row {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.55fr) auto;
@@ -1338,11 +1642,13 @@ td:first-child {
 }
 
 .fallback-result,
+.semantic-result,
 .search-record {
   padding: 16px;
 }
 
-.fallback-result span {
+.fallback-result span,
+.semantic-result span {
   color: var(--berry);
   font-size: 0.78rem;
   font-weight: 800;
@@ -1350,6 +1656,7 @@ td:first-child {
 }
 
 .fallback-result h2,
+.semantic-result h2,
 .search-record h2 {
   margin: 8px 0;
   font-size: 1.15rem;
@@ -1357,12 +1664,15 @@ td:first-child {
 
 .fallback-result p,
 .fallback-result small,
+.semantic-result p,
+.semantic-result small,
 .search-record p,
 .search-record dd {
   color: var(--muted);
 }
 
 .fallback-result a,
+.semantic-result a,
 .search-record a {
   display: inline-flex;
   margin-top: 10px;
@@ -1485,6 +1795,10 @@ td:first-child {
   .fallback-row {
     grid-template-columns: 1fr;
   }
+
+  .semantic-row {
+    grid-template-columns: 1fr;
+  }
 }
 """
 
@@ -1507,6 +1821,7 @@ def build_site(root: Path | str = Path(".")) -> Path:
     domains = merge_domain_rows(domain_rows, coverage_rows)
 
     (public / "assets" / "styles.css").write_text(render_css(), encoding="utf-8")
+    (public / "assets" / "semantic-search.js").write_text(render_semantic_search_js(), encoding="utf-8")
     write_search_index(public, search_rows)
     write_search_record_pages(public, search_rows)
     (public / "search.html").write_text(render_search_page(api, len(search_rows)), encoding="utf-8")
