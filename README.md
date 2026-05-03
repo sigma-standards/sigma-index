@@ -30,8 +30,11 @@ SIGMA is an open project to build the world’s most complete public index of gl
 - `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md` — external feedback gap analysis incorporated into the roadmap and task matrix.
 - `docs/PROJECT_STATUS_REPORT_2026-05-02.md` — current journey summary, accomplishments, challenges, best practices, and next steps.
 - `docs/GITHUB_AGENTIC_SETUP_GUIDE.md` — click-by-click GitHub setup guide for free-safe domain-agent automation and optional API secrets.
+- `docs/OPERATOR_DASHBOARD.md` — maintainer dashboard for local, remote, workflow, and publishing operations.
+- `docs/AGENT_MEMORY_HANDOFF.md` — safe durable memory handoff for future repo agents.
 - `data/relationships/relationships_template.csv` — relationship map template for graph edges.
 - `data/reference/domain_worker_registry.csv` — GitHub domain-agent registry for scheduled and manual cloud workers.
+- `AGENTS.md` — repository-wide instructions for Codex and other automation agents.
 - `.github/` — GitHub configuration (issues, workflows).
 
 ## Current Data Scope
