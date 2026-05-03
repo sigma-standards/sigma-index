@@ -109,6 +109,12 @@ Optional API/provider setup belongs in GitHub repository secrets, not files. Fol
 
 - `docs/GITHUB_AGENTIC_SETUP_GUIDE.md`
 
+Google Drive handoff and snapshot mapping belongs in:
+
+- `docs/GOOGLE_DRIVE_SYNC_MAP.md`
+- `data/reports/google_drive_sync_manifest.csv`
+- `data/reports/google_drive_project_sigma_inventory.csv`
+
 Known optional names:
 
 - `XAI_API_KEY`
