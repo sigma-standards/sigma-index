@@ -7,6 +7,8 @@ Current extractors:
   instrument share the same normalized title.
 - ISO references discovered in source notes/scope text and resolved to known
   ISO SIGMA IDs.
+- ISO national member-body links resolved from national standards body
+  records with ISO member profile source URLs.
 """
 
 from __future__ import annotations
@@ -27,6 +29,8 @@ RELATIONSHIP_FIELDS = [
     "source_url",
     "notes",
 ]
+
+ISO_BODY_SIGMA_ID = "GT-ISO-BODY-1947"
 
 
 def read_rows(path: Path) -> list[dict[str, str]]:
@@ -212,6 +216,51 @@ def extract_iso_references(rows: list[dict[str, str]], max_refs_per_entry: int =
     return relationships
 
 
+def iso_member_profile_url(data_source: str) -> str:
+    _, separator, source_url = (data_source or "").partition(": ")
+    value = source_url if separator else data_source
+    value = value.strip()
+    if value.startswith("https://www.iso.org/"):
+        return value
+    return ""
+
+
+def extract_national_adoption_links(
+    national_body_rows: list[dict[str, str]],
+    iso_body_id: str = ISO_BODY_SIGMA_ID,
+) -> list[dict[str, str]]:
+    relationships: list[dict[str, str]] = []
+    seen_edges: set[tuple[str, str, str]] = set()
+
+    for row in national_body_rows:
+        from_id = row.get("sigma_id", "").strip()
+        if not from_id.startswith("NSB-"):
+            continue
+
+        source_url = iso_member_profile_url(row.get("data_source", ""))
+        if not source_url:
+            continue
+
+        relationship = {
+            "from_id": from_id,
+            "to_id": iso_body_id,
+            "relationship_type": "national_adoption_of",
+            "confidence": "source-confirmed",
+            "source_url": source_url,
+            "notes": (
+                f"{row.get('name_short') or row.get('name_full')} is listed in the ISO member "
+                "profile source as a national standards body in the ISO ecosystem."
+            ),
+        }
+        key_tuple = edge_key(relationship)
+        if key_tuple in seen_edges:
+            continue
+        seen_edges.add(key_tuple)
+        relationships.append(relationship)
+
+    return relationships
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Extract SIGMA relationship edges.")
     parser.add_argument(
@@ -232,17 +281,25 @@ def main() -> int:
         default=Path("data/relationships/relationships_extracted.csv"),
         help="Output relationship CSV.",
     )
+    parser.add_argument(
+        "--national-bodies",
+        type=Path,
+        default=Path("data/processed/national_standards_bodies.csv"),
+        help="Processed national standards body CSV.",
+    )
     args = parser.parse_args()
 
-    for path in [args.ilo, args.iso]:
+    for path in [args.ilo, args.iso, args.national_bodies]:
         if not path.exists():
             print(f"Missing input file: {path}", file=sys.stderr)
             return 1
 
     ilo_rows = read_rows(args.ilo)
     iso_rows = read_rows(args.iso)
+    national_body_rows = read_rows(args.national_bodies)
     relationships = extract_ilo_supersedes(ilo_rows)
     relationships.extend(extract_iso_references(iso_rows))
+    relationships.extend(extract_national_adoption_links(national_body_rows))
 
     deduped_relationships: list[dict[str, str]] = []
     seen_edges: set[tuple[str, str, str]] = set()

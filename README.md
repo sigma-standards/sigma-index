@@ -39,7 +39,7 @@ SIGMA is an open project to build the world’s most complete public index of gl
 
 ## Current Data Scope
 
-- Generated release bundle: **88,203 master entries** and **20,130 relationship edges** after the Phase 7B sports and recreation priority slice.
+- Generated release bundle: **88,204 master entries** and **20,140 relationship edges** after the ISO national adoption relationship slice.
 - All **40 canonical domains** are represented through bulk ingestors and curated seed records.
 - Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 3A IAEA Safety Standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, Phase 6B CCSDS/ECSS space records, Phase 7A UNESCO/ICOMOS/ICOM/ICCROM culture and heritage records, Phase 7B WADA/IOC/IFAB/World Athletics/CAS/FIBA/ITF sports governance records, and Phase 8A national standards body records.
 - Current staged sources include Phase 2D WHO IRIS normative candidates and Phase 2E UN/OHCHR human-rights treaty candidates. Staged rows are excluded from release counts until curator promotion.

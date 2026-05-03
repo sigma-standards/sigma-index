@@ -1,4 +1,14 @@
 from_id,to_id,relationship_type,confidence,source_url,notes
+NSB-ABNT-BR,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/member/1579.html,ABNT is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-AFNOR-FR,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/member/1738.html,AFNOR is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-ANSI-US,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/member/2188.html,ANSI is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-BIS-IN,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/fr/member/1794.html,BIS is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-BSI-GB,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/member/2064.html,BSI is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-DIN-DE,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/fr/member/1511.html,DIN is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-JISC-JP,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/member/1835.html,JISC is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-SA-AU,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/cms/%20render/live/en/sites/isoorg/contents/data/member/00/15/1524.html,SA is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-SAC-CN,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/fr/member/1635.html,SAC is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
+NSB-SCC-CA,GT-ISO-BODY-1947,national_adoption_of,source-confirmed,https://www.iso.org/member/1619.html,SCC is listed in the ISO member profile source as a national standards body in the ISO ecosystem.
 TECH-ISO-IEC-31010-2009-2009,TECH-ISO-ISO-31000-2018-2018,references,source-confirmed,https://www.iso.org/standard/51073,Extracted from ISO source metadata text referencing ISO 31000.
 TECH-ISO-IEC-31010-2019-2019,TECH-ISO-ISO-31000-2018-2018,references,source-confirmed,https://www.iso.org/standard/72140,Extracted from ISO source metadata text referencing ISO 31000.
 TECH-ISO-IEC-60601-2-31-2020-2020,TECH-ISO-ISO-14117-2019-2019,references,source-confirmed,https://www.iso.org/standard/72452,Extracted from ISO source metadata text referencing ISO 14117.
