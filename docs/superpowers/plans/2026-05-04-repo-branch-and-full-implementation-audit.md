@@ -104,3 +104,18 @@ repository operating rules:
 - Only the primary worktree remains at `/home/health-pm/sigma-index`.
 - `sigma_full_implementation.py` remains untracked locally for maintainer
   reference and should not be run with GitHub credentials.
+
+## Next Slice: URL Health Check Hardening
+
+- RED: `tests/test_check_urls.py` failed on missing testable URL-health functions.
+- RED: `tests/test_url_check_workflow.py` failed because the workflow still
+  installed `requests pandas`.
+- GREEN: `scripts/check_urls.py` now uses standard-library CSV parsing,
+  deduplicates `official_url` values, writes
+  `data/reports/url_health_report.csv`, and supports an injected checker for
+  network-free tests.
+- `make check-urls` is the execution-layer target for the URL health check.
+- The URL check workflow installs only `requests`, not `pandas`.
+- `sigma_full_implementation.py` remains untracked; this slice incorporated
+  only the safe URL-health idea through normal tests, source edits, and review
+  workflow.
