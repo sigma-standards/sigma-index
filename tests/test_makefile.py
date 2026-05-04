@@ -7,5 +7,7 @@ def test_makefile_uses_virtualenv_python_variable():
     assert "PYTHON ?= .venv/bin/python" in content
     assert "$(PYTHON) scripts/validate_domain_registry.py" in content
     assert "$(PYTHON) scripts/build_relationship_quality.py" in content
+    assert "check-urls:" in content
+    assert "$(PYTHON) scripts/check_urls.py" in content
     assert "PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m py_compile scripts/*.py" in content
     assert "\tpython3 scripts/" not in content
