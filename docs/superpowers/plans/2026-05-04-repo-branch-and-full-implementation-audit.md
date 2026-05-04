@@ -93,3 +93,14 @@ repository operating rules:
   committed as a first-class root document.
 - Decide whether to remove the temporary `/tmp/sigma-agent-cycle-web` worktree
   after confirming no local-only work is needed there.
+
+## Post-Merge Cleanup
+
+- PR #12 was marked ready for review, merged into `main`, and its remote branch
+  was deleted.
+- `main` is synced with `origin/main` at `1a79ece95b10da9a23a06d85101b8356ab51ec65`.
+- Remote branches are clean: only `main` remains.
+- Local branches are clean: only `main` remains.
+- Only the primary worktree remains at `/home/health-pm/sigma-index`.
+- `sigma_full_implementation.py` remains untracked locally for maintainer
+  reference and should not be run with GitHub credentials.
