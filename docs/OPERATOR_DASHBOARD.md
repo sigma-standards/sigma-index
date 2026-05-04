@@ -32,12 +32,15 @@ Core workflows:
 - `.github/workflows/url_check.yml`
 - `.github/workflows/required_gate.yml`
 - `.github/workflows/domain_agents.yml`
+- `.github/workflows/agent_cycle.yml`
 
 Agentic automation:
 
 - `data/reference/domain_worker_registry.csv`
 - `scripts/run_domain_worker.py`
 - `docs/GITHUB_AGENTIC_SETUP_GUIDE.md`
+
+Use GitHub Actions -> `Agent Cycle` to plan all agents, run a PR-producing cycle, or generate a follow-up summary without depending on the local machine.
 
 ## Validation Commands
 

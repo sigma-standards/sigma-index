@@ -119,6 +119,8 @@ make pagefind-search
 
 The static site generator writes `public/search.html`, `public/search-index.json`, and Pagefind-readable record pages under `public/search-records/`. The Pages workflow then runs `npx -y pagefind@1.5.2 --site public --output-subdir pagefind` so the deployed site has a low-bandwidth Pagefind search bundle plus a JSON fallback search for local previews.
 
+The search page also includes an optional browser-side semantic helper built with Transformers.js. It loads a small quantized feature-extraction model only when a visitor requests it, runs locally in the browser, and falls back to lexical search when the model, network, or browser runtime is unavailable.
+
 ## Google Sheet Sync
 
 The public curation sheet `000_SIGMA_MASTER_DATABASE` can be synchronized into the processed data layer:
