@@ -4,98 +4,119 @@ These instructions apply to the entire `sigma-index` repository.
 
 ## Mission
 
-SIGMA is the Unified Global Standards Index: a public, machine-readable, human-navigable index of global standards, treaties, frameworks, guidelines, classification systems, and standards bodies.
+SIGMA is the Unified Global Standards Index: a public, machine-readable, human-navigable index of global standards, treaties, frameworks, guidelines, classification systems, and standards bodies. It is the world's first free, open dataset of its kind.
 
-Keep the project useful after any local machine or temporary Codex session disappears. Durable operating knowledge belongs in this repository as reviewed source, docs, tests, workflows, and reference data.
+Keep the project useful after any local machine or temporary session disappears. Durable operating knowledge belongs in this repository as reviewed source, docs, tests, workflows, and reference data.
 
 ## Source Of Truth
 
-- Local repo path: `/home/health-pm/sigma-index`
-- GitHub repo: `sigma-standards/sigma-index`
-- Default branch: `main`
-- Python local default: `.venv/bin/python`
-- GitHub Actions Python override: `make PYTHON=python3 ...`
-- Main execution layer: `Makefile`
+| Item | Value |
+|------|-------|
+| Local repo path | `/home/health-pm/sigma-index` |
+| GitHub repo | `sigma-standards/sigma-index` |
+| Default branch | `main` |
+| Python (local) | `.venv/bin/python` |
+| Python (CI) | `make PYTHON=python3 ...` |
+| Primary execution layer | `Makefile` (run `make help` for all targets) |
 
-Commit source truth only:
+## Files That Must Be Committed
 
-- `.github/`
-- `AGENTS.md`
-- `README.md`
-- `SCHEMA.md`
-- `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`
-- `docs/`
-- `scripts/`
-- `tests/`
-- `data/reference/`
-- `data/processed/`
-- `data/relationships/`
-- `data/reports/`
-- `Makefile`
-- `pyproject.toml`
+```
+.github/          — workflows, issue templates, copilot instructions
+AGENTS.md         — this file
+README.md         — project overview with sample data table
+SCHEMA.md         — 22-field canonical schema
+CHANGELOG.md      — version history
+CONTRIBUTING.md   — contribution guide (coding + non-coding paths)
+RESEARCH_PROJECT_PLAN_Global_Standards_Index.md
+Makefile          — primary build interface
+pyproject.toml    — Python package config
+docs/             — all project documentation
+scripts/          — all processing scripts (with __init__.py)
+tests/            — full pytest suite
+data/reference/   — taxonomy, source registry, research tasks
+data/processed/   — curated, schema-valid CSVs (source of truth)
+data/relationships/ — relationship graph edges
+data/reports/     — quality gate, coverage, task coverage (generated, committed)
+data/staging/     — curator-review candidates (committed but NOT in release)
+```
 
-Do not commit local/runtime artifacts:
+## Files That Must NOT Be Committed
 
-- `.venv/`
-- `.pytest_cache/`
-- `.vscode/` unless a repo maintainer explicitly asks for IDE config
-- `dist/`
-- `public/`
-- `__pycache__/`
-- raw Codex memory or session folders from `/home/health-pm/.codex/`
-- secrets, tokens, API keys, or copied logs that may contain credentials
+```
+.venv/                  — virtual environment
+dist/                   — generated release artifacts
+public/                 — generated static site
+__pycache__/            — Python bytecaches
+*.py[cod]               — compiled Python
+.pytest_cache/          — test cache
+.env                    — environment variables / secrets
+*.key / *.token         — credentials
+sigma_full_implementation.py  — ad-hoc push script (security risk)
+/home/health-pm/.codex/ — Codex session memory, NEVER commit
+```
 
-## Required Workflow
+## Required Workflow For Every Change
 
-1. Inspect current state before changing files:
-   - `git status --short --branch --untracked-files=all`
-   - `git remote -v`
-   - `git branch -vv --all`
-2. Make focused changes that match existing repo patterns.
-3. Use tests for behavior changes.
-4. Run relevant validation:
-   - `.venv/bin/python -m pytest`
-   - `make validate`
-   - `git diff --check`
-5. Save changes locally with a commit.
-6. Push through GitHub safely:
-   - direct pushes to `main` may be blocked by branch rules
-   - use a feature branch and pull request when required
-   - confirm GitHub checks pass
-7. Sync local `main` back to `origin/main` after merge.
+1. **Check state** before touching anything:
+   ```bash
+   git status --short --branch
+   git remote -v
+   ```
+2. **Make focused changes** matching existing patterns.
+3. **Add tests** for any new processing logic.
+4. **Validate** before committing:
+   ```bash
+   make validate
+   make lint
+   python -m pytest
+   ```
+5. **Commit** with a clear message:
+   ```bash
+   git add <files>
+   git commit -m "feat|fix|docs|chore: short description"
+   ```
+6. **Push via branch + PR** (direct pushes to `main` are blocked):
+   ```bash
+   git checkout -b feat/my-change
+   git push origin feat/my-change
+   gh pr create --base main --head feat/my-change --title "..."
+   ```
+7. **Sync** after merge:
+   ```bash
+   git fetch --all --prune && git switch main && git reset --hard origin/main
+   ```
 
-## GitHub Domain Agents
+## Domain Agents (GitHub Actions)
 
-The repository includes a free-safe, deterministic multi-agent scaffold:
+Registry: `data/reference/domain_worker_registry.csv`
+Runner: `scripts/run_domain_worker.py`
+Workflow: `.github/workflows/domain_agents.yml`
+Setup guide: `docs/GITHUB_AGENTIC_SETUP_GUIDE.md`
 
-- Registry: `data/reference/domain_worker_registry.csv`
-- Runner: `scripts/run_domain_worker.py`
-- Workflow: `.github/workflows/domain_agents.yml`
-- Setup guide: `docs/GITHUB_AGENTIC_SETUP_GUIDE.md`
+Domain agents MUST:
+- Run through Makefile targets only
+- Write state artifacts (no secrets)
+- Validate before opening PRs
+- Open PRs — never commit directly to `main`
+- Require human review before merge
 
-Domain agents should:
+## Secrets Management
 
-- run through Makefile targets
-- write state artifacts, not secret values
-- validate generated data before PR creation
-- open pull requests instead of writing directly to `main`
-- require human review before merge
+Never commit secrets. Add provider credentials only through:
+
+**GitHub → Settings → Secrets and variables → Actions**
+
+All known optional secret names are documented in `docs/GITHUB_AGENTIC_SETUP_GUIDE.md`.
+
+## Data Quality Rules
+
+- Every `data/processed/*.csv` file must pass `make validate` (0 errors)
+- `data/staging/` files are excluded from the release bundle until curated
+- `llm-suggested` relationship edges must NOT be published without human review
+- All `official_url` values must start with `https://`
+- No duplicate `sigma_id` values anywhere in processed data
 
 ## Memory And Handoff
 
-Do not copy raw `/home/health-pm/.codex/memories`, sessions, plugin caches, or subagent logs into this public repo. Convert durable knowledge into safe project documents:
-
-- `docs/OPERATOR_DASHBOARD.md`
-- `docs/AGENT_MEMORY_HANDOFF.md`
-- `docs/superpowers/plans/`
-- `docs/superpowers/specs/`
-
-If a future agent needs prior context, read those repo docs first.
-
-## Secrets
-
-Never commit real secrets. Add optional provider credentials only through GitHub:
-
-`Settings -> Secrets and variables -> Actions`
-
-Known optional secret names are documented in `docs/GITHUB_AGENTIC_SETUP_GUIDE.md`.
+Never copy raw session memory, plugin caches, or subagent logs into this public repo. Convert durable knowledge into safe project documents in `docs/`. If a future agent needs prior context, read `docs/AGENT_MEMORY_HANDOFF.md` first.
