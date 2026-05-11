@@ -1,43 +1,56 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "sigma-index"
-version = "0.1.0"
-description = "SIGMA — Unified Global Standards Index"
+version = "0.9.0"
+description = "SIGMA — Unified Global Standards Index: the world's first free, complete, machine-readable index of global standards"
 readme = "README.md"
 license = {text = "CC-BY-4.0"}
 authors = [
     {name = "Mohammad Ariful Islam"},
 ]
+keywords = ["standards", "global", "index", "humanitarian", "open-data", "treaties"]
 requires-python = ">=3.8"
 dependencies = [
-    "requests",
-    "beautifulsoup4",
-    "SPARQLWrapper",
-    "pandas",
-    "openpyxl",  # for Excel support
-    "pyarrow",   # for Parquet
+    "requests>=2.28",
+    "beautifulsoup4>=4.11",
+    "SPARQLWrapper>=2.0",
+    "pandas>=1.5",
+    "openpyxl>=3.0",
+    "pyarrow>=10.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "jupyter",
-    "notebook",
-    "pytest",
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
 ]
 
-[project.scripts]
-sigma-build-release = "sigma_index.build_release:main"
-sigma-build-domain-coverage = "sigma_index.build_domain_coverage:main"
-sigma-extract-relationships = "sigma_index.extract_relationships:main"
-sigma-validate-domain-registry = "sigma_index.validate_domain_registry:main"
-sigma-validate-relationships = "sigma_index.validate_relationships:main"
-sigma-validate-schema = "sigma_index.validate_schema:main"
+[project.urls]
+Homepage = "https://sigma-standards.github.io/sigma-index"
+Repository = "https://github.com/sigma-standards/sigma-index"
+Issues = "https://github.com/sigma-standards/sigma-index/issues"
+Changelog = "https://github.com/sigma-standards/sigma-index/blob/main/CHANGELOG.md"
 
-[tool.setuptools]
-packages = ["sigma_index"]
+[project.scripts]
+sigma-validate      = "sigma_index.validate_schema:main"
+sigma-release       = "sigma_index.build_release:main"
+sigma-coverage      = "sigma_index.build_domain_coverage:main"
+sigma-relationships = "sigma_index.extract_relationships:main"
+sigma-quality       = "sigma_index.build_quality_gate:main"
+sigma-tasks         = "sigma_index.build_research_task_report:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scripts*"]
 
 [tool.setuptools.package-dir]
 sigma_index = "scripts"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
