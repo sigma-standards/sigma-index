@@ -1,25 +1,43 @@
-# Python environment folders
+# Python virtual environments
 venv/
 .venv/
+env/
 
-# Packaging/build artifacts
+# Python packaging artifacts
 *.egg-info/
 build/
-dist/
-public/
-
-# Python bytecode
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
-# IDE/editor folders
+# Generated output (rebuilt by CI, not committed)
+dist/
+public/
+
+# IDE / editor
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Misc
+# OS
 .DS_Store
+Thumbs.db
+
+# Secrets & credentials — NEVER COMMIT
+.env
+*.key
+*.token
+secrets.json
+
+# Temporary / scratch files
 *.log
 *.temp
-.env
+*.tmp
 rfc-index.txt
+data/raw/iso/*.temp
+
+# Codex / AI session artifacts — DO NOT COMMIT
+.codex/
+sigma_full_implementation.py
