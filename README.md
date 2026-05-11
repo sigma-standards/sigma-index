@@ -8,7 +8,7 @@
 [![Quality Gate](https://img.shields.io/badge/quality%20gate-pass-success-green)](docs/QUALITY_GATE.md)
 [![Tests](https://img.shields.io/badge/tests-89%20passed-success-green)](tests/)
 
-SIGMA is an open project to build the world's most complete public index of global standards, treaties, frameworks, guidelines, and classification systems. Current release: v1.1.0 (in progress).
+SIGMA is an open project to build the world's most complete public index of global standards, treaties, frameworks, guidelines, and classification systems. Current release: v1.2.0 (in progress).
 
 ## Repository Contents
 
