@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to SIGMA — the world's first free unified index of global standards, treaties, frameworks, and guidelines.
 
-**SIGMA needs you.** Currently 28 of 40 domains have only 1 seeded entry. Every expert who knows a standard is missing can make a real difference.
+**SIGMA needs you.** Critical domains (Human Rights, Finance, Environment, Transport, Extractive Industries, Biodiversity, Marine, Disaster Risk) have been expanded from 1 to 5-10 entries each in v1.1.0. Additional expert contributions are welcome across all 40 domains.
 
 ---
 

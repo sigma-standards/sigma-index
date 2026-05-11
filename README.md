@@ -5,10 +5,10 @@
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey)](LICENSE)
 [![Entries](https://img.shields.io/badge/entries-88%2C203-brightgreen)](#current-data-scope)
 [![Domains](https://img.shields.io/badge/domains-40-blue)](data/reference/domain_taxonomy.csv)
-[![Quality Gate](https://img.shields.io/badge/quality%20gate-active-1f5f4b)](docs/QUALITY_GATE.md)
-[![Roadmap](https://img.shields.io/badge/roadmap-to%20100%25-c58b2b)](docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md)
+[![Quality Gate](https://img.shields.io/badge/quality%20gate-pass-success-green)](docs/QUALITY_GATE.md)
+[![Tests](https://img.shields.io/badge/tests-89%20passed-success-green)](tests/)
 
-SIGMA is an open project to build the world’s most complete public index of global standards, treaties, frameworks, guidelines, and classification systems.
+SIGMA is an open project to build the world's most complete public index of global standards, treaties, frameworks, guidelines, and classification systems. Current release: v1.1.0 (in progress).
 
 ## Repository Contents
 

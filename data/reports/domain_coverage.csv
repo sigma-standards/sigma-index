@@ -13,7 +13,7 @@ domain_id,domain_name,meta_layer,entry_count,coverage_status
 12,Materials Science & Testing,Physical Sciences & Engineering,1,seeded
 13,Aerospace & Aviation,Physical Sciences & Engineering,1,seeded
 14,Space & Satellite,Physical Sciences & Engineering,9,seeded
-15,Human Rights,"Society, Governance & Law",1,seeded
+15,Human Rights,"Society, Governance & Law",10,seeded
 16,Labour & Employment,"Society, Governance & Law",252,seeded
 17,Humanitarian & Emergency Response,"Society, Governance & Law",7,seeded
 18,Legal & Commercial Law,"Society, Governance & Law",1,seeded
@@ -21,7 +21,7 @@ domain_id,domain_name,meta_layer,entry_count,coverage_status
 20,Education & Research,"Society, Governance & Law",1,seeded
 21,"Culture, Heritage & Arts","Society, Governance & Law",9,seeded
 22,Sports & Recreation,"Society, Governance & Law",9,seeded
-23,"Finance, Banking & Accounting",Economy & Trade,1,seeded
+23,"Finance, Banking & Accounting",Economy & Trade,9,seeded
 24,Trade & Customs,Economy & Trade,1,seeded
 25,Supply Chain & Logistics,Economy & Trade,4,seeded
 26,"Sustainability, ESG & Circular Economy",Economy & Trade,11,seeded
@@ -30,12 +30,12 @@ domain_id,domain_name,meta_layer,entry_count,coverage_status
 29,Cybersecurity & Data Privacy,Technology & Infrastructure,7,seeded
 30,Artificial Intelligence & Emerging Technologies,Technology & Infrastructure,3,seeded
 31,Energy & Utilities,Technology & Infrastructure,9,seeded
-32,"Transport (Land, Sea, Air, Rail)",Technology & Infrastructure,1,seeded
+32,"Transport (Land, Sea, Air, Rail)",Technology & Infrastructure,9,seeded
 33,"Water, Sanitation & Hygiene (WASH)",Technology & Infrastructure,4,seeded
 34,Built Environment & Urban Systems,Technology & Infrastructure,1,seeded
 35,Defence & Security (Declassified),Technology & Infrastructure,1,seeded
-36,Environment & Climate,Environment & Natural Systems,1,seeded
-37,Marine & Ocean,Environment & Natural Systems,1,seeded
-38,Biodiversity & Conservation,Environment & Natural Systems,1,seeded
-39,Disaster Risk & Humanitarian Preparedness,Environment & Natural Systems,1,seeded
-40,Extractive Industries & Natural Resources,Environment & Natural Systems,1,seeded
+36,Environment & Climate,Environment & Natural Systems,10,seeded
+37,Marine & Ocean,Environment & Natural Systems,7,seeded
+38,Biodiversity & Conservation,Environment & Natural Systems,7,seeded
+39,Disaster Risk & Humanitarian Preparedness,Environment & Natural Systems,6,seeded
+40,Extractive Industries & Natural Resources,Environment & Natural Systems,7,seeded

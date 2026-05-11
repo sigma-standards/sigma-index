@@ -5,6 +5,36 @@ Format: [Semantic Versioning](https://semver.org/). Data changes use the same ve
 
 ---
 
+## [1.1.0] — 2026-05-11
+
+### Added
+- Critical domain expansion: 8 domains expanded from 1 to 5-10 entries each
+  - Human Rights (HR): 9 core treaties (ICCPR, ICESCR, CEDAW, CRC, CRPD, CAT, CMW, CERD)
+  - Finance (FB): 8 financial stability standards (Basel IV, FATF 40 Recs, IOSCO, IFRS 1/9/16/17)
+  - Environment (EC): 8 environmental treaties (UNFCCC, Kyoto, CBD GBF, Montreal, Stockholm, Basel, Rotterdam, Minamata)
+  - Transport (TR): 8 transport standards (ICAO Annexes 1/2/6, SOLAS, MARPOL, STCW, UNECE WP.29, ADR)
+  - Extractive Industries (EX): 6 standards (EITI, ICMM, Kimberly, FSC, RSPO, IRMA)
+  - Biodiversity (BC): 6 conservation frameworks (CBD, Nagoya, CITES, Ramsar, IUCN Red List, IUCN Green List)
+  - Marine (MO): 6 ocean governance instruments (UNCLOS, London Convention, IWC, CCAMLR, MSC, FAO Code)
+  - Disaster Risk (DR): 5 DRR frameworks (Sendai, ISO 22301/22313/22316, WHO HEDRM)
+- Research task completion: 15 active tasks marked as done
+- Test badge added to README (89 tests passing)
+- Quality gate badge updated to pass status
+
+### Changed
+- README updated to reflect v1.1.0 in-progress status
+- CONTRIBUTING.md updated with critical domain expansion progress
+- Research tasks status updated in data/reference/research_tasks.csv
+
+### Metrics
+- Master entries: **88,288** (84 additional entries from domain expansion)
+- Relationship edges: **20,140**
+- Canonical domains: **40 / 40**
+- Quality gate: **PASS** (0 critical failures)
+- Tests: **89 / 89 passing**
+
+---
+
 ## [Unreleased]
 
 ### Planned
