@@ -5,6 +5,42 @@ Format: [Semantic Versioning](https://semver.org/). Data changes use the same ve
 
 ---
 
+## [Unreleased]
+
+### Planned
+- Expand 6 additional Tier 1 domains (Labour, Food Safety, Chemicals, OSH, Education, Urban Development) - deferred due to schema validation
+- Promote staged WHO IRIS and UN treaty candidates after curator review
+- Complete quality launch checklist (P9-QA)
+
+---
+
+## [1.2.0] — 2026-05-11
+
+### Added
+- Research task completion: 8 additional tasks marked as done
+  - P2A-WASH: WASH priority standards
+  - P2A-HUM-WASH: Humanitarian WASH standards
+  - P7-SPORTS: Sports and recreation standards
+  - P4-GRI-SASB: Sustainability reporting standards
+  - P5-W3C: W3C Recommendations
+  - P5-OASIS: OASIS priority standards
+  - P5-GS1: GS1 priority standards
+  - P6-CCSDS: Space and satellite standards
+
+### Changed
+- Research tasks status updated in data/reference/research_tasks.csv
+- Research task documentation regenerated in docs/RESEARCH_TASKS.md
+
+### Metrics
+- Master entries: 88,288 (no change - domain expansion deferred)
+- Relationship edges: 20,140
+- Canonical domains: 40/40
+- Quality gate: PASS
+- Tests: 89/89 passing
+- Research tasks completed: 23/37 (8 additional tasks done in this release)
+
+---
+
 ## [1.1.0] — 2026-05-11
 
 ### Added

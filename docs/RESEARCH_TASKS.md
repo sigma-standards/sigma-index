@@ -61,7 +61,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D23-EXPAND | Finance, Banking & Accounting | domain-expansion | planned | critical | Finance, Banking & Accounting verified catalogue |
 | D24-EXPAND | Trade & Customs | domain-expansion | planned | critical | Trade & Customs verified catalogue |
 | D27-EXPAND | Taxation & Public Finance | domain-expansion | planned | medium | Taxation & Public Finance verified catalogue |
-| P4-GRI-SASB | Sustainability, ESG & Circular Economy | ingestion | active | high | Processed sustainability reporting standards catalogue |
+| P4-GRI-SASB | Sustainability, ESG & Circular Economy | ingestion | done | high | Processed sustainability reporting standards catalogue |
 
 ## Phase 5: ICT digital AI and cybersecurity
 
@@ -70,7 +70,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D30-EXPAND | Artificial Intelligence & Emerging Technologies | domain-expansion | planned | critical | Artificial Intelligence & Emerging Technologies verified catalogue |
 | P5-ECMA | Information & Communications Technology (ICT) | ingestion | done | high | Processed Ecma priority standards metadata |
 | P5-ETSI | Information & Communications Technology (ICT) | ingestion | done | high | Processed ETSI priority standards metadata |
-| P5-GS1 | Supply Chain & Logistics | ingestion | active | high | Processed GS1 priority standards metadata |
+| P5-GS1 | Supply Chain & Logistics | ingestion | done | high | Processed GS1 priority standards metadata |
 | P5-ITU | Information & Communications Technology (ICT) | ingestion | done | high | Processed ITU recommendations metadata |
 | P5-NIST | Cybersecurity & Data Privacy | ingestion | done | critical | Processed NIST cybersecurity and AI standards metadata |
 | P5-OASIS | Information & Communications Technology (ICT) | ingestion | active | high | Processed OASIS priority standards metadata |
@@ -100,7 +100,7 @@ It turns the research plan into an executable task matrix across all phases, dom
 | D35-EXPAND | Defence & Security (Declassified) | domain-expansion | planned | medium | Defence & Security (Declassified) verified catalogue |
 | D39-EXPAND | Disaster Risk & Humanitarian Preparedness | domain-expansion | planned | high | Disaster Risk & Humanitarian Preparedness verified catalogue |
 | P7-CULTURE | Culture, Heritage & Arts | curation | done | critical | Curated culture and heritage standards catalogue |
-| P7-SPORTS | Sports & Recreation | curation | active | critical | Curated sports and recreation standards catalogue |
+| P7-SPORTS | Sports & Recreation | curation | done | critical | Curated sports and recreation standards catalogue |
 
 ## Phase 8: National standards bodies comprehensive expansion
 
