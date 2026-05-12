@@ -183,8 +183,8 @@ def test_build_site_renders_progress_and_owner_contact(tmp_path):
 
     assert 'id="progress"' in html
     assert 'class="progress-meter"' in html
-    assert 'style="--progress: 22%"' in html
-    assert "22% complete global vision" in html
+    assert 'style="--progress: 25%"' in html
+    assert "25% complete global vision" in html
     assert "Mohammad Ariful Islam" in html
     assert 'href="https://github.com/sigma-standards/sigma-index/issues"' in html
 
