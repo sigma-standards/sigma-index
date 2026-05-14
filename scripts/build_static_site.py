@@ -59,9 +59,9 @@ SEARCH_FIELDS = [
 SEARCH_RECORD_CHUNK_SIZE = 1000
 
 PROJECT_PROGRESS = {
-    "full_vision_percent": 22,
-    "public_mvp_percent": 70,
-    "stage": "Public MVP with all-domain seeds and priority ingestors",
+    "full_vision_percent": 25,
+    "public_mvp_percent": 75,
+    "stage": "Public MVP with v1.2.0 release - research task completion and GitHub Pages deployment",
     "owner": "Mohammad Ariful Islam",
     "owner_role": "Lead Curator and Project Owner",
     "contact_url": "https://github.com/sigma-standards/sigma-index/issues",
