@@ -16,10 +16,17 @@ __pycache__/
 # IDE/editor folders
 .vscode/
 .idea/
+.windsurf/
+
+# Local agent/runtime folders
+.agents/
+.codex/
+.tmp/
 
 # Misc
 .DS_Store
 *.log
 *.temp
 .env
+.envrc
 rfc-index.txt

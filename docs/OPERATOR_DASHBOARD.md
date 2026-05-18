@@ -78,11 +78,16 @@ Safe to commit:
 Keep local only:
 
 - `.venv/`
+- `.agents/`
+- `.codex/`
+- `.tmp/`
 - `.pytest_cache/`
 - `.vscode/` unless intentionally requested
+- `.windsurf/`
 - `dist/`
 - `public/`
 - `__pycache__/`
+- `.envrc`
 - raw Codex runtime files
 - secrets and credentials
 
