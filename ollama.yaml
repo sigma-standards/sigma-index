@@ -1,7 +1,0 @@
-version: 0.1
-
-services:
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "8765:8765"
