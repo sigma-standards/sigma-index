@@ -1010,7 +1010,7 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
             <span></span>
           </div>
           <strong>{full_progress}% complete global vision</strong>
-          <p>{esc(PROJECT_PROGRESS["stage"])}. The remaining work is tracked by the roadmap, research task matrix, source registry, and quality reports.</p>
+          <p>{esc(progress["stage"])}. The remaining work is tracked by the roadmap, research task matrix, source registry, and quality reports.</p>
         </article>
         <article class="progress-card">
           <div class="progress-meter secondary" style="--progress: {public_progress}%">
