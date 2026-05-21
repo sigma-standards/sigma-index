@@ -30,3 +30,4 @@ __pycache__/
 .env
 .envrc
 rfc-index.txt
+.aider*
