@@ -22,12 +22,21 @@ __pycache__/
 .agents/
 .codex/
 .tmp/
+.cache/
 
 # Misc
 .DS_Store
 *.log
 *.temp
 .env
+.env.local
+.env.*.local
 .envrc
 rfc-index.txt
 .aider*
+*.worktrees/
+
+# Temporary/generated files
+generate_tree.sh
+*.topology.md
+*_triage.md
