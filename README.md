@@ -62,6 +62,28 @@ SIGMA is an open project to build the world's most complete public index of glob
 2. Activate it: `source venv/bin/activate`
 3. Install dependencies: `pip install -e .`
 
+Building project progress and site
+
+1. Regenerate the project progress report and docs:
+
+```bash
+python3 scripts/build_research_task_report.py
+```
+
+2. Build the static site (renders `public/`):
+
+```bash
+python3 scripts/build_static_site.py
+```
+
+3. Run tests inside the repository virtualenv (see `.venv` or create your own venv):
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-dev.txt # or .venv/bin/pip install pytest
+.venv/bin/python -m pytest -q
+```
+
 ## Validation
 
 - Master entry schema: `python3 scripts/validate_schema.py data/processed`

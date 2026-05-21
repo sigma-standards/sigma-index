@@ -10,6 +10,17 @@ It turns the research plan into an executable task matrix across all phases, dom
 - `planned`: accepted scope from the research plan that still needs source-specific ingestion and verification.
 - `blocked`: cannot proceed until access, licensing, or source availability is resolved.
 
+## Project Progress
+
+- Total roadmap tasks: 60
+- Completed tasks: 20
+- Active tasks: 10
+- Planned tasks: 30
+- Blocked tasks: 0
+
+- Full vision progress: 33% complete
+- Public MVP readiness: 50% done or active
+
 ## Phase 0: Project setup and infrastructure
 
 | Task | Domain | Type | Status | Priority | Deliverable |
