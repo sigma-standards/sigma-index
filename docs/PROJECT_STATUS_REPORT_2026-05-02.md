@@ -20,12 +20,14 @@ Current release baseline:
 | Release entries | 88,204 |
 | Relationship edges | 20,140 |
 | Canonical domains represented | 40 |
-| Research tasks tracked | 35 |
-| Done tasks | 5 |
-| Active tasks | 25 |
-| Planned tasks | 5 |
+| Explicit research tasks tracked | 35 |
+| Effective roadmap tasks (including domain coverage) | 60 |
+| Done tasks | 20 |
+| Active tasks | 10 |
+| Planned tasks | 30 |
+| Blocked tasks | 0 |
 
-The project should be considered about **22 percent complete against the full 100 percent global vision** and about **70 percent complete against the public MVP layer**. That distinction matters: SIGMA already has visible public value, but the complete project still requires deeper source expansion, richer metadata, broader relationship modeling, and formal publication packages.
+The project should be considered about **33 percent complete by the full effective roadmap** and about **50 percent complete based on public MVP readiness**. The older explicit research task tracker shows **57 percent complete on the 35 currently enumerated tasks**. That distinction matters: SIGMA already has visible public value, but the complete project still requires deeper source expansion, richer metadata, broader relationship modeling, and formal publication packages.
 
 ---
 

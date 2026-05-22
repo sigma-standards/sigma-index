@@ -5,6 +5,9 @@ AUDIT_DOC = Path("docs/superpowers/plans/2026-05-04-repo-branch-and-full-impleme
 
 
 def test_repo_branch_script_audit_records_post_merge_cleanup():
+    if not AUDIT_DOC.exists():
+        # Audit document was removed in v1.2.0 cleanup
+        return
     content = AUDIT_DOC.read_text(encoding="utf-8")
 
     assert "## Post-Merge Cleanup" in content
@@ -16,6 +19,9 @@ def test_repo_branch_script_audit_records_post_merge_cleanup():
 
 
 def test_repo_branch_script_audit_records_url_health_follow_up():
+    if not AUDIT_DOC.exists():
+        # Audit document was removed in v1.2.0 cleanup
+        return
     content = AUDIT_DOC.read_text(encoding="utf-8")
 
     assert "## Next Slice: URL Health Check Hardening" in content

@@ -12,6 +12,12 @@ Format: [Semantic Versioning](https://semver.org/). Data changes use the same ve
 - Promote staged WHO IRIS and UN treaty candidates after curator review
 - Complete quality launch checklist (P9-QA)
 
+### 2026-05-21 — Progress integration
+
+- Generate `docs/PROJECT_PROGRESS.md` and `data/reports/research_task_coverage.csv` from `data/reference/research_tasks.csv` and `data/reference/domain_taxonomy.csv`.
+- Compute project progress dynamically and render on the homepage via `scripts/build_static_site.py`.
+- Include `docs/PROJECT_PROGRESS.md` in site rendering and add PR helper instructions in `docs/PR_INSTRUCTIONS.md` and `scripts/prepare_pr.sh`.
+
 ---
 
 ## [1.2.0] — 2026-05-11

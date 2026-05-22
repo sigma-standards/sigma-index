@@ -3,17 +3,22 @@
 **Free. Complete. Machine-readable. Human-navigable.**
 
 [![License](https://img.shields.io/badge/license-CC%20BY%204.0-lightgrey)](LICENSE)
-[![Entries](https://img.shields.io/badge/entries-88%2C203-brightgreen)](#current-data-scope)
+[![Entries](https://img.shields.io/badge/entries-88%2C288-brightgreen)](#current-data-scope)
 [![Domains](https://img.shields.io/badge/domains-40-blue)](data/reference/domain_taxonomy.csv)
 [![Quality Gate](https://img.shields.io/badge/quality%20gate-pass-success-green)](docs/QUALITY_GATE.md)
 [![Tests](https://img.shields.io/badge/tests-89%20passed-success-green)](tests/)
+[![Research Tasks](https://img.shields.io/badge/research%20tasks-23%2F37%20done-informational)](docs/RESEARCH_TASKS.md)
 
-SIGMA is an open project to build the world's most complete public index of global standards, treaties, frameworks, guidelines, and classification systems. Current release: v1.2.0 (in progress).
+SIGMA is an open project to build the world's most complete public index of global standards, treaties, frameworks, guidelines, and classification systems. 
+
+**Current Release:** v1.2.0 (May 11, 2026) — Research task completion milestone. Focus: 8 additional tasks marked done (WASH, Humanitarian WASH, Sports, Sustainability Reporting, W3C, OASIS, GS1, CCSDS). 62% of 37-task roadmap complete. Quality gate: PASS. All 40 domains represented. See [`docs/V1_2_0_PROGRESS_INDICATORS.md`](docs/V1_2_0_PROGRESS_INDICATORS.md) for complete progress dashboard.
 
 ## Repository Contents
 
 - `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md` — full strategy and execution plan (v1.1 enhanced roadmap).
 - `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md` — detailed remaining-work roadmap from the current MVP toward a complete v1.0 global standards index.
+- `docs/V1_2_0_PROGRESS_INDICATORS.md` — v1.2.0 progress dashboard with metrics, task completion, quality gate, and roadmap.
+- `docs/RESEARCH_TASKS.md` — generated research task matrix organized by phase, domain, and priority.
 - `index.md` — lightweight public landing-page copy.
 - `data/raw/iso/ICS.csv` — ISO International Classification for Standards seed data.
 - `data/raw/iso/iso_deliverables_metadata.csv` — ISO deliverables metadata.
@@ -39,10 +44,11 @@ SIGMA is an open project to build the world's most complete public index of glob
 
 ## Current Data Scope
 
-- Generated release bundle: **88,204 master entries** and **20,140 relationship edges** after the ISO national adoption relationship slice.
-- All **40 canonical domains** are represented through bulk ingestors and curated seed records.
-- Current processed sources include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Phase 2A WHO/Sphere health priority records, Phase 2B Codex food-safety records, Phase 2C humanitarian standards records, Phase 3A IAEA Safety Standards records, Phase 4A GRI/SASB sustainability reporting records, Phase 5A NIST cybersecurity and AI records, Phase 5B W3C web standards records, Phase 5C ITU telecommunications records, Phase 5D ETSI ICT standards records, Phase 5E OASIS/Ecma/GS1 records, Phase 6A IEC electrotechnical records, Phase 6B CCSDS/ECSS space records, Phase 7A UNESCO/ICOMOS/ICOM/ICCROM culture and heritage records, Phase 7B WADA/IOC/IFAB/World Athletics/CAS/FIBA/ITF sports governance records, and Phase 8A national standards body records.
-- Current staged sources include Phase 2D WHO IRIS normative candidates and Phase 2E UN/OHCHR human-rights treaty candidates. Staged rows are excluded from release counts until curator promotion.
+- Generated release bundle: **88,288 master entries** and **20,140 relationship edges** (v1.2.0).
+- All **40 canonical domains** represented through bulk ingestors and curated seed records.
+- **Processed sources** include ISO metadata, IETF RFC metadata, ILO standards, Wikidata standards-body metadata, Google Sheet curation, Health/Humanitarian/WASH priority records, Codex, IAEA, GRI/SASB, NIST, W3C, OASIS/Ecma/GS1, IEC, CCSDS, Culture, Sports, and National Standards Bodies.
+- **Staged sources** (awaiting curator review): WHO IRIS normative metadata and UN/OHCHR human-rights treaty candidates.
+- **Research task completion:** 23 of 37 planned tasks complete (62%) — see [`docs/RESEARCH_TASKS.md`](docs/RESEARCH_TASKS.md) for the full task matrix.
 - Raw ISO technical committees and ICS seed datasets are included in `data/raw/iso/`.
 - Additional sources (UN treaties, IAEA, CCSDS, ICAO, IMO, ASTM, ASME, CEN/CENELEC, and others) remain planned in phased ingestion.
 
@@ -51,7 +57,7 @@ SIGMA is an open project to build the world's most complete public index of glob
 | SIGMA ID | Name | Domain | Mandate | Why it matters |
 |---|---|---|---|---|
 | `HL-WHO-IHR-2005` | International Health Regulations | Health & Medical | Treaty-binding | Core legally binding framework for preventing and responding to cross-border public health risks. |
-| `FS-CAC-CXG2-1985` | Guidelines on Nutrition Labelling | Food Safety & Agriculture | Voluntary-with-regulatory-adoption | International guidance for nutrition declarations and related food labelling information. |
+| `FS-CAC-CXG2-1985` | Guidelines on Nutrition Labelling | Food Safety & Agriculture | Voluntary-with-regulatory-adoption | International guidance for nutrition declarations and related food label[...]
 | `RFC-9110` | HTTP Semantics | ICT | Voluntary-with-regulatory-adoption | Foundation for interoperable web communication and API semantics. |
 | `ILO-C087` | Freedom of Association and Protection of the Right to Organise Convention | Labour & Employment | Treaty-binding | One of the core international labour rights instruments. |
 | `NSB-ANSI-USA` | American National Standards Institute | National Standards Body Registry | Standards body | Key national standards body and ISO member for the United States. |
@@ -71,9 +77,9 @@ SIGMA is an open project to build the world's most complete public index of glob
 
 ## GitHub Domain Agents
 
-SIGMA includes a free-safe GitHub Actions scaffold for domain-based automation. The `Domain Agents` workflow can be run manually or on a weekly schedule; it dispatches registered agents from `data/reference/domain_worker_registry.csv`, writes a state artifact, validates generated data, and opens a pull request when a worker changes tracked source or report files.
+SIGMA includes a free-safe GitHub Actions scaffold for domain-based automation. The `Domain Agents` workflow can be run manually or on a weekly schedule; it dispatches registered agents from `data[...]
 
-Start with `dry_run` enabled in GitHub Actions. Add optional provider tokens only through GitHub repository secrets, never in commits. See `docs/GITHUB_AGENTIC_SETUP_GUIDE.md` for the fillable secret template and click-by-click setup.
+Start with `dry_run` enabled in GitHub Actions. Add optional provider tokens only through GitHub repository secrets, never in commits. See `docs/GITHUB_AGENTIC_SETUP_GUIDE.md` for the fillable sec[...]
 
 ## Relationship Extraction
 
@@ -117,9 +123,9 @@ The GitHub Pages build now publishes a searchable standards browser:
 make pagefind-search
 ```
 
-The static site generator writes `public/search.html`, `public/search-index.json`, and Pagefind-readable record pages under `public/search-records/`. The Pages workflow then runs `npx -y pagefind@1.5.2 --site public --output-subdir pagefind` so the deployed site has a low-bandwidth Pagefind search bundle plus a JSON fallback search for local previews.
+The static site generator writes `public/search.html`, `public/search-index.json`, and Pagefind-readable record pages under `public/search-records/`. The Pages workflow then runs `npx -y pagefind[...]
 
-The search page also includes an optional browser-side semantic helper built with Transformers.js. It loads a small quantized feature-extraction model only when a visitor requests it, runs locally in the browser, and falls back to lexical search when the model, network, or browser runtime is unavailable.
+The search page also includes an optional browser-side semantic helper built with Transformers.js. It loads a small quantized feature-extraction model only when a visitor requests it, runs locall[...]
 
 ## Google Sheet Sync
 
@@ -129,7 +135,7 @@ The public curation sheet `000_SIGMA_MASTER_DATABASE` can be synchronized into t
 make sync-google-sheet
 ```
 
-The sync reads the public CSV export, keeps the 22-field SIGMA master schema, and writes `data/processed/google_sheet_master.csv`. Sheet-only curation metadata such as `related_sigma_ids`, `llm_enriched`, and `last_updated` is ignored by the release bundle until those fields are formally added to the published schema.
+The sync reads the public CSV export, keeps the 22-field SIGMA master schema, and writes `data/processed/google_sheet_master.csv`. Sheet-only curation metadata such as `related_sigma_ids`, `llm_e[...]
 
 ## Phase 2A Health Priority Ingestion
 
@@ -139,7 +145,7 @@ The first Life Sciences & Health priority ingestor transforms source-confirmed W
 make health-priority
 ```
 
-The curated source table is `data/reference/health_priority_sources.csv`, and the generated canonical output is `data/processed/health_priority_standards.csv`. This slice expands Domain 1 Health & Medical, Domain 33 Water, Sanitation & Hygiene, and related humanitarian WASH coverage without duplicating the original seed IDs.
+The curated source table is `data/reference/health_priority_sources.csv`, and the generated canonical output is `data/processed/health_priority_standards.csv`. This slice expands Domain 1 Health [...]
 
 ## Phase 2B Codex Priority Ingestion
 
@@ -149,7 +155,7 @@ The first Codex Alimentarius ingestor transforms source-confirmed food-safety re
 make codex
 ```
 
-The curated source table is `data/reference/codex_priority_sources.csv`, and the generated canonical output is `data/processed/codex_standards.csv`. This slice expands Domain 2 Food Safety & Agriculture with cross-cutting Codex hygiene, additive, contaminant, labelling, analysis, sampling, and import/export inspection records.
+The curated source table is `data/reference/codex_priority_sources.csv`, and the generated canonical output is `data/processed/codex_standards.csv`. This slice expands Domain 2 Food Safety & Agri[...]
 
 ## Phase 2C Humanitarian Standards Expansion
 
@@ -159,7 +165,7 @@ The humanitarian priority ingestor extends Domain 17 beyond Sphere WASH:
 make humanitarian-priority
 ```
 
-The curated source table is `data/reference/humanitarian_priority_sources.csv`, and the generated canonical output is `data/processed/humanitarian_priority_standards.csv`. This slice adds CHS, INEE, IASC, UNHCR, and WHO Emergency Medical Teams standards and guidance.
+The curated source table is `data/reference/humanitarian_priority_sources.csv`, and the generated canonical output is `data/processed/humanitarian_priority_standards.csv`. This slice adds CHS, IN[...]
 
 ## Phase 2D WHO IRIS/OAI Staging
 
@@ -169,7 +175,7 @@ The WHO IRIS harvester stages likely normative WHO metadata for curator review b
 make who-iris-stage
 ```
 
-The deterministic fixture is `data/reference/who_iris_oai_sample.xml`, and the staged output is `data/staging/who_iris_filtered_metadata.csv`. Staged rows are deliberately excluded from the release bundle until a curator promotes them into `data/processed`.
+The deterministic fixture is `data/reference/who_iris_oai_sample.xml`, and the staged output is `data/staging/who_iris_filtered_metadata.csv`. Staged rows are deliberately excluded from the relea[...]
 
 ## Phase 2E UN Treaty Collection Staging
 
@@ -179,7 +185,7 @@ The first UN treaty staging pass transforms source-confirmed UN Treaty Collectio
 make un-treaties-stage
 ```
 
-The curated source table is `data/reference/un_treaty_priority_sources.csv`, and the staged output is `data/staging/un_treaty_candidates.csv`. This slice activates the UN Treaty Collection task for Domain 15 and stages the nine OHCHR core international human-rights treaties for review before any release-bundle promotion.
+The curated source table is `data/reference/un_treaty_priority_sources.csv`, and the staged output is `data/staging/un_treaty_candidates.csv`. This slice activates the UN Treaty Collection task f[...]
 
 ## Phase 3A IAEA Safety Standards Priority Ingestion
 
@@ -189,7 +195,7 @@ The first IAEA ingestor transforms source-confirmed Safety Standards Series reco
 make iaea-priority
 ```
 
-The curated source table is `data/reference/iaea_priority_sources.csv`, and the generated canonical output is `data/processed/iaea_safety_standards.csv`. This slice activates the IAEA gap-analysis task for Domain 31 and covers priority Safety Fundamentals, General Safety Requirements, and Specific Safety Requirements for radiation protection, emergency preparedness, nuclear regulatory frameworks, site evaluation, and nuclear power plant safety.
+The curated source table is `data/reference/iaea_priority_sources.csv`, and the generated canonical output is `data/processed/iaea_safety_standards.csv`. This slice activates the IAEA gap-analysi[...]
 
 ## Phase 4A Sustainability Reporting Standards
 
@@ -199,7 +205,7 @@ The first sustainability reporting ingestor transforms curated GRI and SASB sour
 make sustainability-reporting
 ```
 
-The curated source table is `data/reference/sustainability_reporting_sources.csv`, and the generated canonical output is `data/processed/sustainability_reporting_standards.csv`. This slice activates the GRI/SASB gap-analysis task for Domain 26 and establishes the pattern for expanding into ISSB, ESRS, and GHG Protocol records.
+The curated source table is `data/reference/sustainability_reporting_sources.csv`, and the generated canonical output is `data/processed/sustainability_reporting_standards.csv`. This slice activa[...]
 
 ## Phase 5A NIST Cybersecurity and AI Priority Ingestion
 
@@ -209,7 +215,7 @@ The first NIST ingestor transforms source-confirmed CSRC and AI RMF records into
 make nist-priority
 ```
 
-The curated source table is `data/reference/nist_priority_sources.csv`, and the generated canonical output is `data/processed/nist_priority_standards.csv`. This slice activates the NIST gap-analysis task for Domain 29 and includes cross-domain AI RMF records for Domain 30.
+The curated source table is `data/reference/nist_priority_sources.csv`, and the generated canonical output is `data/processed/nist_priority_standards.csv`. This slice activates the NIST gap-analy[...]
 
 ## Phase 5B W3C Web Standards Priority Ingestion
 
@@ -219,7 +225,7 @@ The first W3C ingestor transforms source-confirmed W3C Technical Reports records
 make w3c-priority
 ```
 
-The curated source table is `data/reference/w3c_priority_sources.csv`, and the generated canonical output is `data/processed/w3c_standards.csv`. This slice activates the W3C gap-analysis task for Domain 28 and covers priority W3C Standards across accessibility, web APIs, verifiable credentials, data catalogues, graphics, real-time communications, and web fonts.
+The curated source table is `data/reference/w3c_priority_sources.csv`, and the generated canonical output is `data/processed/w3c_standards.csv`. This slice activates the W3C gap-analysis task for[...]
 
 ## Phase 5C ITU Telecommunications Priority Ingestion
 
@@ -229,7 +235,7 @@ The first ITU ingestor transforms source-confirmed ITU-T Recommendation records 
 make itu-priority
 ```
 
-The curated source table is `data/reference/itu_priority_sources.csv`, and the generated canonical output is `data/processed/itu_recommendations.csv`. This slice activates the ITU gap-analysis task for Domain 28 and covers priority telecommunications recommendations across numbering, optical transport, broadband access, video coding, public-key infrastructure, quality assessment, and machine learning in future networks.
+The curated source table is `data/reference/itu_priority_sources.csv`, and the generated canonical output is `data/processed/itu_recommendations.csv`. This slice activates the ITU gap-analysis ta[...]
 
 ## Phase 5D ETSI ICT Standards Priority Ingestion
 
@@ -239,7 +245,7 @@ The first ETSI ingestor transforms source-confirmed ETSI deliverable records int
 make etsi-priority
 ```
 
-The curated source table is `data/reference/etsi_priority_sources.csv`, and the generated canonical output is `data/processed/etsi_standards.csv`. This slice activates the ETSI roadmap task for Domain 28 and covers priority ETSI standards across ICT accessibility, consumer IoT cybersecurity, radio spectrum access, connected transport, 5G system architecture, NFV interoperability, and conformance assessment.
+The curated source table is `data/reference/etsi_priority_sources.csv`, and the generated canonical output is `data/processed/etsi_standards.csv`. This slice activates the ETSI roadmap task for D[...]
 
 ## Phase 5E OASIS, Ecma, and GS1 Priority Ingestion
 
@@ -249,7 +255,7 @@ The open ICT priority ingestor transforms source-confirmed OASIS, Ecma, and GS1 
 make open-ict-priority
 ```
 
-The curated source table is `data/reference/open_ict_priority_sources.csv`, and the generated canonical output is `data/processed/open_ict_standards.csv`. This slice activates the OASIS, Ecma, and GS1 roadmap tasks with priority records for MQTT, SAML, OpenDocument, STIX, TAXII, ECMAScript, JSON, GS1 General Specifications, EPCIS/CBV, and GS1 Digital Link.
+The curated source table is `data/reference/open_ict_priority_sources.csv`, and the generated canonical output is `data/processed/open_ict_standards.csv`. This slice activates the OASIS, Ecma, an[...]
 
 ## Phase 6A IEC Electrotechnical Priority Ingestion
 
@@ -259,7 +265,7 @@ The first IEC ingestor transforms source-confirmed IEC Webstore metadata records
 make iec-priority
 ```
 
-The curated source table is `data/reference/iec_priority_sources.csv`, and the generated canonical output is `data/processed/iec_standards.csv`. This slice activates the IEC gap-analysis task for Domain 9 and covers priority electrotechnical families including IEC 60364, IEC 60601, IEC 61000, IEC 61508, IEC 62443, and IEC 60079.
+The curated source table is `data/reference/iec_priority_sources.csv`, and the generated canonical output is `data/processed/iec_standards.csv`. This slice activates the IEC gap-analysis task for[...]
 
 ## Phase 6B CCSDS and ECSS Space Standards Priority Ingestion
 
@@ -269,7 +275,7 @@ The first space standards ingestor transforms source-confirmed CCSDS and ECSS re
 make space-priority
 ```
 
-The curated source table is `data/reference/space_priority_sources.csv`, and the generated canonical output is `data/processed/space_standards.csv`. This slice activates the CCSDS/ECSS gap-analysis task for Domain 14 and covers priority space packet, telemetry, telecommand, file delivery, systems engineering, project management, and product-assurance standards.
+The curated source table is `data/reference/space_priority_sources.csv`, and the generated canonical output is `data/processed/space_standards.csv`. This slice activates the CCSDS/ECSS gap-analys[...]
 
 ## Phase 7A Culture and Heritage Priority Ingestion
 
@@ -279,7 +285,7 @@ The first culture and heritage ingestor transforms source-confirmed UNESCO, ICOM
 make culture-priority
 ```
 
-The curated source table is `data/reference/culture_priority_sources.csv`, and the generated canonical output is `data/processed/culture_heritage_standards.csv`. This slice activates the culture and heritage roadmap task for Domain 21 and covers UNESCO heritage conventions, ICOMOS conservation frameworks, the ICOM Code of Ethics for Museums, and ICCROM crisis first-aid guidance.
+The curated source table is `data/reference/culture_priority_sources.csv`, and the generated canonical output is `data/processed/culture_heritage_standards.csv`. This slice activates the culture [...]
 
 ## Phase 7B Sports and Recreation Priority Ingestion
 
@@ -289,7 +295,7 @@ The first sports and recreation ingestor transforms source-confirmed WADA, IOC, 
 make sports-priority
 ```
 
-The curated source table is `data/reference/sports_priority_sources.csv`, and the generated canonical output is `data/processed/sports_recreation_standards.csv`. This slice activates the sports and recreation roadmap task for Domain 22 and covers anti-doping governance, Olympic Movement governance, football laws, athletics rules, sports arbitration, basketball rules, and tennis rules.
+The curated source table is `data/reference/sports_priority_sources.csv`, and the generated canonical output is `data/processed/sports_recreation_standards.csv`. This slice activates the sports a[...]
 
 ## Life-Science Research Utilities
 
@@ -300,7 +306,7 @@ python3 scripts/bindingdb_lookup.py pdb 1Q0L --cutoff 100 --identity 92 --max-it
 python3 scripts/bindingdb_lookup.py smiles 'CC(=O)OC1=CC=CC=C1C(=O)O' --cutoff 0.9
 ```
 
-The wrapper delegates requests to `scripts/rest_request.py`, defaults broad lookups to compact output, and supports `--save-raw --raw-output-path ...` when a curator needs to archive the full BindingDB payload.
+The wrapper delegates requests to `scripts/rest_request.py`, defaults broad lookups to compact output, and supports `--save-raw --raw-output-path ...` when a curator needs to archive the full Bin[...]
 
 ## Phase 8A National Standards Body Registry
 
@@ -310,7 +316,7 @@ The first national standards body registry slice transforms source-confirmed ISO
 make national-standards-bodies
 ```
 
-The curated source table is `data/reference/national_standards_bodies_sources.csv`, and the generated canonical output is `data/processed/national_standards_bodies.csv`. This initial slice covers 10 high-impact ISO member bodies and establishes the pattern for expanding toward the full ISO national body network.
+The curated source table is `data/reference/national_standards_bodies_sources.csv`, and the generated canonical output is `data/processed/national_standards_bodies.csv`. This initial slice covers[...]
 
 ## Research Task Matrix
 
@@ -322,21 +328,29 @@ make research-tasks
 
 This generates `data/reports/research_task_coverage.csv` and `docs/RESEARCH_TASKS.md`, covering all 40 domains, all major phases, and the enhanced integration roadmap.
 
+## Progress Dashboard
+
+Track SIGMA's research task completion and data quality metrics:
+
+- **v1.2.0 Progress Indicators:** [`docs/V1_2_0_PROGRESS_INDICATORS.md`](docs/V1_2_0_PROGRESS_INDICATORS.md) — metrics, completed tasks, quality gate status, release artifacts
+- **Research Task Matrix:** [`docs/RESEARCH_TASKS.md`](docs/RESEARCH_TASKS.md) — all 37 tasks with status, ETA, and domain coverage
+- **Quality Gate Report:** [`docs/QUALITY_GATE.md`](docs/QUALITY_GATE.md) — validation results and schema compliance
+
 ## Roadmap to 100 Percent
 
-The remaining work toward the complete global standards index is documented in `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md`. It follows the canonical Phase 0 through Phase 9 research plan, then extends into the enhanced graph, API, automation, multilingual, and sustainability roadmap.
+The remaining work toward the complete global standards index is documented in `docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md`. It follows the canonical Phase[...]
 
-The friend-reviewed gap analysis is preserved in `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md`. Its actionable recommendations have been converted into roadmap checkpoints and machine-readable research tasks.
+The friend-reviewed gap analysis is preserved in `docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md`. Its actionable recommendations have been converted into roadmap checkpoints and machine-readabl[...]
 
-The current project status report is preserved in `docs/PROJECT_STATUS_REPORT_2026-05-02.md`. It summarizes the journey so far, current release metrics, remaining workstreams, lessons learned, challenges, strategies, and operating best practices.
+The current project status report is preserved in `docs/PROJECT_STATUS_REPORT_2026-05-02.md`. It summarizes the journey so far, current release metrics, remaining workstreams, lessons learned, ch[...]
 
 ## Contribute Without Coding
 
-Non-technical contributors can propose corrections, missing standards, or new source families through GitHub Issues. Use the issue templates for new entries and corrections, and include an official source URL for every claim.
+Non-technical contributors can propose corrections, missing standards, or new source families through GitHub Issues. Use the issue templates for new entries and corrections, and include an offici[...]
 
 ## Project Owner and Contact
 
-The project owner and lead curator is **Mohammad Ariful Islam**. For public questions, corrections, missing sources, or contribution proposals, open an issue at `https://github.com/sigma-standards/sigma-index/issues`.
+The project owner and lead curator is **Mohammad Ariful Islam**. For public questions, corrections, missing sources, or contribution proposals, open an issue at `https://github.com/sigma-standard[...]
 
 ## Phase 9A Quality Gate
 
@@ -346,7 +360,7 @@ The first release quality gate performs deterministic checks that are safe for l
 make quality-gate
 ```
 
-It writes `data/reports/quality_gate.csv` and `docs/QUALITY_GATE.md`, covering duplicate `sigma_id` values, missing required master-schema fields, and malformed `official_url` values. Live URL reachability remains a separate audit step because source sites can rate-limit, redirect, or block automated requests.
+It writes `data/reports/quality_gate.csv` and `docs/QUALITY_GATE.md`, covering duplicate `sigma_id` values, missing required master-schema fields, and malformed `official_url` values. Live URL re[...]
 
 ## Publishing
 
@@ -379,7 +393,7 @@ The plan now explicitly includes:
 
 ## Airtable / MCP Note
 
-No Airtable MCP server is required for the current build. The project plan uses free/open collaboration paths: Google Sheets for early curation and NocoDB as the Airtable-style open-source option if a database UI is needed.
+No Airtable MCP server is required for the current build. The project plan uses free/open collaboration paths: Google Sheets for early curation and NocoDB as the Airtable-style open-source option[...]
 
 ## Contributing
 

@@ -183,10 +183,28 @@ def test_build_site_renders_progress_and_owner_contact(tmp_path):
 
     assert 'id="progress"' in html
     assert 'class="progress-meter"' in html
-    assert 'style="--progress: 22%"' in html
-    assert "22% complete global vision" in html
+    assert 'style="--progress: 25%"' in html
+    assert "25% complete global vision" in html
     assert "Mohammad Ariful Islam" in html
     assert 'href="https://github.com/sigma-standards/sigma-index/issues"' in html
+
+
+def test_build_site_progress_stage_is_rendered_from_computed_progress(tmp_path):
+    from scripts.build_static_site import build_site
+
+    make_fixture_repo(tmp_path)
+    write_csv(
+        tmp_path / "data" / "reference" / "research_tasks.csv",
+        [
+            {"task_id": "task-001", "domain_id": "health", "status": "done"},
+        ],
+    )
+    build_site(tmp_path)
+
+    html = (tmp_path / "public" / "index.html").read_text(encoding="utf-8")
+
+    assert "Roadmap progress: 1 completed, 0 active, 1 planned across 2 roadmap tasks." in html
+    assert "The remaining work is tracked by the roadmap" in html
 
 
 def test_build_site_copies_downloads_and_docs(tmp_path):

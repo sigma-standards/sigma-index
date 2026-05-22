@@ -7,6 +7,7 @@ import html
 import json
 import re
 import shutil
+from collections import Counter
 from pathlib import Path
 
 
@@ -23,6 +24,7 @@ DOC_FILES = [
     "docs/PROJECT_KNOWLEDGE_GRAPH.md",
     "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md",
     "docs/PROJECT_STATUS_REPORT_2026-05-02.md",
+    "docs/PROJECT_PROGRESS.md",
     "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md",
 ]
 
@@ -38,6 +40,9 @@ DOWNLOAD_LABELS = {
     "source_registry.csv": "Source Registry",
     "domain_coverage.csv": "Domain Coverage",
 }
+
+TASK_REGISTRY = Path("data/reference/research_tasks.csv")
+DOMAIN_REGISTRY = Path("data/reference/domain_taxonomy.csv")
 
 SEARCH_FIELDS = [
     "sigma_id",
@@ -87,6 +92,39 @@ def fmt_number(value: object) -> str:
         return f"{int(value):,}"
     except (TypeError, ValueError):
         return "0"
+
+
+def compute_project_progress(root: Path | str = Path(".")) -> dict[str, object]:
+    root = Path(root)
+    task_rows = read_csv(root / TASK_REGISTRY)
+    domain_rows = read_csv(root / DOMAIN_REGISTRY)
+    if not task_rows or not domain_rows:
+        return PROJECT_PROGRESS
+
+    existing_domain_ids = {row.get("domain_id") for row in task_rows if row.get("domain_id")}
+    for domain in domain_rows:
+        domain_id = domain.get("domain_id")
+        if domain_id and domain_id not in existing_domain_ids:
+            task_rows.append({"status": "planned", "domain_id": domain_id})
+
+    statuses = Counter(row.get("status") for row in task_rows)
+    total = len(task_rows)
+    done = statuses.get("done", 0)
+    active = statuses.get("active", 0)
+    planned = statuses.get("planned", 0)
+    blocked = statuses.get("blocked", 0)
+    full_vision_percent = int(round(100 * done / total)) if total else PROJECT_PROGRESS["full_vision_percent"]
+    public_mvp_percent = int(round(100 * (done + active) / total)) if total else PROJECT_PROGRESS["public_mvp_percent"]
+    stage = f"Roadmap progress: {done} completed, {active} active, {planned} planned across {total} roadmap tasks."
+    return {
+        "full_vision_percent": full_vision_percent,
+        "public_mvp_percent": public_mvp_percent,
+        "stage": stage,
+        "owner": PROJECT_PROGRESS["owner"],
+        "owner_role": PROJECT_PROGRESS["owner_role"],
+        "contact_url": PROJECT_PROGRESS["contact_url"],
+        "contact_label": PROJECT_PROGRESS["contact_label"],
+    }
 
 
 def esc(value: object) -> str:
@@ -892,30 +930,29 @@ def render_doc_links(docs: list[str]) -> str:
 
 
 def doc_labels() -> dict[str, str]:
-    return {
-        "README.md": "Project Overview",
-        "SCHEMA.md": "Data Schema",
-        "CONTRIBUTING.md": "Contributing",
-        "CODE_OF_CONDUCT.md": "Code of Conduct",
-        "CHANGELOG.md": "Changelog",
-        "LICENSE": "License",
-        "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md": "Research Plan",
-        "docs/RELEASE_GOVERNANCE.md": "Release Governance",
-        "docs/RESEARCH_TASKS.md": "Research Task Matrix",
-        "docs/PROJECT_KNOWLEDGE_GRAPH.md": "Project Knowledge Graph",
-        "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md": "Gap Analysis",
-        "docs/PROJECT_STATUS_REPORT_2026-05-02.md": "Project Status Report",
-        "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md": "Roadmap to 100%",
-    }
-
-
-def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str, str]], downloads: list[str], docs: list[str]) -> str:
+  return {
+    "README.md": "Project Overview",
+    "SCHEMA.md": "Data Schema",
+    "CONTRIBUTING.md": "Contributing",
+    "CODE_OF_CONDUCT.md": "Code of Conduct",
+    "CHANGELOG.md": "Changelog",
+    "LICENSE": "License",
+    "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md": "Research Plan",
+    "docs/RELEASE_GOVERNANCE.md": "Release Governance",
+    "docs/RESEARCH_TASKS.md": "Research Task Matrix",
+    "docs/PROJECT_KNOWLEDGE_GRAPH.md": "Project Knowledge Graph",
+    "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md": "Gap Analysis",
+    "docs/PROJECT_STATUS_REPORT_2026-05-02.md": "Project Status Report",
+    "docs/PROJECT_PROGRESS.md": "Project Progress",
+    "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md": "Roadmap to 100%",
+  }
+def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str, str]], downloads: list[str], docs: list[str], progress: dict[str, object]) -> str:
     entry_count = fmt_number(api.get("entry_count"))
     relationship_count = fmt_number(api.get("relationship_count"))
     domain_count = fmt_number(len(domains))
     source_count = fmt_number(len(sources))
-    full_progress = PROJECT_PROGRESS["full_vision_percent"]
-    public_progress = PROJECT_PROGRESS["public_mvp_percent"]
+    full_progress = progress.get("full_vision_percent", PROJECT_PROGRESS["full_vision_percent"])
+    public_progress = progress.get("public_mvp_percent", PROJECT_PROGRESS["public_mvp_percent"])
 
     return f"""<!doctype html>
 <html lang="en">
@@ -973,7 +1010,7 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
             <span></span>
           </div>
           <strong>{full_progress}% complete global vision</strong>
-          <p>{esc(PROJECT_PROGRESS["stage"])}. The remaining work is tracked by the roadmap, research task matrix, source registry, and quality reports.</p>
+          <p>{esc(progress["stage"])}. The remaining work is tracked by the roadmap, research task matrix, source registry, and quality reports.</p>
         </article>
         <article class="progress-card">
           <div class="progress-meter secondary" style="--progress: {public_progress}%">
@@ -1862,8 +1899,9 @@ def build_site(root: Path | str = Path(".")) -> Path:
     write_search_index(public, search_rows)
     write_search_record_pages(public, search_rows)
     (public / "search.html").write_text(render_search_page(api, len(search_rows)), encoding="utf-8")
+    progress = compute_project_progress(root)
     (public / "index.html").write_text(
-        render_html(api, domains, source_rows, downloads, docs),
+        render_html(api, domains, source_rows, downloads, docs, progress),
         encoding="utf-8",
     )
     return public
