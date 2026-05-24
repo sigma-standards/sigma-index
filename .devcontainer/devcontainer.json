@@ -1,13 +1,11 @@
 {
   "name": "SIGMA Global Standards Index",
   "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
-  
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/node:18": {}
   },
-
   "customizations": {
     "vscode": {
       "extensions": [
@@ -49,12 +47,13 @@
       }
     }
   },
-
   "postCreateCommand": ".devcontainer/post-create.sh",
-  
   "remoteUser": "vscode",
-  
-  "forwardPorts": [8000, 8080, 3000],
+  "forwardPorts": [
+    8000,
+    8080,
+    3000
+  ],
   "portsAttributes": {
     "8000": {
       "label": "Application",
@@ -65,12 +64,10 @@
       "onAutoForward": "ignore"
     }
   },
-
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached"
   ],
-
   "containerEnv": {
     "SIGMA_PROJECT_ROOT": "/workspaces/sigma-index"
   }
