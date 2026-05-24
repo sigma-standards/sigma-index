@@ -27,7 +27,7 @@
 | Default branch | `main` |
 | Local path (agent working dir) | `/home/agent/sigma-index` |
 | License | CC BY 4.0 |
-| Owner | Mohammad Ariful Islam (`code-and-brain`) |
+| Owner | Mohammad Ariful Islam (`codeandbrain`) |
 | Contact path | GitHub Issues |
 | Python runtime | `.venv/bin/python` (local) or `python3` (CI) |
 | Primary execution layer | `Makefile` |
