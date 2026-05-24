@@ -130,12 +130,15 @@ def make_fixture_repo(tmp_path):
         "SCHEMA.md",
         "CONTRIBUTING.md",
         "CODE_OF_CONDUCT.md",
+        "CHANGELOG.md",
+        "LICENSE",
         "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md",
     ]:
         (tmp_path / filename).write_text(f"# {filename}\n", encoding="utf-8")
     roadmap = tmp_path / "docs" / "superpowers" / "plans" / "2026-05-02-roadmap-to-100-percent-global-standards-index.md"
     roadmap.parent.mkdir(parents=True, exist_ok=True)
     roadmap.write_text("# Roadmap to 100 Percent\n\nhttps://www.iso.org/standards.html\n", encoding="utf-8")
+    (tmp_path / "docs" / "RELEASE_GOVERNANCE.md").write_text("# Release Governance\n", encoding="utf-8")
     (tmp_path / "docs" / "RESEARCH_TASKS.md").write_text("# SIGMA Research Task Matrix\n", encoding="utf-8")
     (tmp_path / "docs" / "PROJECT_KNOWLEDGE_GRAPH.md").write_text("# Project Knowledge Graph\n", encoding="utf-8")
     (tmp_path / "docs" / "SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md").write_text(
@@ -180,10 +183,28 @@ def test_build_site_renders_progress_and_owner_contact(tmp_path):
 
     assert 'id="progress"' in html
     assert 'class="progress-meter"' in html
-    assert 'style="--progress: 22%"' in html
-    assert "22% complete global vision" in html
+    assert 'style="--progress: 25%"' in html
+    assert "25% complete global vision" in html
     assert "Mohammad Ariful Islam" in html
     assert 'href="https://github.com/sigma-standards/sigma-index/issues"' in html
+
+
+def test_build_site_progress_stage_is_rendered_from_computed_progress(tmp_path):
+    from scripts.build_static_site import build_site
+
+    make_fixture_repo(tmp_path)
+    write_csv(
+        tmp_path / "data" / "reference" / "research_tasks.csv",
+        [
+            {"task_id": "task-001", "domain_id": "health", "status": "done"},
+        ],
+    )
+    build_site(tmp_path)
+
+    html = (tmp_path / "public" / "index.html").read_text(encoding="utf-8")
+
+    assert "Roadmap progress: 1 completed, 0 active, 1 planned across 2 roadmap tasks." in html
+    assert "The remaining work is tracked by the roadmap" in html
 
 
 def test_build_site_copies_downloads_and_docs(tmp_path):
@@ -197,6 +218,9 @@ def test_build_site_copies_downloads_and_docs(tmp_path):
     assert (tmp_path / "public" / "downloads" / "api_index.json").exists()
     assert (tmp_path / "public" / "docs" / "README.html").exists()
     assert (tmp_path / "public" / "docs" / "SCHEMA.html").exists()
+    assert (tmp_path / "public" / "docs" / "CHANGELOG.html").exists()
+    assert (tmp_path / "public" / "docs" / "LICENSE.html").exists()
+    assert (tmp_path / "public" / "docs" / "RELEASE_GOVERNANCE.html").exists()
     assert (
         tmp_path / "public" / "docs" / "2026-05-02-roadmap-to-100-percent-global-standards-index.html"
     ).exists()
@@ -223,9 +247,14 @@ def test_build_site_creates_search_page_and_pagefind_records(tmp_path):
     assert "pagefind/pagefind-component-ui.js" in search_html
     assert "<pagefind-searchbox" in search_html
     assert "search-index.json" in search_html
+    assert "function recordSearchText(item)" in search_html
+    assert "Showing ${items.length > 50 ? \"50 of \" : \"\"}${items.length} matching records." in search_html
     assert search_index[0]["sigma_id"] == "HL-WHO-IHR-2005"
+    assert search_index[0]["record_url"] == "search-records/records-0001.html#record-HL-WHO-IHR-2005"
     assert search_index[1]["sigma_id"] == "CY-NIST-SP800-53R5"
+    assert search_index[1]["record_url"] == "search-records/records-0001.html#record-CY-NIST-SP800-53R5"
     assert 'data-pagefind-body' in records_html
+    assert 'id="record-HL-WHO-IHR-2005"' in records_html
     assert 'data-pagefind-meta="domain:Health &amp; Medical"' in records_html
     assert "International Health Regulations" in records_html
     assert "NIST SP 800-53 Rev. 5" in records_html
@@ -270,7 +299,10 @@ def test_project_reference_links_rendered_html_docs_not_raw_markdown(tmp_path):
 
     assert 'href="docs/README.html"' in html
     assert 'href="docs/SCHEMA.html"' in html
+    assert 'href="docs/CHANGELOG.html"' in html
+    assert 'href="docs/LICENSE.html"' in html
     assert 'href="docs/RESEARCH_PROJECT_PLAN_Global_Standards_Index.html"' in html
+    assert 'href="docs/RELEASE_GOVERNANCE.html"' in html
     assert 'href="docs/RESEARCH_TASKS.html"' in html
     assert 'href="docs/PROJECT_KNOWLEDGE_GRAPH.html"' in html
     assert 'href="docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.html"' in html
@@ -280,6 +312,8 @@ def test_project_reference_links_rendered_html_docs_not_raw_markdown(tmp_path):
     assert "Research Task Matrix" in html
     assert "Project Knowledge Graph" in html
     assert "Gap Analysis" in html
+    assert "Release Governance" in html
+    assert "Changelog" in html
     assert 'href="docs/README.md"' not in html
     assert "<!doctype html>" in readme
     assert "<h1>README.md</h1>" in readme

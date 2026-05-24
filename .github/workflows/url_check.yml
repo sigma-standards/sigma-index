@@ -24,8 +24,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests pandas
+        pip install requests
 
     - name: Check URLs
       run: |
-        python scripts/check_urls.py
+        make PYTHON=python check-urls

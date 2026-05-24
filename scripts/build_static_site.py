@@ -7,6 +7,7 @@ import html
 import json
 import re
 import shutil
+from collections import Counter
 from pathlib import Path
 
 
@@ -15,11 +16,15 @@ DOC_FILES = [
     "SCHEMA.md",
     "CONTRIBUTING.md",
     "CODE_OF_CONDUCT.md",
+    "CHANGELOG.md",
+    "LICENSE",
     "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md",
+    "docs/RELEASE_GOVERNANCE.md",
     "docs/RESEARCH_TASKS.md",
     "docs/PROJECT_KNOWLEDGE_GRAPH.md",
     "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md",
     "docs/PROJECT_STATUS_REPORT_2026-05-02.md",
+    "docs/PROJECT_PROGRESS.md",
     "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md",
 ]
 
@@ -35,6 +40,9 @@ DOWNLOAD_LABELS = {
     "source_registry.csv": "Source Registry",
     "domain_coverage.csv": "Domain Coverage",
 }
+
+TASK_REGISTRY = Path("data/reference/research_tasks.csv")
+DOMAIN_REGISTRY = Path("data/reference/domain_taxonomy.csv")
 
 SEARCH_FIELDS = [
     "sigma_id",
@@ -56,9 +64,9 @@ SEARCH_FIELDS = [
 SEARCH_RECORD_CHUNK_SIZE = 1000
 
 PROJECT_PROGRESS = {
-    "full_vision_percent": 22,
-    "public_mvp_percent": 70,
-    "stage": "Public MVP with all-domain seeds and priority ingestors",
+    "full_vision_percent": 25,
+    "public_mvp_percent": 75,
+    "stage": "Public MVP with v1.2.0 release - research task completion and GitHub Pages deployment",
     "owner": "Mohammad Ariful Islam",
     "owner_role": "Lead Curator and Project Owner",
     "contact_url": "https://github.com/sigma-standards/sigma-index/issues",
@@ -86,8 +94,47 @@ def fmt_number(value: object) -> str:
         return "0"
 
 
+def compute_project_progress(root: Path | str = Path(".")) -> dict[str, object]:
+    root = Path(root)
+    task_rows = read_csv(root / TASK_REGISTRY)
+    domain_rows = read_csv(root / DOMAIN_REGISTRY)
+    if not task_rows or not domain_rows:
+        return PROJECT_PROGRESS
+
+    existing_domain_ids = {row.get("domain_id") for row in task_rows if row.get("domain_id")}
+    for domain in domain_rows:
+        domain_id = domain.get("domain_id")
+        if domain_id and domain_id not in existing_domain_ids:
+            task_rows.append({"status": "planned", "domain_id": domain_id})
+
+    statuses = Counter(row.get("status") for row in task_rows)
+    total = len(task_rows)
+    done = statuses.get("done", 0)
+    active = statuses.get("active", 0)
+    planned = statuses.get("planned", 0)
+    blocked = statuses.get("blocked", 0)
+    full_vision_percent = int(round(100 * done / total)) if total else PROJECT_PROGRESS["full_vision_percent"]
+    public_mvp_percent = int(round(100 * (done + active) / total)) if total else PROJECT_PROGRESS["public_mvp_percent"]
+    stage = f"Roadmap progress: {done} completed, {active} active, {planned} planned across {total} roadmap tasks."
+    return {
+        "full_vision_percent": full_vision_percent,
+        "public_mvp_percent": public_mvp_percent,
+        "stage": stage,
+        "owner": PROJECT_PROGRESS["owner"],
+        "owner_role": PROJECT_PROGRESS["owner_role"],
+        "contact_url": PROJECT_PROGRESS["contact_url"],
+        "contact_label": PROJECT_PROGRESS["contact_label"],
+    }
+
+
 def esc(value: object) -> str:
     return html.escape(str(value or ""), quote=True)
+
+
+def record_anchor(row: dict[str, str]) -> str:
+    source = row.get("sigma_id") or row.get("title") or "record"
+    slug = re.sub(r"[^A-Za-z0-9._:-]+", "-", source).strip("-")
+    return f"record-{slug or 'record'}"
 
 
 def clean_public(root: Path) -> Path:
@@ -170,6 +217,7 @@ def write_search_index(public: Path, rows: list[dict[str, str]]) -> None:
             "official_url": row["official_url"],
             "summary": row["summary"],
             "text": row["text"],
+            "record_url": row.get("record_url", ""),
         }
         for row in rows
     ]
@@ -401,8 +449,9 @@ if (root && form && input) {
 def render_search_record_article(row: dict[str, str]) -> str:
     url = row.get("official_url", "")
     official_link = f'<a href="{esc(url)}">Official source</a>' if url else ""
+    anchor = record_anchor(row)
     return f"""
-      <article class="search-record" data-pagefind-body data-pagefind-meta="domain:{esc(row['domain'])}" data-pagefind-filter="domain:{esc(row['domain'])}">
+      <article id="{esc(anchor)}" class="search-record" data-pagefind-body data-pagefind-meta="domain:{esc(row['domain'])}" data-pagefind-filter="domain:{esc(row['domain'])}">
         <p class="eyebrow">{esc(row['domain'])}</p>
         <h2>{esc(row['title'])}</h2>
         <p class="record-short">{esc(row['short'])}</p>
@@ -466,6 +515,12 @@ def write_search_record_pages(public: Path, rows: list[dict[str, str]]) -> list[
         (search_records / filename).write_text(render_search_record_page(chunk, page_number), encoding="utf-8")
         pages.append(filename)
     return pages
+
+
+def add_search_record_urls(rows: list[dict[str, str]]) -> None:
+    for index, row in enumerate(rows):
+        page_number = (index // SEARCH_RECORD_CHUNK_SIZE) + 1
+        row["record_url"] = f"search-records/records-{page_number:04d}.html#{record_anchor(row)}"
 
 
 def render_search_page(api: dict, row_count: int) -> str:
@@ -557,15 +612,32 @@ def render_search_page(api: dict, row_count: int) -> str:
         results.innerHTML = "<p>No matching records found.</p>";
         return;
       }}
-      results.innerHTML = items.slice(0, 50).map((item) => `
+      const resultSummary = `<p>Showing ${{items.length > 50 ? "50 of " : ""}}${{items.length}} matching records.</p>`;
+      results.innerHTML = resultSummary + items.slice(0, 50).map((item) => `
         <article class="fallback-result">
           <span>${{escapeHtml(item.domain || "Unclassified")}}</span>
           <h2>${{escapeHtml(item.title)}}</h2>
           <p>${{escapeHtml(item.summary || item.issuer || item.sigma_id)}}</p>
           <small>${{escapeHtml(item.sigma_id)}} · ${{escapeHtml(item.issuer || "Unknown issuer")}} · ${{escapeHtml(item.status || "unknown")}}</small>
+          ${{item.record_url ? `<a href="${{escapeHtml(item.record_url)}}">Open indexed record</a>` : ""}}
           ${{item.official_url ? `<a href="${{escapeHtml(item.official_url)}}">Official source</a>` : ""}}
         </article>
       `).join("");
+    }}
+
+    function recordSearchText(item) {{
+      return [
+        item.sigma_id,
+        item.title,
+        item.short,
+        item.standard_id,
+        item.domain,
+        item.issuer,
+        item.status,
+        item.mandate,
+        item.summary,
+        item.text
+      ].filter(Boolean).join(" ").toLowerCase();
     }}
 
     fetch("search-index.json")
@@ -585,7 +657,7 @@ def render_search_page(api: dict, row_count: int) -> str:
       const selectedDomain = domain.value;
       const matches = records.filter((item) => {{
         const domainMatch = !selectedDomain || item.domain === selectedDomain;
-        const textMatch = !query || item.text.toLowerCase().includes(query);
+        const textMatch = !query || recordSearchText(item).includes(query);
         return domainMatch && textMatch;
       }});
       renderResults(matches);
@@ -858,27 +930,29 @@ def render_doc_links(docs: list[str]) -> str:
 
 
 def doc_labels() -> dict[str, str]:
-    return {
-        "README.md": "Project Overview",
-        "SCHEMA.md": "Data Schema",
-        "CONTRIBUTING.md": "Contributing",
-        "CODE_OF_CONDUCT.md": "Code of Conduct",
-        "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md": "Research Plan",
-        "docs/RESEARCH_TASKS.md": "Research Task Matrix",
-        "docs/PROJECT_KNOWLEDGE_GRAPH.md": "Project Knowledge Graph",
-        "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md": "Gap Analysis",
-        "docs/PROJECT_STATUS_REPORT_2026-05-02.md": "Project Status Report",
-        "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md": "Roadmap to 100%",
-    }
-
-
-def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str, str]], downloads: list[str], docs: list[str]) -> str:
+  return {
+    "README.md": "Project Overview",
+    "SCHEMA.md": "Data Schema",
+    "CONTRIBUTING.md": "Contributing",
+    "CODE_OF_CONDUCT.md": "Code of Conduct",
+    "CHANGELOG.md": "Changelog",
+    "LICENSE": "License",
+    "RESEARCH_PROJECT_PLAN_Global_Standards_Index.md": "Research Plan",
+    "docs/RELEASE_GOVERNANCE.md": "Release Governance",
+    "docs/RESEARCH_TASKS.md": "Research Task Matrix",
+    "docs/PROJECT_KNOWLEDGE_GRAPH.md": "Project Knowledge Graph",
+    "docs/SIGMA_GAP_ANALYSIS_AND_ENHANCEMENT_PLAN.md": "Gap Analysis",
+    "docs/PROJECT_STATUS_REPORT_2026-05-02.md": "Project Status Report",
+    "docs/PROJECT_PROGRESS.md": "Project Progress",
+    "docs/superpowers/plans/2026-05-02-roadmap-to-100-percent-global-standards-index.md": "Roadmap to 100%",
+  }
+def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str, str]], downloads: list[str], docs: list[str], progress: dict[str, object]) -> str:
     entry_count = fmt_number(api.get("entry_count"))
     relationship_count = fmt_number(api.get("relationship_count"))
     domain_count = fmt_number(len(domains))
     source_count = fmt_number(len(sources))
-    full_progress = PROJECT_PROGRESS["full_vision_percent"]
-    public_progress = PROJECT_PROGRESS["public_mvp_percent"]
+    full_progress = progress.get("full_vision_percent", PROJECT_PROGRESS["full_vision_percent"])
+    public_progress = progress.get("public_mvp_percent", PROJECT_PROGRESS["public_mvp_percent"])
 
     return f"""<!doctype html>
 <html lang="en">
@@ -936,7 +1010,7 @@ def render_html(api: dict, domains: list[dict[str, str]], sources: list[dict[str
             <span></span>
           </div>
           <strong>{full_progress}% complete global vision</strong>
-          <p>{esc(PROJECT_PROGRESS["stage"])}. The remaining work is tracked by the roadmap, research task matrix, source registry, and quality reports.</p>
+          <p>{esc(progress["stage"])}. The remaining work is tracked by the roadmap, research task matrix, source registry, and quality reports.</p>
         </article>
         <article class="progress-card">
           <div class="progress-meter secondary" style="--progress: {public_progress}%">
@@ -1817,6 +1891,7 @@ def build_site(root: Path | str = Path(".")) -> Path:
         coverage_rows = read_csv(root / "data" / "reports" / "domain_coverage.csv")
     source_rows = read_csv(root / "data" / "reference" / "source_registry.csv")
     search_rows = normalize_search_rows(read_csv(dist_dir / "sigma_master.csv"))
+    add_search_record_urls(search_rows)
     domains = merge_domain_rows(domain_rows, coverage_rows)
 
     (public / "assets" / "styles.css").write_text(render_css(), encoding="utf-8")
@@ -1824,8 +1899,9 @@ def build_site(root: Path | str = Path(".")) -> Path:
     write_search_index(public, search_rows)
     write_search_record_pages(public, search_rows)
     (public / "search.html").write_text(render_search_page(api, len(search_rows)), encoding="utf-8")
+    progress = compute_project_progress(root)
     (public / "index.html").write_text(
-        render_html(api, domains, source_rows, downloads, docs),
+        render_html(api, domains, source_rows, downloads, docs, progress),
         encoding="utf-8",
     )
     return public

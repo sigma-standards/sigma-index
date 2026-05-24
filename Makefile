@@ -1,6 +1,6 @@
 PYTHON ?= .venv/bin/python
 
-.PHONY: validate relationships relationship-quality research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage un-treaties-stage sustainability-reporting nist-priority w3c-priority itu-priority etsi-priority open-ict-priority iec-priority space-priority iaea-priority culture-priority sports-priority national-standards-bodies release site pagefind-search sync-google-sheet clean
+.PHONY: validate relationships relationship-quality research-tasks quality-gate health-priority codex humanitarian-priority who-iris-stage un-treaties-stage sustainability-reporting nist-priority w3c-priority itu-priority etsi-priority open-ict-priority iec-priority space-priority iaea-priority culture-priority sports-priority national-standards-bodies check-urls w3c-live itu-live un-treaties-live release site pagefind-search sync-google-sheet clean
 
 validate:
 	$(PYTHON) scripts/validate_domain_registry.py
@@ -106,6 +106,21 @@ sports-priority:
 national-standards-bodies:
 	$(PYTHON) scripts/process_national_standards_bodies.py
 	$(PYTHON) scripts/validate_schema.py data/processed/national_standards_bodies.csv
+
+check-urls:
+	$(PYTHON) scripts/check_urls.py
+
+w3c-live:
+	$(PYTHON) scripts/harvest_w3c_live.py
+	$(PYTHON) scripts/validate_schema.py data/processed/w3c_standards_live.csv
+
+itu-live:
+	$(PYTHON) scripts/harvest_itu_live.py
+	$(PYTHON) scripts/validate_schema.py data/processed/itu_recommendations_live.csv
+
+un-treaties-live:
+	$(PYTHON) scripts/harvest_un_treaties_live.py
+	$(PYTHON) scripts/validate_schema.py data/processed/un_treaties_live.csv
 
 release: relationships validate
 	$(PYTHON) scripts/build_domain_coverage.py

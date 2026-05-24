@@ -37,11 +37,16 @@ Commit source truth only:
 Do not commit local/runtime artifacts:
 
 - `.venv/`
+- `.agents/`
+- `.codex/`
+- `.tmp/`
 - `.pytest_cache/`
 - `.vscode/` unless a repo maintainer explicitly asks for IDE config
+- `.windsurf/`
 - `dist/`
 - `public/`
 - `__pycache__/`
+- `.envrc`
 - raw Codex memory or session folders from `/home/health-pm/.codex/`
 - secrets, tokens, API keys, or copied logs that may contain credentials
 
