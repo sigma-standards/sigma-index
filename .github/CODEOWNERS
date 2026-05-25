@@ -1,0 +1,8 @@
+# SIGMA Code Owners
+
+* @sigma-standards
+.github/ @sigma-standards
+docs/ @sigma-standards
+scripts/ @sigma-standards
+tests/ @sigma-standards
+data/processed/ @sigma-standards

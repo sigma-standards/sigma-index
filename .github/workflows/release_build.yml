@@ -1,32 +1,122 @@
 name: Release Build
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
+    paths:
+      - 'data/processed/**'
+      - 'scripts/build_release.py'
+  workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+permissions:
+  contents: write
+  pages: write
 
 jobs:
-  build-release:
+  validate-gates:
+    name: Validate Pre-Release Gates
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Build release artifacts
-        run: make PYTHON=python3 release
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 SPARQLWrapper pandas openpyxl pyarrow lxml
 
-      - name: Upload release artifact bundle
-        uses: actions/upload-artifact@v7
+      - name: Run all validation gates
+        run: |
+          python3 scripts/validate_schema.py || exit 1
+          python3 scripts/validate_relationships.py || exit 1
+          python3 scripts/check_duplicate_ids.py || exit 1
+          python3 scripts/build_quality_gate.py || exit 1
+          python3 scripts/build_relationship_quality.py || exit 1
+
+  build-release:
+    name: Build Release Artifacts
+    needs: validate-gates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
         with:
-          name: sigma-release-artifacts
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 SPARQLWrapper pandas openpyxl pyarrow lxml
+
+      - name: Build release
+        run: python3 scripts/build_release.py
+
+      - name: Generate domain coverage report
+        run: python3 scripts/build_domain_coverage.py
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sigma-release-${{ github.run_number }}
           path: dist/
+          retention-days: 90
+
+  publish-pages:
+    name: Publish to GitHub Pages
+    needs: build-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 SPARQLWrapper pandas openpyxl pyarrow lxml
+          npm install -g pagefind
+
+      - name: Build static site
+        run: python3 scripts/build_static_site.py
+
+      - name: Generate search index
+        run: npx pagefind --site public/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  notify:
+    name: Release Notification
+    needs: [build-release, publish-pages]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Create release issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const releaseNum = context.runNumber;
+            const status = '${{ needs.build-release.result }}' === 'success' ? '✅ SUCCESS' : '❌ FAILED';
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Release Build #${releaseNum} ${status}`,
+              body: `Automated release build #${releaseNum}\n\n- Build: ${{ needs.build-release.result }}\n- Pages: ${{ needs.publish-pages.result }}\n\n[View Workflow Run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`
+            });
