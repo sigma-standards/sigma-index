@@ -1,0 +1,30 @@
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "03:00"
+    assignees:
+      - sigma-standards
+    labels:
+      - dependencies
+      - automated
+
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "03:30"
+    assignees:
+      - sigma-standards
+    labels:
+      - dependencies
+      - automated
+      - python
+    ignore:
+      - dependency-name: "scipy"  # Often requires compilation
+        update-types: ["version-update:semver-major"]

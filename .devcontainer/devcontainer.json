@@ -1,77 +1,43 @@
 {
-  "name": "SIGMA Global Standards Index",
+  "name": "SIGMA Index Sandbox",
   "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
-  
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/node:18": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
-        "ms-python.black-formatter",
-        "ms-python.flake8",
-        "ms-git.github-copilot",
-        "GitHub.copilot-chat",
-        "ms-vscode.makefile-tools",
-        "ms-vscode-remote.remote-containers",
-        "redhat.vscode-yaml",
-        "ms-vscode.json-utilities"
+        "ms-git.git-graph",
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "GitHub.vscode-pull-request-github",
+        "charliermarsh.ruff"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
-        "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter",
-          "editor.formatOnSave": true,
-          "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-          }
-        },
-        "files.exclude": {
-          "**/__pycache__": true,
-          "**/.pytest_cache": true,
-          "**/.venv": true,
-          "**/dist": true,
-          "**/.codex": true,
-          "**/.copilot": true
-        },
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2,
-        "editor.trimAutoWhitespace": true,
-        "files.trimTrailingWhitespace": true,
-        "files.insertFinalNewline": true
+        "python.formatting.provider": "black"
       }
     }
   },
-
-  "postCreateCommand": ".devcontainer/post-create.sh",
-  
-  "remoteUser": "vscode",
-  
-  "forwardPorts": [8000, 8080, 3000],
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "forwardPorts": [8000, 8080],
   "portsAttributes": {
     "8000": {
-      "label": "Application",
-      "onAutoForward": "ignore"
+      "label": "Development Server",
+      "onAutoForward": "notify"
     },
     "8080": {
-      "label": "Web",
-      "onAutoForward": "ignore"
+      "label": "API Server",
+      "onAutoForward": "notify"
     }
   },
-
-  "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached"
-  ],
-
-  "containerEnv": {
-    "SIGMA_PROJECT_ROOT": "/workspaces/sigma-index"
+  "remoteEnv": {
+    "PYTHONUNBUFFERED": "1",
+    "PIP_NO_CACHE_DIR": "1"
   }
 }
