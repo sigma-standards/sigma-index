@@ -59,7 +59,7 @@ jobs:
         run: python3 scripts/build_domain_coverage.py
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sigma-release-${{ github.run_number }}
           path: dist/
