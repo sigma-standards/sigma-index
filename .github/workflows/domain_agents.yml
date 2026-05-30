@@ -124,7 +124,7 @@ jobs:
 
           branch_name="agent/${{ inputs.agent_id }}-${{ github.run_id }}"
           git checkout -B "${branch_name}"
-          git add data/processed data/staging docs data/reports/*.csv
+          git add data/processed docs data/reports/*.csv
           git commit -m "agent: refresh ${{ inputs.agent_id }} domain outputs"
           git push --set-upstream origin "${branch_name}"
 
@@ -201,7 +201,7 @@ jobs:
 
           branch_name="agent/${{ matrix.agent_id }}-${{ github.run_id }}"
           git checkout -B "${branch_name}"
-          git add data/processed data/staging docs data/reports/*.csv
+          git add data/processed docs data/reports/*.csv
           git commit -m "agent: refresh ${{ matrix.agent_id }} domain outputs"
           git push --set-upstream origin "${branch_name}"
 

@@ -19,8 +19,15 @@ Keep the project useful after any local machine or temporary Codex session disap
 
 Commit source truth only:
 
+- `.devcontainer/`
 - `.github/`
+- `.gitattributes`
+- `.gitignore`
 - `AGENTS.md`
+- `CHANGELOG.md`
+- `CODE_OF_CONDUCT.md`
+- `CONTRIBUTING.md`
+- `LICENSE`
 - `README.md`
 - `SCHEMA.md`
 - `RESEARCH_PROJECT_PLAN_Global_Standards_Index.md`
@@ -34,6 +41,8 @@ Commit source truth only:
 - `Makefile`
 - `pyproject.toml`
 
+Generated aggregates, local topology snapshots, generated Pages output, raw harvest outputs, staging extracts, local agent memory, downloaded patches, and exploratory archives are not source truth. Convert durable knowledge from them into approved docs, tests, workflows, scripts, or reference data before removing them.
+
 Do not commit local/runtime artifacts:
 
 - `.venv/`
@@ -45,8 +54,13 @@ Do not commit local/runtime artifacts:
 - `.windsurf/`
 - `dist/`
 - `public/`
+- `data/raw/`
+- `data/staging/`
 - `__pycache__/`
+- `temp_assets/`
 - `.envrc`
+- root-level generated inventory files such as `*_sigma-index.md`
+- root-level copied exports such as `sigma_master*.csv`
 - raw Codex memory or session folders from `/home/health-pm/.codex/`
 - secrets, tokens, API keys, or copied logs that may contain credentials
 
