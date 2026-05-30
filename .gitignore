@@ -8,6 +8,12 @@ build/
 dist/
 public/
 
+# Generated data surfaces
+data/raw/
+data/staging/
+temp_assets/
+_knowledge_graph/
+
 # Python bytecode
 __pycache__/
 *.py[cod]
@@ -21,8 +27,11 @@ __pycache__/
 # Local agent/runtime folders
 .agents/
 .codex/
+.opencode/
+.playwright-mcp/
 .tmp/
 .cache/
+logs/
 
 # Misc
 .DS_Store
@@ -35,8 +44,14 @@ __pycache__/
 rfc-index.txt
 .aider*
 *.worktrees/
+*.db
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
 
 # Temporary/generated files
 generate_tree.sh
 *.topology.md
 *_triage.md
+*_sigma-index.md
+/sigma_master*.csv

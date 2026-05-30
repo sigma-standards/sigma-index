@@ -2,12 +2,14 @@
 
 This report records the files pasted into the repository root on 2026-05-04 and the decision taken for each resource. The goal was to incorporate useful SIGMA-adjacent signal while removing raw, duplicate, sensitive, bulky, or out-of-scope material.
 
-## Incorporated Artifacts
+## Archived Staging Artifacts
 
-- `data/staging/master_directory_global_standards_v2_0.csv` — CSV extract of the workbook master directory with 516 standards-body/framework entries.
-- `data/staging/bangladesh_fhir_canonical_resources.csv` — canonical metadata extracted from the Bangladesh FHIR IG archive.
-- `data/staging/bangladesh_shr_link_inventory.csv` — 211 public SHR/DGHS link records converted from `links.json`.
-- `data/staging/pasted_resource_inventory.csv` — file-level inventory, hash, action, relevance, and rationale.
+These staging extracts were useful triage outputs, but `data/staging/` is now ignored in Git and treated as an intermediate workspace only.
+
+- External archived copy of `data/staging/master_directory_global_standards_v2_0.csv` — CSV extract of the workbook master directory with 516 standards-body/framework entries.
+- External archived copy of `data/staging/bangladesh_fhir_canonical_resources.csv` — canonical metadata extracted from the Bangladesh FHIR IG archive.
+- External archived copy of `data/staging/bangladesh_shr_link_inventory.csv` — 211 public SHR/DGHS link records converted from `links.json`.
+- External archived copy of `data/staging/pasted_resource_inventory.csv` — file-level inventory, hash, action, relevance, and rationale.
 
 ## Incorporated As Notes Only
 
@@ -19,9 +21,10 @@ Raw `.docx` API files were removed because they contained credential-like exampl
 
 ## Candidate Follow-Up Work
 
-- Review `data/staging/master_directory_global_standards_v2_0.csv` against current SIGMA processed and national standards body data before promoting any rows.
-- Use `data/staging/bangladesh_fhir_canonical_resources.csv` to plan a Bangladesh Digital Health/FHIR standards slice.
-- Use `data/staging/bangladesh_shr_link_inventory.csv` as a URL/source map for a future health interoperability source registry update.
+- Review the external archived copy of `data/staging/master_directory_global_standards_v2_0.csv` against current SIGMA processed and national standards body data before promoting any rows.
+- Use the external archived copy of `data/staging/bangladesh_fhir_canonical_resources.csv` to plan a Bangladesh Digital Health/FHIR standards slice.
+- Use the external archived copy of `data/staging/bangladesh_shr_link_inventory.csv` as a URL/source map for a future health interoperability source registry update.
+- Keep `data/staging/` ignored in Git. Promote only reviewed rows into approved `data/reference/`, `data/processed/`, `data/relationships/`, or `data/reports/` files.
 - Do not reintroduce raw API documents unless they are redacted first.
 
 ## Decision Table
