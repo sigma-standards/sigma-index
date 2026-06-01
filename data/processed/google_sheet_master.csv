@@ -1,1 +1,3 @@
-sigma_id,entry_type,meta_layer,domain,sub_domain,name_full,name_short,standard_id,issuer,issuer_type,governance_layer,geographic_scope,year_published,year_first,status,mandate,sector_applicability,why_it_matters,key_outputs,official_url,data_source,notes
+version https://git-lfs.github.com/spec/v1
+oid sha256:b2f9e89386019f32c076c82261b7c347d6e2f66f2fe699bdb76ddb4fb1abc887
+size 255
