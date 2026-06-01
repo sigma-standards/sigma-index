@@ -1,5 +1,3 @@
-artifact,local_source,drive_target,size_bytes,sha256,purpose
-sigma-index-eae40766cf7b-git-tracked.tar.gz,git archive HEAD,"/run/user/1000/gvfs/google-drive:host=gmail.com,user=zarishsphere/0ADhYGIfiBrsuUk9PVA/1-ot23dLe23gS-lBKrelmsGeF9OCwnVzJ/SIGMA_GITHUB_SYNC/snapshots/sigma-index-eae40766cf7b-git-tracked.tar.gz",32349334,e976cdb4e4c5e4ea7810a1483d4603640416a0cc03d4c846a7d22e6c75d6b3c5,"Exact Git-tracked repository snapshot; excludes .git, .venv, caches, and ignored local runtime files."
-sigma-index-eae40766cf7b-dist.tar.gz,dist/,"/run/user/1000/gvfs/google-drive:host=gmail.com,user=zarishsphere/0ADhYGIfiBrsuUk9PVA/1-ot23dLe23gS-lBKrelmsGeF9OCwnVzJ/SIGMA_GITHUB_SYNC/snapshots/sigma-index-eae40766cf7b-dist.tar.gz",50371287,181b00cd3a030ff39dc94f7f8bfc3ff07d47e90114410900cae725dc44ff7096,Generated release/API artifacts mirror.
-sigma-index-eae40766cf7b-public.tar.gz,public/,"/run/user/1000/gvfs/google-drive:host=gmail.com,user=zarishsphere/0ADhYGIfiBrsuUk9PVA/1-ot23dLe23gS-lBKrelmsGeF9OCwnVzJ/SIGMA_GITHUB_SYNC/snapshots/sigma-index-eae40766cf7b-public.tar.gz",68212608,8f8a9a9173811679af1898305d190b756a07e27f814721cb779fa5ed8f464830,Generated GitHub Pages/static site mirror.
-SHA256SUMS.txt,/tmp/sigma_drive_snapshots/SHA256SUMS.txt,"/run/user/1000/gvfs/google-drive:host=gmail.com,user=zarishsphere/0ADhYGIfiBrsuUk9PVA/1-ot23dLe23gS-lBKrelmsGeF9OCwnVzJ/SIGMA_GITHUB_SYNC/snapshots/SHA256SUMS.txt",318,455d6958494673337dd8e486a24cae3797a8567b4486e5fce54bc2defa42afea,Checksum verification for Drive snapshots.
+version https://git-lfs.github.com/spec/v1
+oid sha256:9e4a637d6e028e9be1a278ed4619af35b7ea4f3c6a06801d7c9065a002faeafe
+size 1525
