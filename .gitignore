@@ -4,15 +4,9 @@ venv/
 
 # Packaging/build artifacts
 *.egg-info/
-build/
-dist/
-public/
 
 # Generated data surfaces
-data/raw/
-data/staging/
 temp_assets/
-_knowledge_graph/
 
 # Python bytecode
 __pycache__/
@@ -54,4 +48,4 @@ generate_tree.sh
 *.topology.md
 *_triage.md
 *_sigma-index.md
-/sigma_master*.csv
+
